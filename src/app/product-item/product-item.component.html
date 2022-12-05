@@ -1,0 +1,13 @@
+<div class="products__item">
+  <h4 class="products__item_title">
+    {{ productDate.name }}
+  </h4>
+  <div
+    appPriceHighlight
+    [price]="productDate.price"
+    class="products__item_price"
+  >
+    {{ productDate.price | uah }}
+  </div>
+  <app-add-button [text]="'Add Item'"></app-add-button>
+</div>

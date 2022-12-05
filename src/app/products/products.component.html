@@ -1,0 +1,13 @@
+<main class="main">
+  <div class="products">
+    <div class="container">
+      <h2 class="products__title">Products</h2>
+      <div class="products__box">
+        <ng-container *ngFor="let product of date">
+          <app-product-item [productDate]="product"></app-product-item>
+        </ng-container>
+      </div>
+      <button class="products__btn_more">Load more</button>
+    </div>
+  </div>
+</main>
