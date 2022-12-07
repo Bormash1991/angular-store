@@ -1,4 +1,4 @@
-import { TypeOfProduct } from './../models/TypeOfProduct.inteface';
+import { TypeOfProduct } from '../../../models/TypeOfProduct.inteface';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

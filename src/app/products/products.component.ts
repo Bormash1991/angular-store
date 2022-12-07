@@ -8,7 +8,6 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  
   protected date: TypeOfProduct[];
 
   constructor(private productsService: ProductsService) {}
