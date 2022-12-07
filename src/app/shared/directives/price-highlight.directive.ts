@@ -12,11 +12,10 @@ export class PriceHighlightDirective implements OnInit {
     this.changeColor();
   }
   changeColor() {
-    if (this.price > 500) {
-      this.elem.style.color = 'red';
-    }
-    if (this.price > 1000) {
-      this.elem.style.color = 'green';
-    }
+    this.price > 500 && this.price < 1000
+      ? (this.elem.style.color = 'red')
+      : this.price < 500
+      ? (this.elem.style.color = '')
+      : (this.elem.style.color = 'green');
   }
 }

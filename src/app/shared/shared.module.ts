@@ -3,20 +3,20 @@ import { CommonModule } from '@angular/common';
 import { UahPipe } from './pipes/uah.pipe';
 import { PriceHighlightDirective } from './directives/price-highlight.directive';
 import { ProductItemComponent } from './components/product-item/product-item.component';
-import { AddButtonComponent } from './components/add-button/add-button.component';
+import { BtnComponent } from './components/btn/btn.component';
 @NgModule({
   declarations: [
     UahPipe,
     PriceHighlightDirective,
     ProductItemComponent,
-    AddButtonComponent,
+    BtnComponent,
   ],
   imports: [CommonModule],
   exports: [
     UahPipe,
     PriceHighlightDirective,
     ProductItemComponent,
-    AddButtonComponent,
+    BtnComponent,
   ],
 })
 export class SharedModule {}
