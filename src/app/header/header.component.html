@@ -16,13 +16,17 @@
             <div class="header__nav_text header__text">Products</div></a
           >
         </li>
-        <li class="header__nav_item">
-          <a href="#" class="header__nav_item"
+        <li (mouseenter)="hover()" (mouseleave)="leave()" (click)="click()">
+          <a href="#" class="header__nav_item" [routerLink]="['cart']"
             ><svg class="header__nav_img header__icon">
               <use href="assets/sprite.svg#icon-shopping-cart"></use>
             </svg>
-            <div class="header__nav_text header__text">Cart</div></a
-          >
+            <div class="header__nav_text header__text">Cart</div>
+          </a>
+          <app-cart-modal
+            (mouse)="change($event)"
+            [className]="className"
+          ></app-cart-modal>
         </li>
       </ul>
     </nav>

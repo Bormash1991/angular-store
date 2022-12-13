@@ -1,17 +1,4 @@
 <app-header></app-header>
-<main class="main">
-  <div class="products">
-    <div class="container">
-      <h2 class="products__title">Products</h2>
-      <div class="products__box">
-        <app-product-item
-          *ngFor="let product of date"
-          [productDate]="product"
-        ></app-product-item>
-      </div>
-      <!-- <button>Load more</button> -->
-      <btn [class]="'btn_more'" [text]="'Load more'"></btn>
-    </div>
-  </div>
-</main>
+<router-outlet></router-outlet>
+
 <app-footer></app-footer>

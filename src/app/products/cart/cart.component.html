@@ -1,0 +1,14 @@
+<div class="cart">
+  <div class="container">
+    <div class="cart__box">
+      <ng-container *ngIf="!data.length">
+        <div class="cart__empty">Your shopping cart is empty!</div>
+      </ng-container>
+      <app-product-item
+        *ngFor="let prod of data"
+        [productDate]="prod[0]"
+        (mouseClick)="changeData($event)"
+      ></app-product-item>
+    </div>
+  </div>
+</div>

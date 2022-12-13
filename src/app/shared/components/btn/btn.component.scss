@@ -5,6 +5,9 @@
   background-color: #a3a4a43d;
   font-size: 18px;
   transition: 250ms background-color;
+  &_details {
+    padding: 12px 25px;
+  }
   &_more {
     display: block;
     padding: 10px 20px;
@@ -21,6 +24,26 @@
     &:hover {
       background-color: #94aabaad;
     }
+  }
+  &_plus,
+  &_minus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 0px;
+    padding: 0px;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    background-color: white;
+    color: rgb(63, 62, 62);
+    border: 1.5px solid rgba(146, 138, 138, 0.186);
+    box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 5%);
+  }
+  &_minus {
+    font-size: 22px;
+    line-height: 1;
   }
   &:hover {
     background-color: #a3a4a48d;

@@ -1,0 +1,23 @@
+.details {
+  padding-top: 35px;
+  padding-bottom: 250px;
+  &__title,
+  &__name,
+  &__descr {
+    font-weight: 400;
+    font-size: 28px;
+    color: #1f242a;
+  }
+  &__name,
+  &__descr {
+    font-size: 22px;
+    margin-top: 65px;
+  }
+  &__descr {
+    margin-top: 27px;
+  }
+  &__price {
+    font-size: 22px;
+    margin-top: 25px;
+  }
+}
