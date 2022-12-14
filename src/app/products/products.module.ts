@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartModalComponent } from './cart-modal/cart-modal.component';
 import { CartComponent } from './cart/cart.component';
+import { CounterComponent } from './counter/counter.component';
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -18,6 +19,7 @@ import { CartComponent } from './cart/cart.component';
     ProductListComponent,
     CartModalComponent,
     CartComponent,
+    CounterComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule],
 })

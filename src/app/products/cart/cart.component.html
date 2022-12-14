@@ -1,14 +1,17 @@
 <div class="cart">
   <div class="container">
-    <div class="cart__box">
-      <ng-container *ngIf="!data.length">
-        <div class="cart__empty">Your shopping cart is empty!</div>
-      </ng-container>
+    <ng-container *ngIf="!data.length">
+      <div class="cart__empty">Your shopping cart is empty!</div>
+    </ng-container>
+    <div *ngFor="let prod of data" class="cart__box">
       <app-product-item
-        *ngFor="let prod of data"
         [productDate]="prod[0]"
         (mouseClick)="changeData($event)"
       ></app-product-item>
+      <app-counter
+        (mouseClick)="changeCounter($event)"
+        [elem]="prod"
+      ></app-counter>
     </div>
   </div>
 </div>

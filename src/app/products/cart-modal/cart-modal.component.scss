@@ -55,19 +55,14 @@
   &__num {
     text-align: center;
   }
-  &__counter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-  }
+
   &__price {
     margin-top: 15px;
     font-size: 15px;
     line-height: 1.28;
   }
   &__empty {
+    color: rgba(0, 0, 0, 0.634);
     text-align: center;
     margin: 0 auto;
     font-weight: 700;

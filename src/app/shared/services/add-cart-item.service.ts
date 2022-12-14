@@ -59,11 +59,13 @@ export class AddCartItemService {
     return counter;
   }
   removeSetOfProduct(elem: TypeOfProduct) {
+    let arr = [...this.data];
     this.data.forEach((item, i) => {
       if (JSON.stringify(item) === JSON.stringify(elem)) {
-        this.data.splice(i, 1);
+        arr.splice(arr.length - 1, 1);
       }
     });
+    this.data = [...arr];
     this.transformData();
 
     this.localStorageService.setData<TypeOfProduct[]>(
@@ -74,7 +76,14 @@ export class AddCartItemService {
   plusCounter(elem: TypeOfProduct) {
     this.setData(elem);
   }
-
+  changeCounter(doing: 'plus' | 'minus', elem: TypeOfProduct) {
+    if (doing == 'plus') {
+      this.plusCounter(elem);
+    } else if (doing == 'minus') {
+      this.minusCounter(elem);
+      this.arrSubject$.next(elem);
+    }
+  }
   minusCounter(elem: TypeOfProduct) {
     let index: number = 0;
     this.data.forEach((item, i) => {

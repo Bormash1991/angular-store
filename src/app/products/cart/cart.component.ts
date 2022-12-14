@@ -12,6 +12,14 @@ export class CartComponent implements OnInit {
   constructor(private addCartItemService: AddCartItemService) {}
   ngOnInit(): void {
     this.data = this.addCartItemService.getData();
+    this.addCartItemService.arrSubject$.subscribe(() =>
+      this.changeData(this.addCartItemService.getData())
+    );
+  }
+  changeCounter(elem: ['plus' | 'minus', TypeOfProduct]) {
+    this.addCartItemService.changeCounter(elem[0], elem[1]);
+    this.data = this.addCartItemService.getData();
+    // this.totalSum = this.addCartItemService.getTotal();
   }
   changeData(data: [TypeOfProduct, number][]) {
     this.data = data;

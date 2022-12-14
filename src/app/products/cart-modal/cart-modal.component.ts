@@ -24,14 +24,8 @@ export class CartModalComponent implements OnChanges {
     this.data = this.addCartItemService.getData();
     this.totalSum = this.addCartItemService.getTotal();
   }
-
-  changeCounter(doing: 'plus' | 'minus', elem: TypeOfProduct) {
-    if (doing == 'plus') {
-      this.addCartItemService.plusCounter(elem);
-    } else if (doing == 'minus') {
-      this.addCartItemService.minusCounter(elem);
-      this.addCartItemService.arrSubject$.next(elem);
-    }
+  changeCounter(elem: ['plus' | 'minus', TypeOfProduct]) {
+    this.addCartItemService.changeCounter(elem[0], elem[1]);
     this.data = this.addCartItemService.getData();
     this.totalSum = this.addCartItemService.getTotal();
     if (this.data.length == 0) {

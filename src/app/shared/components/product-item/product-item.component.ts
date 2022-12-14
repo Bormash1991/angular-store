@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { AddCartItemService } from '../../services/add-cart-item.service';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-product-item',
@@ -30,15 +30,13 @@ export class ProductItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.addCartItemService.reloadData();
     if (this.router.url == '/products') {
-      this.addCartItemService.arrSubject$.subscribe((n) => this.checkReload(n));
-    }
-    if (this.router.url == '/products/cart') {
+      this.addCartItemService.reloadData();
+      this.addCartItemService.arrSubject$.subscribe((n) => this.check(n));
+    } else if (this.router.url == '/products/cart') {
       this.buttonText = 'Remove from Cart';
     }
   }
-
   click(elem: TypeOfProduct) {
     if (this.router.url != '/products/cart') {
       this.addCartItemService.setData(elem);
@@ -50,8 +48,9 @@ export class ProductItemComponent implements OnInit {
       this.mouseClick.emit(data);
     }
   }
-  checkReload(elem: TypeOfProduct) {
+  check(elem: TypeOfProduct) {
     let data = this.addCartItemService.getData();
+
     for (let i = 0; i < data.length; i++) {
       if (
         data[i][0].id == this.productDate.id &&
@@ -66,14 +65,6 @@ export class ProductItemComponent implements OnInit {
     if (this.productDate.id == elem.id) {
       this.buttonText = 'Add to Cart';
       this.changeDetector.detectChanges();
-    }
-  }
-  check(elem: TypeOfProduct) {
-    let count = this.addCartItemService.checkButton(elem);
-    if (count && this.productDate.id == elem.id) {
-      this.buttonText = 'In Cart';
-    } else {
-      this.buttonText = 'Add to Cart';
     }
   }
 }

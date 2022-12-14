@@ -1,9 +1,14 @@
-<div *ngIf="product" class="details">
+<div *ngIf="productData" class="details">
   <div class="container">
-    <h2 class="details__title">Products > Product #{{ product.id }}</h2>
-    <h3 class="details__name">Product #{{ product.id }}</h3>
-    <div class="details__descr">{{ product.name }}</div>
-    <div class="details__price">{{ product.price | uah }}</div>
-    <btn [class]="'btn btn_details'" [text]="'Add to cart'"></btn>
+    <h2 class="details__title">Products > Product #{{ productData.id }}</h2>
+    <h3 class="details__name">Product #{{ productData.id }}</h3>
+    <div class="details__descr">{{ productData.name }}</div>
+    <div class="details__price">{{ productData.price | uah }}</div>
+    <btn
+      [class]="'btn btn_details'"
+      [text]="buttonText"
+      (click)="click(productData)"
+    ></btn>
+    <!-- <app-product-item [productDate]="product"></app-product-item> -->
   </div>
 </div>

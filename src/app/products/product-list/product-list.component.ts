@@ -15,7 +15,7 @@ export class ProductListComponent implements OnInit {
     private productsService: ProductsService,
     private addCartItemService: AddCartItemService
   ) {}
-
+  ngOnDestroy(): void {}
   ngOnInit(): void {
     this.date = this.productsService.getDate();
   }
