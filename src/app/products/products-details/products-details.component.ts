@@ -30,7 +30,7 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
     this.check(elem);
   }
   check(elem: TypeOfProduct) {
-    let count = this.addCartItemService.checkButton(elem);
+    let count = this.addCartItemService.checkCount(elem);
     if (count && elem.id == this.productData.id) {
       this.buttonText = 'In Cart';
     } else if (elem.id == this.productData.id) {

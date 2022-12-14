@@ -49,7 +49,7 @@ export class AddCartItemService {
     );
     return totalSum;
   }
-  checkButton(elem: TypeOfProduct) {
+  checkCount(elem: TypeOfProduct) {
     let counter: number = 0;
     this.data.forEach((item) => {
       if (JSON.stringify(item) === JSON.stringify(elem)) {
@@ -60,14 +60,14 @@ export class AddCartItemService {
   }
   removeSetOfProduct(elem: TypeOfProduct) {
     let arr = [...this.data];
-    this.data.forEach((item, i) => {
-      if (JSON.stringify(item) === JSON.stringify(elem)) {
-        arr.splice(arr.length - 1, 1);
-      }
-    });
-    this.data = [...arr];
+    // this.data.forEach((item, i) => {
+    //   if (item.id == elem.id) {
+    //     arr.splice(i, 1);
+    //   }
+    // });
+    this.data = this.data.filter((item) => item.id != elem.id);
+    // this.data = [...arr];
     this.transformData();
-
     this.localStorageService.setData<TypeOfProduct[]>(
       'CartDataCount',
       this.data

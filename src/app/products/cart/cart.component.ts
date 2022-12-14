@@ -9,19 +9,22 @@ import { AddCartItemService } from 'src/app/shared/services/add-cart-item.servic
 })
 export class CartComponent implements OnInit {
   data: [TypeOfProduct, number][];
+  totalSum: number = 0;
   constructor(private addCartItemService: AddCartItemService) {}
   ngOnInit(): void {
     this.data = this.addCartItemService.getData();
     this.addCartItemService.arrSubject$.subscribe(() =>
       this.changeData(this.addCartItemService.getData())
     );
+    this.totalSum = this.addCartItemService.getTotal();
   }
   changeCounter(elem: ['plus' | 'minus', TypeOfProduct]) {
     this.addCartItemService.changeCounter(elem[0], elem[1]);
     this.data = this.addCartItemService.getData();
-    // this.totalSum = this.addCartItemService.getTotal();
+    this.totalSum = this.addCartItemService.getTotal();
   }
   changeData(data: [TypeOfProduct, number][]) {
     this.data = data;
+    this.totalSum = this.addCartItemService.getTotal();
   }
 }
