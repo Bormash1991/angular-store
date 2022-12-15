@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
 } from '@angular/core';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';

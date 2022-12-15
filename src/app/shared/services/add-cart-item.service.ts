@@ -59,14 +59,7 @@ export class AddCartItemService {
     return counter;
   }
   removeSetOfProduct(elem: TypeOfProduct) {
-    let arr = [...this.data];
-    // this.data.forEach((item, i) => {
-    //   if (item.id == elem.id) {
-    //     arr.splice(i, 1);
-    //   }
-    // });
     this.data = this.data.filter((item) => item.id != elem.id);
-    // this.data = [...arr];
     this.transformData();
     this.localStorageService.setData<TypeOfProduct[]>(
       'CartDataCount',

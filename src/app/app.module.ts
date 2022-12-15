@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductsRoutingModule } from './products/products-routing.module';
+import { ShopRoutingModule } from './shop/shop-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { ProductsModule } from './products/products.module';
+import { ShopModule } from './shop/shop.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductsRoutingModule,
+    ShopRoutingModule,
     SharedModule,
-    ProductsModule,
+    ShopModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

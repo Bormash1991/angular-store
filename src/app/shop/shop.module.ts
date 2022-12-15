@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductsComponent } from './products.component';
+import { ShopComponent } from './shop.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -12,7 +12,7 @@ import { CartComponent } from './cart/cart.component';
 import { CounterComponent } from './counter/counter.component';
 @NgModule({
   declarations: [
-    ProductsComponent,
+    ShopComponent,
     HeaderComponent,
     FooterComponent,
     ProductsDetailsComponent,
@@ -23,4 +23,4 @@ import { CounterComponent } from './counter/counter.component';
   ],
   imports: [CommonModule, SharedModule, RouterModule],
 })
-export class ProductsModule {}
+export class ShopModule {}
