@@ -3,6 +3,7 @@
     <ng-container *ngIf="!data.length">
       <div class="cart__empty">Your shopping cart is empty!</div>
     </ng-container>
+    <h2 *ngIf="data.length" class="cart__title">Cart</h2>
     <div *ngIf="data.length" class="cart__box">
       <div *ngFor="let prod of data" class="cart__box-item">
         <app-product-item

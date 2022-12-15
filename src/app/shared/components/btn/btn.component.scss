@@ -30,7 +30,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin-top: 0px;
     padding: 0px;
     width: 25px;
@@ -44,6 +43,21 @@
   &_minus {
     font-size: 22px;
     line-height: 1;
+  }
+  &_delete {
+    margin: 0 0 0 20px;
+    padding: 2px 0 0 0;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.464);
+    color: white;
+    border-radius: 100%;
+    border: none;
+    font-size: 25px;
+    font-weight: 500;
   }
   &:hover {
     background-color: #a3a4a48d;

@@ -14,23 +14,15 @@
             {{ prod[0].price * prod[1] | uah }}
           </div>
         </div>
-        <!-- <div class="modal__counter">
-          <btn
-            (click)="changeCounter('plus', prod[0])"
-            [text]="'+'"
-            [class]="'btn btn_plus'"
-          ></btn>
-          <div class="modal__num">{{ prod[1] }}</div>
-          <btn
-            (click)="changeCounter('minus', prod[0])"
-            [text]="'-'"
-            [class]="'btn btn_minus'"
-          ></btn>
-        </div> -->
         <app-counter
           (mouseClick)="changeCounter($event)"
           [elem]="prod"
         ></app-counter>
+        <btn
+          [text]="'×'"
+          [class]="'btn btn_delete'"
+          (click)="delete(prod[0])"
+        ></btn>
       </li>
     </ul>
     <div *ngIf="data.length" class="modal__total">Total: {{ totalSum }}</div>
