@@ -10,6 +10,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CartModalComponent } from './cart-modal/cart-modal.component';
 import { CartComponent } from './cart/cart.component';
 import { CounterComponent } from './counter/counter.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 @NgModule({
   declarations: [
     ShopComponent,
@@ -20,6 +21,7 @@ import { CounterComponent } from './counter/counter.component';
     CartModalComponent,
     CartComponent,
     CounterComponent,
+    WelcomePageComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule],
 })

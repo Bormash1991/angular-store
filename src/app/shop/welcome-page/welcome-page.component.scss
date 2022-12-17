@@ -1,0 +1,24 @@
+.welcome {
+  padding: 90px 0 50px 0;
+  &__title {
+    font-weight: 500;
+    font-size: 45px;
+    color: #1f242a;
+    text-align: center;
+  }
+  &__subtitle {
+    margin-top: 50px;
+    font-weight: 400;
+    font-size: 30px;
+    color: #1f242a;
+    text-align: center;
+  }
+  &__box {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+}

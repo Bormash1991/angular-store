@@ -6,6 +6,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 import { ShopComponent } from './shop.component';
 import { CartComponent } from './cart/cart.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 const routes: Routes = [
   {
     path: '',
@@ -14,22 +15,32 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
+        component: WelcomePageComponent,
+      },
+      {
+        path: 'products',
+        pathMatch: 'full',
         component: ProductListComponent,
       },
       {
-        path: 'cart',
+        path: 'products/cart',
         pathMatch: 'full',
         component: CartComponent,
+      },
+      {
+        path: 'products/:id',
+        pathMatch: 'full',
+        component: ProductsDetailsComponent,
+      },
+      {
+        path: '**',
+        pathMatch: 'full',
+        redirectTo: '404-not-found',
       },
       {
         path: '404-not-found',
         pathMatch: 'full',
         component: PageNotFoundComponent,
-      },
-      {
-        path: ':id',
-        pathMatch: 'full',
-        component: ProductsDetailsComponent,
       },
     ],
   },

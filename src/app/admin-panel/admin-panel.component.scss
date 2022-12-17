@@ -1,0 +1,7 @@
+.panel {
+  &__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 0% 80%;
+  }
+}

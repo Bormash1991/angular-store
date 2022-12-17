@@ -13,29 +13,38 @@ import { take } from 'rxjs';
 export class ProductsDetailsComponent implements OnInit, OnDestroy {
   productData: TypeOfProduct;
   buttonText: string = 'Add to Cart';
+  subj: any;
   constructor(
     private AddItemDetailsService: AddItemDetailsService,
     private route: ActivatedRoute,
-    private addCartItemService: AddCartItemService,
+    private addCartItemService: AddCartItemService
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.productData = this.AddItemDetailsService.getItem(id);
-    this.addCartItemService.arrSubject$.subscribe((n) => this.check(n));
+    this.subj = this.addCartItemService.arrSubject$.subscribe((n) =>
+      this.check(n)
+    );
     this.check(this.productData);
   }
-  click(elem: TypeOfProduct) {
+  removeSet(elem: TypeOfProduct) {
     this.addCartItemService.setData(elem);
     this.check(elem);
   }
   check(elem: TypeOfProduct) {
     let count = this.addCartItemService.checkCount(elem);
-    if (count && elem.id == this.productData.id) {
-      this.buttonText = 'In Cart';
-    } else if (elem.id == this.productData.id) {
-      this.buttonText = 'Add to Cart';
+    try {
+      if (count && elem.id == this.productData.id) {
+        this.buttonText = 'In Cart';
+      } else if (elem.id == this.productData.id) {
+        this.buttonText = 'Add to Cart';
+      }
+    } catch (error) {
+      console.log('page-not-found');
     }
   }
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.subj.unsubscribe();
+  }
 }

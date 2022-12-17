@@ -1,0 +1,12 @@
+.user {
+  padding: 50px;
+  padding-bottom: 0;
+  &__box {
+    padding: 0 30px;
+  }
+  &__title {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 40px;
+  }
+}

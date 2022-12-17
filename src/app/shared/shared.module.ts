@@ -6,6 +6,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { BtnComponent } from './components/btn/btn.component';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TablesComponent } from './components/tables/tables.component';
 @NgModule({
   declarations: [
     UahPipe,
@@ -13,6 +14,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ProductItemComponent,
     BtnComponent,
     PageNotFoundComponent,
+    TablesComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -20,6 +22,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     PriceHighlightDirective,
     ProductItemComponent,
     BtnComponent,
+    TablesComponent,
   ],
 })
 export class SharedModule {}

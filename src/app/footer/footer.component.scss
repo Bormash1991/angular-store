@@ -9,6 +9,9 @@
     gap: 4px;
     border-radius: 4px;
     transition: 250ms background-color;
+    text-decoration: none;
+    color: black;
+    width: 96px;
     &:hover {
       background-color: rgba(0, 0, 0, 0.037);
     }

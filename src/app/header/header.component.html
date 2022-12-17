@@ -1,6 +1,6 @@
 <header class="header">
   <div class="header__container container">
-    <a href="#" class="header__logo">
+    <a href="#" class="header__logo" [routerLink]="['']">
       <svg class="header__logo_img header__icon">
         <use href="assets/sprite.svg#icon-shop"></use>
       </svg>
@@ -9,7 +9,7 @@
     <nav class="header__nav">
       <ul class="header__nav_list">
         <li>
-          <a href="#" class="header__nav_item">
+          <a class="header__nav_item" [routerLink]="['products']">
             <svg class="header__nav_img header__icon">
               <use href="assets/sprite.svg#icon-catalogue"></use>
             </svg>
@@ -17,7 +17,7 @@
           >
         </li>
         <li (mouseenter)="hover()" (mouseleave)="leave()" (click)="click()">
-          <a href="#" class="header__nav_item" [routerLink]="['cart']"
+          <a class="header__nav_item" [routerLink]="['products/cart']"
             ><svg class="header__nav_img header__icon">
               <use href="assets/sprite.svg#icon-shopping-cart"></use>
             </svg>

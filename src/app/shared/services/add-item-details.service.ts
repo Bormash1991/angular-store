@@ -23,8 +23,7 @@ export class AddItemDetailsService {
       }
     }
     if (!this.item) {
-      this.router.navigateByUrl('products/404-not-found');
+      this.router.navigateByUrl('/**');
     }
   }
- 
 }

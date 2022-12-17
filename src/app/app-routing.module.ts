@@ -4,12 +4,14 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'products',
+    path: 'admin-panel',
+    loadChildren: () =>
+      import('./admin-panel/admin-panel-routing.module').then(
+        (m) => m.AdminPanelRoutingModule
+      ),
   },
   {
-    path: 'products',
+    path: '',
     loadChildren: () =>
       import('./shop/shop-routing.module').then((m) => m.ShopRoutingModule),
   },

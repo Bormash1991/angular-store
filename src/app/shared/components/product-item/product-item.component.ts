@@ -1,6 +1,5 @@
 import { TypeOfProduct } from '../../../models/TypeOfProduct.inteface';
 import {
-  AfterContentChecked,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -12,17 +11,17 @@ import {
 import { AddCartItemService } from '../../services/add-cart-item.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss'],
 })
-export class ProductItemComponent implements OnInit {
+export class ProductItemComponent implements OnInit, OnDestroy {
   @Input() productDate: TypeOfProduct;
   @Output() mouseClick = new EventEmitter();
   buttonText: string = 'Add to Cart';
   elem: TypeOfProduct;
+  subj: any;
   constructor(
     private addCartItemService: AddCartItemService,
     private changeDetector: ChangeDetectorRef,
@@ -30,27 +29,22 @@ export class ProductItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.router.url == '/products') {
+    if (this.router.url != '/products') {
       this.addCartItemService.reloadData();
-      this.addCartItemService.arrSubject$.subscribe((n) => this.check(n));
-    } else if (this.router.url == '/products/cart') {
+      this.subj = this.addCartItemService.arrSubject$.subscribe((n) =>
+        this.check(n)
+      );
+    }
+    if (this.router.url == '/products/cart') {
       this.buttonText = 'Remove from Cart';
     }
   }
-  click(elem: TypeOfProduct) {
-    if (this.router.url != '/products/cart') {
-      this.addCartItemService.setData(elem);
-      this.check(elem);
-    }
-    if (this.router.url == '/products/cart') {
-      this.addCartItemService.removeSetOfProduct(elem);
-      let data = this.addCartItemService.getData();
-      this.mouseClick.emit(data);
-    }
+  addItem(elem: TypeOfProduct) {
+    this.addCartItemService.setData(elem);
+    this.check(elem);
   }
   check(elem: TypeOfProduct) {
     let data = this.addCartItemService.getData();
-
     for (let i = 0; i < data.length; i++) {
       if (
         data[i][0].id == this.productDate.id &&
@@ -67,4 +61,5 @@ export class ProductItemComponent implements OnInit {
       this.changeDetector.detectChanges();
     }
   }
+  ngOnDestroy() {}
 }

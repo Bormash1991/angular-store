@@ -5,9 +5,9 @@ import { data } from './data/data';
   providedIn: 'root',
 })
 export class ProductsService {
-  date: TypeOfProduct[];
+  data: TypeOfProduct[];
   constructor() {
-    this.date = data || this.createRandomeDate(8);
+    this.data = data || this.createRandomeDate(8);
   }
 
   createRandomeDate(n: number = 1): TypeOfProduct[] {
@@ -22,11 +22,14 @@ export class ProductsService {
         price: Math.floor(price),
       });
     }
-    this.date = mass;
+    this.data = mass;
     return mass;
   }
 
   getDate(): TypeOfProduct[] {
-    return this.date;
+    return this.data;
+  }
+  getDateForWelcome(): TypeOfProduct[] {
+    return this.data.slice(0, 3);
   }
 }
