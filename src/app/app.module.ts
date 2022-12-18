@@ -8,7 +8,8 @@ import { ShopRoutingModule } from './shop/shop-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ShopModule } from './shop/shop.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { UsersModule } from './users/users.module';
+import { ProductsModule } from './products/products.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,11 +17,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ShopRoutingModule,
     AdminPanelRoutingModule,
- 
     SharedModule,
     ShopModule,
     AdminPanelModule,
     BrowserAnimationsModule,
+    UsersModule,
+    ProductsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

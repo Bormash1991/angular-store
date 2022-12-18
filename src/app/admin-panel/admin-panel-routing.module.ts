@@ -1,8 +1,6 @@
-import { UsersComponent } from './users/users.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './admin-panel.component';
-import { ProductsComponent } from './products/products.component';
 const routes: Routes = [
   {
     path: '',
@@ -11,11 +9,17 @@ const routes: Routes = [
       { path: '', redirectTo: 'users', pathMatch: 'full' },
       {
         path: 'users',
-        component: UsersComponent,
+        loadChildren: () =>
+          import('src/app/users/users-routing.module').then(
+            (m) => m.UsersRoutingModule
+          ),
       },
       {
         path: 'products',
-        component: ProductsComponent,
+        loadChildren: () =>
+          import('src/app/products/products-routing.module').then(
+            (m) => m.ProductsRoutingModule
+          ),
       },
     ],
   },
