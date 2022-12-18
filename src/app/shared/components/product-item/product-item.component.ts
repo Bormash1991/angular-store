@@ -29,7 +29,7 @@ export class ProductItemComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (this.router.url != '/products') {
+    if (this.router.url != '/products/cart') {
       this.addCartItemService.reloadData();
       this.subj = this.addCartItemService.arrSubject$.subscribe((n) =>
         this.check(n)
