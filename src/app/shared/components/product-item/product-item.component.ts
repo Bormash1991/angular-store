@@ -18,9 +18,10 @@ import { Router } from '@angular/router';
 })
 export class ProductItemComponent implements OnInit, OnDestroy {
   @Input() productDate: TypeOfProduct;
-  @Output() mouseClick = new EventEmitter();
+  // @Input() buttonText: string;
+  // @Output() mouseClick = new EventEmitter();
   buttonText: string = 'Add to Cart';
-  elem: TypeOfProduct;
+
   subj: any;
   constructor(
     private addCartItemService: AddCartItemService,
@@ -29,19 +30,23 @@ export class ProductItemComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (this.router.url != '/products/cart') {
-      this.addCartItemService.reloadData();
-      this.subj = this.addCartItemService.arrSubject$.subscribe((n) =>
-        this.check(n)
-      );
-    }
     if (this.router.url == '/products/cart') {
       this.buttonText = 'Remove from Cart';
+      return;
     }
+    this.check(this.productDate);
+    this.subj = this.addCartItemService.arrSubject$.subscribe((n) =>
+      this.check(n)
+    );
   }
-  addItem(elem: TypeOfProduct) {
+  addOrDeleteItem(elem: TypeOfProduct) {
+    if (this.router.url == '/products/cart') {
+      this.addCartItemService.removeSetOfProduct(elem);
+      this.addCartItemService.arrSubject$.next(elem);
+      return;
+    }
     this.addCartItemService.setData(elem);
-    this.check(elem);
+    this.buttonText = 'In Cart';
   }
   check(elem: TypeOfProduct) {
     let data = this.addCartItemService.getData();
@@ -61,5 +66,7 @@ export class ProductItemComponent implements OnInit, OnDestroy {
       this.changeDetector.detectChanges();
     }
   }
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    // this.subj.unsubscribe();
+  }
 }

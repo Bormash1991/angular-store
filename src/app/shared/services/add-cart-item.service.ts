@@ -31,10 +31,12 @@ export class AddCartItemService {
       (el) => JSON.parse(el)
     );
   }
-  reloadData() {
+  reloadData(elem: TypeOfProduct) {
     this.transformData();
     this.result.forEach((item) => {
-      this.arrSubject$.next(item[0]);
+      if (item[0].id == elem.id) {
+        this.arrSubject$.next(item[0]);
+      }
     });
   }
   getData(): [TypeOfProduct, number][] {

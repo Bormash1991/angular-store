@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
 
@@ -7,13 +7,14 @@ import { AddCartItemService } from 'src/app/shared/services/add-cart-item.servic
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   data: [TypeOfProduct, number][];
   totalSum: number = 0;
+  subj: any;
   constructor(private addCartItemService: AddCartItemService) {}
   ngOnInit(): void {
     this.data = this.addCartItemService.getData();
-    this.addCartItemService.arrSubject$.subscribe(() =>
+    this.subj = this.addCartItemService.arrSubject$.subscribe(() =>
       this.changeData(this.addCartItemService.getData())
     );
     this.totalSum = this.addCartItemService.getTotal();
@@ -26,5 +27,8 @@ export class CartComponent implements OnInit {
   changeData(data: [TypeOfProduct, number][]) {
     this.data = data;
     this.totalSum = this.addCartItemService.getTotal();
+  }
+  ngOnDestroy() {
+    this.subj.unsubscribe();
   }
 }
