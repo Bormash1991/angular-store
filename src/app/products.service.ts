@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { TypeOfProduct } from './models/TypeOfProduct.inteface';
 import { data } from './data/data';
+import { Observable, delay, of } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,10 +28,7 @@ export class ProductsService {
     return mass;
   }
 
-  getDate(): TypeOfProduct[] {
-    return this.data;
-  }
-  getDateForWelcome(): TypeOfProduct[] {
-    return this.data.slice(0, 3);
+  getDate(): Observable<TypeOfProduct[]> {
+    return of(this.data).pipe(delay(1000));
   }
 }

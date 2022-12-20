@@ -16,12 +16,9 @@ import { Router } from '@angular/router';
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss'],
 })
-export class ProductItemComponent implements OnInit, OnDestroy {
+export class ProductItemComponent implements OnInit {
   @Input() productDate: TypeOfProduct;
-  // @Input() buttonText: string;
-  // @Output() mouseClick = new EventEmitter();
   buttonText: string = 'Add to Cart';
-
   subj: any;
   constructor(
     private addCartItemService: AddCartItemService,
@@ -65,8 +62,5 @@ export class ProductItemComponent implements OnInit, OnDestroy {
       this.buttonText = 'Add to Cart';
       this.changeDetector.detectChanges();
     }
-  }
-  ngOnDestroy() {
-    // this.subj.unsubscribe();
   }
 }

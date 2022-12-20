@@ -11,6 +11,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 @NgModule({
   declarations: [
     UahPipe,
@@ -20,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
     PageNotFoundComponent,
     TablesComponent,
     FilterComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
     BtnComponent,
     TablesComponent,
     FilterComponent,
+    SpinnerComponent,
   ],
 })
 export class SharedModule {}

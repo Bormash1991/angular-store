@@ -2,9 +2,12 @@
   <div class="products">
     <div class="container">
       <h2 class="products__title">Products</h2>
+      <div *ngIf="loading$ | async" class="products__spinner">
+        <app-spinner></app-spinner>
+      </div>
       <div class="products__box">
         <app-product-item
-          *ngFor="let product of date"
+          *ngFor="let product of data"
           [productDate]="product"
         ></app-product-item>
       </div>

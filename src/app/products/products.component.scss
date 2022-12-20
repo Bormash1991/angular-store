@@ -1,9 +1,13 @@
 .products {
   padding: 50px;
   padding-bottom: 0;
-
   &__box {
     padding: 0 30px;
+    &-spinner {
+      padding: 180px 0;
+      display: flex;
+      justify-content: center;
+    }
     &-item {
       display: flex;
       flex-direction: column;

@@ -3,7 +3,6 @@ import { AddItemDetailsService } from 'src/app/shared/services/add-item-details.
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ActivatedRoute } from '@angular/router';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-products-details',
@@ -14,6 +13,7 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
   productData: TypeOfProduct;
   buttonText: string = 'Add to Cart';
   subj: any;
+
   constructor(
     private AddItemDetailsService: AddItemDetailsService,
     private route: ActivatedRoute,

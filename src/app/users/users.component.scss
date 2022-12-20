@@ -1,8 +1,12 @@
 .user {
   padding: 50px;
   padding-bottom: 0;
+  height: 100%;
   &__box {
     padding: 0 30px;
+    &-main {
+      height: 100%;
+    }
   }
   &__title {
     font-size: 30px;

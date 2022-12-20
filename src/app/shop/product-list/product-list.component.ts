@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ProductsService } from 'src/app/products.service';
-import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,15 +9,17 @@ import { AddCartItemService } from 'src/app/shared/services/add-cart-item.servic
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  protected date: TypeOfProduct[];
+  protected data: TypeOfProduct[];
   buttonText: string = 'Add to Cart';
-  constructor(
-    private productsService: ProductsService,
-    private addCartItemService: AddCartItemService
-  ) {}
+  loading$ = new BehaviorSubject<boolean>(true);
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.date = this.productsService.getDate();
-    
+    this.productsService.getDate().subscribe((data) => {
+      this.data = data;
+      if (this.data.length) {
+        this.loading$.next(false);
+      }
+    });
   }
 }

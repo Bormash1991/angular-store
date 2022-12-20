@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ProductsService } from 'src/app/products.service';
 
@@ -8,9 +9,16 @@ import { ProductsService } from 'src/app/products.service';
   styleUrls: ['./welcome-page.component.scss'],
 })
 export class WelcomePageComponent implements OnInit {
-  protected date: TypeOfProduct[];
+  protected data: TypeOfProduct[];
+  loading$ = new BehaviorSubject<boolean>(true);
   constructor(private productsService: ProductsService) {}
   ngOnInit(): void {
-    this.date = this.productsService.getDateForWelcome();
+    this.productsService.getDate().subscribe((data) => {
+      this.data = data.slice(0, 3);
+      if (this.data.length) {
+        this.loading$.next(false);
+      }
+    });
+    // this.data = this.productsService.getDateForWelcome();
   }
 }

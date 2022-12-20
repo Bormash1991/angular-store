@@ -5,6 +5,12 @@
     font-size: 28px;
     color: #1f242a;
   }
+  &__spinner {
+    padding: 150px 0 100px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   &__box {
     margin-top: 50px;
     display: grid;

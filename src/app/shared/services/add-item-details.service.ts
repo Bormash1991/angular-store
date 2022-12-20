@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AddItemDetailsService {
   item: TypeOfProduct;
+  data: TypeOfProduct[] = [];
   constructor(
     private productsService: ProductsService,
     private router: Router
@@ -16,14 +17,16 @@ export class AddItemDetailsService {
     return this.item;
   }
   checkDate(id: any) {
-    let date: TypeOfProduct[] = this.productsService.getDate();
-    for (let i = 0; i < date.length; i++) {
-      if (date[i].id === +id) {
-        this.item = date[i];
+    this.productsService.getDate().subscribe((items) => (this.data = items));
+    if (this.data.length) {
+      for (let i = 0; i < this.data.length; i++) {
+        if (this.data[i].id === +id) {
+          this.item = this.data[i];
+        }
       }
-    }
-    if (!this.item) {
-      this.router.navigateByUrl('/**');
+      if (!this.item) {
+        this.router.navigateByUrl('/**');
+      }
     }
   }
 }
