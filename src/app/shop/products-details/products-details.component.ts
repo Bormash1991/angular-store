@@ -3,6 +3,7 @@ import { AddItemDetailsService } from 'src/app/shared/services/add-item-details.
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ActivatedRoute } from '@angular/router';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
+import { ProductsService } from 'src/app/products.service';
 
 @Component({
   selector: 'app-products-details',
@@ -13,22 +14,28 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
   productData: TypeOfProduct;
   buttonText: string = 'Add to Cart';
   subj: any;
-
+  allData: TypeOfProduct[];
   constructor(
     private AddItemDetailsService: AddItemDetailsService,
     private route: ActivatedRoute,
-    private addCartItemService: AddCartItemService
+    private addCartItemService: AddCartItemService,
+    private productsService: ProductsService
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.productData = this.AddItemDetailsService.getItem(id);
+    this.productsService.getDate().subscribe((items) => {
+      this.allData = items;
+      this.productData = this.AddItemDetailsService.getItem(id, this.allData);
+      if (this.productData) {
+        this.check(this.productData);
+      }
+    });
     this.subj = this.addCartItemService.arrSubject$.subscribe((n) =>
       this.check(n)
     );
-    this.check(this.productData);
   }
-  removeSet(elem: TypeOfProduct) {
+  setData(elem: TypeOfProduct) {
     this.addCartItemService.setData(elem);
     this.check(elem);
   }

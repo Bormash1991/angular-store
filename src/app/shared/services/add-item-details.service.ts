@@ -9,15 +9,14 @@ export class AddItemDetailsService {
   item: TypeOfProduct;
   data: TypeOfProduct[] = [];
   constructor(
-    private productsService: ProductsService,
     private router: Router
   ) {}
-  getItem(id: any): TypeOfProduct {
+  getItem(id: any, allData: TypeOfProduct[]): TypeOfProduct {
+    this.data = allData;
     this.checkDate(id);
     return this.item;
   }
   checkDate(id: any) {
-    this.productsService.getDate().subscribe((items) => (this.data = items));
     if (this.data.length) {
       for (let i = 0; i < this.data.length; i++) {
         if (this.data[i].id === +id) {

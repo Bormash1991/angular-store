@@ -19,6 +19,5 @@ export class WelcomePageComponent implements OnInit {
         this.loading$.next(false);
       }
     });
-    // this.data = this.productsService.getDateForWelcome();
   }
 }
