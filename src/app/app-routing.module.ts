@@ -6,14 +6,13 @@ const routes: Routes = [
   {
     path: 'admin-panel',
     loadChildren: () =>
-      import('./admin-panel/admin-panel-routing.module').then(
-        (m) => m.AdminPanelRoutingModule
+      import('./admin-panel/admin-panel.module').then(
+        (m) => m.AdminPanelModule
       ),
   },
   {
     path: '',
-    loadChildren: () =>
-      import('./shop/shop-routing.module').then((m) => m.ShopRoutingModule),
+    loadChildren: () => import('./shop/shop.module').then((m) => m.ShopModule),
   },
   {
     path: '**',

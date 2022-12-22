@@ -11,6 +11,7 @@ import { CartModalComponent } from './cart-modal/cart-modal.component';
 import { CartComponent } from './cart/cart.component';
 import { CounterComponent } from './counter/counter.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { ShopRoutingModule } from './shop-routing.module';
 @NgModule({
   declarations: [
     ShopComponent,
@@ -23,6 +24,6 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     CounterComponent,
     WelcomePageComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, SharedModule, ShopRoutingModule, RouterModule],
 })
 export class ShopModule {}
