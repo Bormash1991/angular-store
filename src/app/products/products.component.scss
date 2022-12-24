@@ -8,11 +8,6 @@
       display: flex;
       justify-content: center;
     }
-    &-item {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
   }
   &__title {
     font-size: 30px;

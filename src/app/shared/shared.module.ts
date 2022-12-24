@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     UahPipe,
@@ -29,6 +30,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule,
   ],
   exports: [
     UahPipe,

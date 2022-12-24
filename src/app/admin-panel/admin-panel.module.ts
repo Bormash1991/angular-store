@@ -7,15 +7,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AdminPanelComponent,
-    SideBarComponent,
-
-  ],
-  imports: [
-    CommonModule,
-    AdminPanelRoutingModule,
-    SharedModule,
-  ],
+  declarations: [AdminPanelComponent, SideBarComponent],
+  imports: [CommonModule, AdminPanelRoutingModule, SharedModule],
 })
 export class AdminPanelModule {}

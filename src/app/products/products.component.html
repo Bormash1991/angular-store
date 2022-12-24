@@ -2,13 +2,9 @@
   <div class="products__box">
     <h1 class="products__title">Products</h1>
     <div class="products__box-main">
-      <app-filter></app-filter>
-
+      <app-filter [param]="'products'"></app-filter>
       <div class="products__box-item">
-        <app-tables
-          *ngFor="let product of products"
-          [item]="product"
-        ></app-tables>
+        <app-tables [products]="products"></app-tables>
       </div>
     </div>
     <div *ngIf="loading$ | async" class="products__box-spinner">
