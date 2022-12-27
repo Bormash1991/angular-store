@@ -7,5 +7,6 @@ import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
   styleUrls: ['./tables.component.scss'],
 })
 export class TablesComponent {
-  @Input() products: TypeOfProduct[];
+  @Input() items: TypeOfProduct[];
+  @Input() params: 'name' | 'users';
 }

@@ -10,4 +10,10 @@
     flex-direction: column;
     gap: 10px;
   }
+  &__box {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr;
+    padding: 4px 10px;
+    margin-top: -5px;
+  }
 }

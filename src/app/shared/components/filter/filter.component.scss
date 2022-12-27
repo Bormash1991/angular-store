@@ -1,13 +1,37 @@
 .filter {
   &__search {
-    margin-right: 40px;
-    width: 300px;
+    margin-right: 30px;
+    width: 240px;
   }
   &__option {
     margin-right: 20px;
-    width: 180px;
+    width: 170px;
+  }
+  &__date {
+    width: 120px;
+    margin-right: 60px;
   }
   &__params {
-    width: 180px;
+    width: 115px;
+    margin-right: 60px;
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+      -moz-appearance: textfield;
+    }
   }
+
+  &__as,
+  &__by {
+    width: 170px;
+  }
+  &__as {
+    margin-right: 20px;
+  }
+}
+::ng-deep
+  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined)
+  .mat-mdc-form-field-infix {
+  padding-bottom: 7px;
 }

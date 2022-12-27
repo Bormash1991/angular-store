@@ -4,11 +4,22 @@
     <div class="products__box-main">
       <app-filter [param]="'products'"></app-filter>
       <div class="products__box-item">
-        <app-tables [products]="products"></app-tables>
+        <app-tables [items]="products" [params]="'name'"></app-tables>
+        <div *ngIf="loading$ | async" class="products__box-spinner">
+          <app-spinner></app-spinner>
+        </div>
       </div>
-    </div>
-    <div *ngIf="loading$ | async" class="products__box-spinner">
-      <app-spinner></app-spinner>
+      <mat-paginator
+        class="products__paginator"
+        *ngIf="products.length"
+        [pageIndex]="pageIndex"
+        [hidePageSize]="true"
+        [length]="productsLength"
+        (page)="changePage($event)"
+        [pageSize]="5"
+        aria-label="Select page"
+      >
+      </mat-paginator>
     </div>
   </div>
 </div>

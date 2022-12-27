@@ -3,6 +3,10 @@
   padding-bottom: 0;
   &__box {
     padding: 0 30px;
+    &-main {
+      position: relative;
+      min-height: 585px;
+    }
     &-spinner {
       padding: 180px 0;
       display: flex;
@@ -13,5 +17,10 @@
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 40px;
+  }
+  &__paginator {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
   }
 }

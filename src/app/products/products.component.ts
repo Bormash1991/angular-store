@@ -1,58 +1,56 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { TypeOfProduct } from '../models/TypeOfProduct.inteface';
 import { ProductsService } from '../products.service';
-import { BehaviorSubject, take } from 'rxjs';
-import { FilterService } from '../shared/services/filter.service';
+import { BehaviorSubject, Subscription, take } from 'rxjs';
 import { filterCongig } from '../models/TypeOfFilterConfig.interface';
+import { ConfigService } from '../shared/services/config.service';
+import { FilterService } from '../shared/services/filter.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  products: TypeOfProduct[] = [];
-  productsSecond: TypeOfProduct[] = [];
-  loading$ = new BehaviorSubject<boolean>(true);
-  filterSubj: any;
-  dataSubj: any;
+  public products: TypeOfProduct[] = [];
+  public loading$ = new BehaviorSubject<boolean>(true);
+  private filterSubj: Subscription;
+  private dataSubj: Subscription;
+  public productsLength: number;
+  public pageIndex: number = 0;
   constructor(
     private productsService: ProductsService,
+    private filterCongig: ConfigService,
     private filterService: FilterService
   ) {}
 
   ngOnInit() {
     this.dataSubj = this.productsService.getDate().subscribe((data) => {
-      this.products = data.slice(0, 5);
-      this.productsSecond = data.slice(0, 5);
-      if (this.products.length) {
+      if (data.length) {
         this.loading$.next(false);
+        this.products = this.filterService.setData(data, 5);
+        this.productsLength = data.length;
       }
     });
-    this.filterSubj = this.filterService.configuration$.subscribe((elem) =>
-      this.changeData(elem)
-    );
+    this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
+      this.changeData(elem, 'price');
+      if (elem.sortAs) {
+        this.sortData(elem);
+      }
+    });
   }
-  changeData(elem: filterCongig) {
-    if (elem.search) {
-      this.products = this.productsSecond.filter(
-        (product) => product.name.search(elem.search) >= 0
-      );
-    }
-    if (!elem.search && !elem.price) {
-      this.products = this.productsSecond;
-    }
-    if (elem.price) {
-      if (elem.select == 'More than') {
-        this.products = this.products.filter(
-          (product) => product.price > elem.price
-        );
-      }
-      if (elem.select == 'Less than') {
-        this.products = this.products.filter(
-          (product) => product.price < elem.price
-        );
-      }
-    }
+  changeData(elem: filterCongig, param: 'price' | 'date') {
+    let arr = this.filterService.changeData(elem, param);
+    this.products = arr[0] as TypeOfProduct[];
+    this.productsLength = arr[1] as number;
+    this.pageIndex = arr[2] as number;
+  }
+  sortData(elem: filterCongig) {
+    this.products = this.filterService.sortData(elem) as TypeOfProduct[];
+  }
+  changePage(event: any) {
+    let arr = this.filterService.changePage(event);
+    this.products = arr[0] as TypeOfProduct[];
+    this.pageIndex = arr[1] as number;
   }
   ngOnDestroy() {
     this.filterSubj.unsubscribe();
