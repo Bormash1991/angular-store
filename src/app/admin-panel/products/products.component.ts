@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { TypeOfProduct } from '../models/TypeOfProduct.inteface';
-import { ProductsService } from '../products.service';
+import { TypeOfProduct } from '../../models/TypeOfProduct.inteface';
+import { ProductsService } from '../../shop/products.service';
 import { BehaviorSubject, Subscription, take } from 'rxjs';
-import { filterCongig } from '../models/TypeOfFilterConfig.interface';
-import { ConfigService } from '../shared/services/config.service';
-import { FilterService } from '../shared/services/filter.service';
+import { filterCongig } from '../../models/TypeOfFilterConfig.interface';
+import { ConfigService } from '../../shared/services/config.service';
+import { FilterService } from '../../shared/services/filter.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',

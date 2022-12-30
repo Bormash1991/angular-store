@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
-import { ModalComponent } from '../modal/modal.component';
+import { WarningModalComponent } from '../../../admin-panel/warning-modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ProductsModalComponent } from 'src/app/admin-panel/products-modal/products-modal.component';
 
 @Component({
   selector: 'app-tables',
@@ -14,12 +15,12 @@ export class TablesComponent {
   constructor(public dialog: MatDialog) {}
 
   openEditDialog(item: TypeOfProduct) {
-    this.dialog.open(ModalComponent, {
+    this.dialog.open(ProductsModalComponent, {
       data: { name: item.name, price: item.price, description: '' },
     });
   }
   openDeleteDialog(item: TypeOfProduct) {
-    this.dialog.open(ModalComponent, {
+    this.dialog.open(WarningModalComponent, {
       data: { id: item.id },
     });
   }

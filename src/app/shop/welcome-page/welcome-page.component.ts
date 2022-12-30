@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
-import { ProductsService } from 'src/app/products.service';
+import { ProductsService } from 'src/app/shop/products.service';
 
 @Component({
   selector: 'app-welcome-page',

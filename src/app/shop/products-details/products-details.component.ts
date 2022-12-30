@@ -3,7 +3,7 @@ import { AddItemDetailsService } from 'src/app/shared/services/add-item-details.
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ActivatedRoute } from '@angular/router';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
-import { ProductsService } from 'src/app/products.service';
+import { ProductsService } from 'src/app/shop/products.service';
 
 @Component({
   selector: 'app-products-details',
