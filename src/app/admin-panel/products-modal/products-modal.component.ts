@@ -22,7 +22,14 @@ export class ProductsModalComponent {
   closeDialog() {
     this.dialogRef.close();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    let checkValues = Object.values(this.data).filter((elem) => elem != '');
+    if (checkValues.length) {
+      this.titleText = 'Edit Product';
+    } else {
+      this.titleText = 'Add Product';
+    }
+  }
   showData() {
     console.log(this.form.getRawValue());
     this.dialogRef.close();

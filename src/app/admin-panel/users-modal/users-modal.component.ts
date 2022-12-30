@@ -23,7 +23,13 @@ export class UsersModalComponent {
   closeDialog() {
     this.dialogRef.close();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.keys.length == 1) {
+      this.titleText = 'Add User';
+    } else {
+      this.titleText = 'Edit User';
+    }
+  }
   showData() {
     console.log(this.form.getRawValue());
     this.dialogRef.close();

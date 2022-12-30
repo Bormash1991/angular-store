@@ -1,4 +1,4 @@
-<h1 class="modal__title" mat-dialog-title>Product</h1>
+<h1 class="modal__title" mat-dialog-title>{{ titleText }}</h1>
 <div class="modal" mat-dialog-content>
   <form class="modal__box" [formGroup]="form">
     <mat-form-field *ngFor="let field of keys">
