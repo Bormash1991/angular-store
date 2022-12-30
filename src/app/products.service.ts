@@ -22,6 +22,7 @@ export class ProductsService {
         id: i + 1,
         name: str,
         price: Math.floor(price),
+        counter: 0,
       });
     }
     this.data = mass;

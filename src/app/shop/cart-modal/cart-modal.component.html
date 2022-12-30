@@ -6,12 +6,12 @@
     <ul class="modal__list">
       <li *ngFor="let prod of data" class="modal__item">
         <div class="modal__inf">
-          <a class="modal__name" [routerLink]="[prod[0].id]"
-            ><div>{{ prod[0].name }} #{{ prod[0].id }}</div>
+          <a class="modal__name" [routerLink]="[prod.id]"
+            ><div>{{ prod.name }} #{{ prod.id }}</div>
           </a>
           <div class="modal__price">
-            Price: {{ prod[0].price }} × {{ prod[1] }} =
-            {{ prod[0].price * prod[1] | uah }}
+            Price: {{ prod.price }} × {{ prod.counter }} =
+            {{ prod.price * prod.counter | uah }}
           </div>
         </div>
         <app-counter
@@ -21,7 +21,7 @@
         <btn
           [text]="'×'"
           [class]="'btn btn_delete'"
-          (click)="delete(prod[0])"
+          (click)="delete(prod)"
         ></btn>
       </li>
     </ul>

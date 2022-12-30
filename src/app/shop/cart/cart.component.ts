@@ -8,7 +8,7 @@ import { AddCartItemService } from 'src/app/shared/services/add-cart-item.servic
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit, OnDestroy {
-  data: [TypeOfProduct, number][];
+  data: TypeOfProduct[];
   totalSum: number = 0;
   subj: any;
   constructor(private addCartItemService: AddCartItemService) {}
@@ -19,12 +19,12 @@ export class CartComponent implements OnInit, OnDestroy {
     );
     this.totalSum = this.addCartItemService.getTotal();
   }
-  changeCounter(elem: ['plus' | 'minus', TypeOfProduct]) {
+  changeCounter(elem: ['increment' | 'decrement', TypeOfProduct]) {
     this.addCartItemService.changeCounter(elem[0], elem[1]);
     this.data = this.addCartItemService.getData();
     this.totalSum = this.addCartItemService.getTotal();
   }
-  changeData(data: [TypeOfProduct, number][]) {
+  changeData(data: TypeOfProduct[]) {
     this.data = data;
     this.totalSum = this.addCartItemService.getTotal();
   }

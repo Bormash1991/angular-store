@@ -9,52 +9,42 @@ export class AddCartItemService {
   data: TypeOfProduct[] =
     this.localStorageService.getData<TypeOfProduct[]>('CartDataCount') || [];
   private result: [TypeOfProduct, number][] = [];
-  arrSubject$ = new Subject<TypeOfProduct>();
+  arrSubject$ = new Subject<TypeOfProduct[]>();
+
   constructor(private localStorageService: LocalStorageService) {}
+
   setData(elem: TypeOfProduct) {
-    this.data.push(elem);
-    this.transformData();
-    this.getTotal();
+    let length = this.data.filter((item) => item.id == elem.id).length;
+    if (!length) {
+      elem.counter += 1;
+      this.data.push(elem);
+    } else {
+      this.data.forEach((item) => {
+        if (item.id == elem.id) {
+          item.counter += 1;
+        }
+      });
+    }
     this.localStorageService.setData<TypeOfProduct[]>(
       'CartDataCount',
       this.data
     );
+    this.reloadData();
   }
-  transformData() {
-    let collection = new Map();
-    this.data.forEach((item) => {
-      let count = this.data.filter((elem) => elem.id == item.id).length;
-      collection.set(item, count);
-    });
-    const changeData: [TypeOfProduct, number][] = Array.from(collection);
-    this.result = [...new Set(changeData.map((el) => JSON.stringify(el)))].map(
-      (el) => JSON.parse(el)
-    );
-  }
-  reloadData(elem: TypeOfProduct) {
-    this.transformData();
-    this.result.forEach((item) => {
-      if (item[0].id == elem.id) {
-        this.arrSubject$.next(item[0]);
-      }
-    });
-  }
-  getData(): [TypeOfProduct, number][] {
-    this.transformData();
-    this.getTotal();
-    return this.result;
+  reloadData() {
+    this.arrSubject$.next(this.data);
   }
   getTotal() {
-    let totalSum = this.result.reduce(
-      (acc, item) => (acc = acc + item[0].price * item[1]),
-      0
-    );
-    return totalSum;
+    return this.data.reduce((acc, item) => acc + item.counter * item.price, 0);
+  }
+
+  getData(): TypeOfProduct[] {
+    return this.data;
   }
   checkCount(elem: TypeOfProduct) {
     let counter: number = 0;
     this.data.forEach((item) => {
-      if (JSON.stringify(item) === JSON.stringify(elem)) {
+      if (item.id === elem.id) {
         counter += 1;
       }
     });
@@ -62,33 +52,33 @@ export class AddCartItemService {
   }
   removeSetOfProduct(elem: TypeOfProduct) {
     this.data = this.data.filter((item) => item.id != elem.id);
-    this.transformData();
+    this.reloadData();
     this.localStorageService.setData<TypeOfProduct[]>(
       'CartDataCount',
       this.data
     );
   }
-  plusCounter(elem: TypeOfProduct) {
+  incrementCounter(elem: TypeOfProduct) {
     this.setData(elem);
   }
-  changeCounter(doing: 'plus' | 'minus', elem: TypeOfProduct) {
-    if (doing == 'plus') {
-      this.plusCounter(elem);
-    } else if (doing == 'minus') {
-      this.minusCounter(elem);
-      this.arrSubject$.next(elem);
+  changeCounter(doing: 'increment' | 'decrement', elem: TypeOfProduct) {
+    if (doing == 'increment') {
+      this.incrementCounter(elem);
+    } else if (doing == 'decrement') {
+      this.decrementCounter(elem);
+      this.arrSubject$.next(this.data);
     }
   }
-  minusCounter(elem: TypeOfProduct) {
-    let index: number = 0;
+  decrementCounter(elem: TypeOfProduct) {
     this.data.forEach((item, i) => {
-      if (JSON.stringify(item) === JSON.stringify(elem)) {
-        index = i;
+      if (item.id === elem.id && item.counter > 1) {
+        elem.counter -= 1;
+      } else if (item.id === elem.id && item.counter == 1) {
+        this.removeSetOfProduct(elem);
+        elem.counter = 0;
       }
     });
-    this.data.splice(index, 1);
-    this.transformData();
-
+    this.reloadData();
     this.localStorageService.setData<TypeOfProduct[]>(
       'CartDataCount',
       this.data

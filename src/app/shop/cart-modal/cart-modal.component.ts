@@ -14,7 +14,7 @@ import { AddCartItemService } from 'src/app/shared/services/add-cart-item.servic
   styleUrls: ['./cart-modal.component.scss'],
 })
 export class CartModalComponent implements OnChanges {
-  data: [TypeOfProduct, number][] = [];
+  data: TypeOfProduct[] = [];
   totalSum: number;
   @Input() className: string;
   @Output() mouse = new EventEmitter();
@@ -23,7 +23,7 @@ export class CartModalComponent implements OnChanges {
     this.data = this.addCartItemService.getData();
     this.totalSum = this.addCartItemService.getTotal();
   }
-  changeCounter(elem: ['plus' | 'minus', TypeOfProduct]) {
+  changeCounter(elem: ['increment' | 'decrement', TypeOfProduct]) {
     this.addCartItemService.changeCounter(elem[0], elem[1]);
     this.changeData();
   }
@@ -36,7 +36,6 @@ export class CartModalComponent implements OnChanges {
   }
   delete(elem: TypeOfProduct) {
     this.addCartItemService.removeSetOfProduct(elem);
-    this.addCartItemService.arrSubject$.next(elem);
     this.changeData();
   }
 }

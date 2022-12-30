@@ -6,7 +6,7 @@
     <h2 *ngIf="data.length" class="cart__title">Cart</h2>
     <div *ngIf="data.length" class="cart__box">
       <div *ngFor="let prod of data" class="cart__box-item">
-        <app-product-item [productDate]="prod[0]"></app-product-item>
+        <app-product-item [productDate]="prod"></app-product-item>
         <app-counter
           (mouseClick)="changeCounter($event)"
           [elem]="prod"

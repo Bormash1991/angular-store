@@ -7,10 +7,10 @@ import { TypeOfProduct } from './../../models/TypeOfProduct.inteface';
   styleUrls: ['./counter.component.scss'],
 })
 export class CounterComponent {
-  @Input() elem: [TypeOfProduct, number];
+  @Input() elem: TypeOfProduct;
   @Output() mouseClick = new EventEmitter();
   constructor() {}
-  changeCounter(doing: 'plus' | 'minus', elem: TypeOfProduct) {
+  changeCounter(doing: 'increment' | 'decrement', elem: TypeOfProduct) {
     this.mouseClick.emit([doing, elem]);
   }
 }

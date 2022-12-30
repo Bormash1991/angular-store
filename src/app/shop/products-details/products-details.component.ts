@@ -28,7 +28,7 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
       this.allData = items;
       this.productData = this.AddItemDetailsService.getItem(id, this.allData);
       if (this.productData) {
-        this.check(this.productData);
+        // this.check(this.productData);
       }
     });
     this.subj = this.addCartItemService.arrSubject$.subscribe((n) =>
@@ -37,19 +37,19 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
   }
   setData(elem: TypeOfProduct) {
     this.addCartItemService.setData(elem);
-    this.check(elem);
+    // this.check(elem);
   }
-  check(elem: TypeOfProduct) {
-    let count = this.addCartItemService.checkCount(elem);
-    try {
-      if (count && elem.id == this.productData.id) {
-        this.buttonText = 'In Cart';
-      } else if (elem.id == this.productData.id) {
-        this.buttonText = 'Add to Cart';
-      }
-    } catch (error) {
-      console.log('page-not-found');
-    }
+  check(elem: TypeOfProduct[]) {
+    // let count = this.addCartItemService.checkCount(elem);
+    // try {
+    //   if (count && elem.id == this.productData.id) {
+    //     this.buttonText = 'In Cart';
+    //   } else if (elem.id == this.productData.id) {
+    //     this.buttonText = 'Add to Cart';
+    //   }
+    // } catch (error) {
+    //   console.log('page-not-found');
+    // }
   }
   ngOnDestroy() {
     this.subj.unsubscribe();
