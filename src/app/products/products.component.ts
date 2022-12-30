@@ -37,6 +37,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.sortData(elem);
       }
     });
+    this.products = [];
   }
   changeData(elem: filterCongig, param: 'price' | 'date') {
     let arr = this.filterService.changeData(elem, param);

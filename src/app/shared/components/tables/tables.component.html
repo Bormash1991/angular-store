@@ -5,5 +5,15 @@
     <div class="item__price">
       {{ item.price | uah }}
     </div>
+    <button class="item__btn" (click)="openEditDialog(item)">
+      <svg class="item__img">
+        <use href="assets/sprite.svg#icon-edit" class="item__img"></use>
+      </svg>
+    </button>
+    <button class="item__btn" (click)="openDeleteDialog(item)">
+      <svg class="item__img">
+        <use href="assets/sprite.svg#icon-delete" class="item__img"></use>
+      </svg>
+    </button>
   </div>
 </div>

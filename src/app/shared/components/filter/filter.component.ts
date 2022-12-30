@@ -8,6 +8,8 @@ import {
 import { param } from 'src/app/models/TypeOfFilterParam';
 import { ConfigService } from '../../services/config.service';
 import { debounceTime, fromEvent, map } from 'rxjs';
+import { ModalComponent } from '../modal/modal.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -18,7 +20,8 @@ export class FilterComponent implements AfterViewInit {
   @ViewChild('searchInput') searchInput: ElementRef;
   @ViewChild('priceInput') priceInput: ElementRef;
   @ViewChild('dateInput') dateInput: ElementRef;
-  constructor(private configService: ConfigService) {}
+
+  constructor(private configService: ConfigService, public dialog: MatDialog) {}
 
   setSelect(event: any) {
     if (!event.value) {
@@ -39,6 +42,17 @@ export class FilterComponent implements AfterViewInit {
       this.configService.setSortBy('');
     } else {
       this.configService.setSortBy(event.value);
+    }
+  }
+  openDialog() {
+    if (this.param == 'products') {
+      this.dialog.open(ModalComponent, {
+        data: { name: '', price: '', description: '' },
+      });
+    } else if (this.param == 'users') {
+      this.dialog.open(ModalComponent, {
+        data: { name: '' },
+      });
     }
   }
   ngAfterViewInit() {

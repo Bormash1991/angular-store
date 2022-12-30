@@ -1,0 +1,36 @@
+.modal {
+  width: 350px;
+  padding-bottom: 0;
+  &__title {
+    text-align: center;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+  }
+  &__btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: -10px;
+    padding: 8px 0;
+    width: 100px;
+    background-color: #dfdfdf;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+  }
+  &__img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 80px;
+    height: 70px;
+    fill: #ff8303ed;
+  }
+  &__text {
+    padding: 19px;
+    font-size: 20px;
+    color: black;
+    font-weight: 500;
+  }
+}

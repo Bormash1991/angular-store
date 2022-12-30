@@ -9,17 +9,17 @@
           <app-spinner></app-spinner>
         </div>
       </div>
-      <mat-paginator
-        class="products__paginator"
-        *ngIf="products.length"
-        [pageIndex]="pageIndex"
-        [hidePageSize]="true"
-        [length]="productsLength"
-        (page)="changePage($event)"
-        [pageSize]="5"
-        aria-label="Select page"
-      >
-      </mat-paginator>
     </div>
+    <mat-paginator
+      class="products__paginator"
+      *ngIf="products.length"
+      [pageIndex]="pageIndex"
+      [hidePageSize]="true"
+      [length]="productsLength"
+      (page)="changePage($event)"
+      [pageSize]="5"
+      aria-label="Select page"
+    >
+    </mat-paginator>
   </div>
 </div>

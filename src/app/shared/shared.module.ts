@@ -12,7 +12,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalComponent } from './components/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     UahPipe,
@@ -23,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     TablesComponent,
     FilterComponent,
     SpinnerComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,8 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
   exports: [
     UahPipe,
@@ -40,6 +45,7 @@ import { FormsModule } from '@angular/forms';
     TablesComponent,
     FilterComponent,
     SpinnerComponent,
+    ModalComponent,
   ],
 })
 export class SharedModule {}

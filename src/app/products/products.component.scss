@@ -2,10 +2,10 @@
   padding: 50px;
   padding-bottom: 0;
   &__box {
+    position: relative;
     padding: 0 30px;
     &-main {
-      position: relative;
-      min-height: 585px;
+      min-height: 586px;
     }
     &-spinner {
       padding: 180px 0;
@@ -20,7 +20,7 @@
   }
   &__paginator {
     position: absolute;
-    right: 0;
-    bottom: 0px;
+    right: 20px;
+    bottom: 4px;
   }
 }
