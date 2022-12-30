@@ -8,8 +8,8 @@ import { ShopRoutingModule } from './shop/shop-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ShopModule } from './shop/shop.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersModule } from './users/users.module';
-import { ProductsModule } from './products/products.module';
+import { UsersModule } from './admin-panel/users/users.module';
+import { ProductsModule } from './admin-panel/products/products.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [

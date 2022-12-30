@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TypeOfProduct } from './models/TypeOfProduct.inteface';
-import { data } from './data/data';
+import { TypeOfProduct } from '../models/TypeOfProduct.inteface';
+import { data } from '../data/data';
 import { Observable, delay, of } from 'rxjs';
 
 @Injectable({

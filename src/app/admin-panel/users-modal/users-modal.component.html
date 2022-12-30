@@ -1,0 +1,18 @@
+<h1 class="modal__title" mat-dialog-title>{{ titleText }}</h1>
+<div class="modal" mat-dialog-content>
+  <form class="modal__box" [formGroup]="form">
+    <mat-form-field *ngFor="let field of keys">
+      <mat-label>{{ field }}</mat-label>
+      <input [formControlName]="field" matInput />
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button class="modal__btn" (click)="closeDialog()" mat-button cdkFocusInitial>
+    Cancel
+  </button>
+  <button class="modal__btn" (click)="showData()" mat-button cdkFocusInitial>
+    OK
+  </button>
+</div>

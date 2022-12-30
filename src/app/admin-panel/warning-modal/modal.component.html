@@ -1,0 +1,18 @@
+<div class="modal" mat-dialog-content>
+  <div class="modal__warning">
+    <svg class="modal__img">
+      <use href="assets/sprite.svg#icon-error" class="modal__img"></use>
+    </svg>
+    <div class="modal__text">
+      You will delete product #{{ data.id }} continue?
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="modal__btn" (click)="closeDialog()" mat-button cdkFocusInitial>
+    Cancel
+  </button>
+  <button class="modal__btn" (click)="showData()" mat-button cdkFocusInitial>
+    OK
+  </button>
+</div>

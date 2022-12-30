@@ -10,12 +10,14 @@ const routes: Routes = [
       {
         path: 'users',
         loadChildren: () =>
-          import('src/app/users/users.module').then((m) => m.UsersModule),
+          import('src/app/admin-panel/users/users.module').then(
+            (m) => m.UsersModule
+          ),
       },
       {
         path: 'products',
         loadChildren: () =>
-          import('src/app/products/products.module').then(
+          import('src/app/admin-panel/products/products.module').then(
             (m) => m.ProductsModule
           ),
       },

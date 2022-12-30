@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductsService } from 'src/app/products.service';
+import { ProductsService } from 'src/app/shop/products.service';
 import { TypeOfProduct } from '../../models/TypeOfProduct.inteface';
 import { Router } from '@angular/router';
 @Injectable({
@@ -8,9 +8,7 @@ import { Router } from '@angular/router';
 export class AddItemDetailsService {
   item: TypeOfProduct;
   data: TypeOfProduct[] = [];
-  constructor(
-    private router: Router
-  ) {}
+  constructor(private router: Router) {}
   getItem(id: any, allData: TypeOfProduct[]): TypeOfProduct {
     this.data = allData;
     this.checkDate(id);

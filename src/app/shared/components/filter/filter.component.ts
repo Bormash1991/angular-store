@@ -8,8 +8,10 @@ import {
 import { param } from 'src/app/models/TypeOfFilterParam';
 import { ConfigService } from '../../services/config.service';
 import { debounceTime, fromEvent, map } from 'rxjs';
-import { ModalComponent } from '../modal/modal.component';
+import { WarningModalComponent } from '../../../admin-panel/warning-modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UsersModalComponent } from 'src/app/admin-panel/users-modal/users-modal.component';
+import { ProductsModalComponent } from 'src/app/admin-panel/products-modal/products-modal.component';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -46,11 +48,11 @@ export class FilterComponent implements AfterViewInit {
   }
   openDialog() {
     if (this.param == 'products') {
-      this.dialog.open(ModalComponent, {
+      this.dialog.open(ProductsModalComponent, {
         data: { name: '', price: '', description: '' },
       });
     } else if (this.param == 'users') {
-      this.dialog.open(ModalComponent, {
+      this.dialog.open(UsersModalComponent, {
         data: { name: '' },
       });
     }
