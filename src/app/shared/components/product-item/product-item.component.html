@@ -1,6 +1,8 @@
 <div class="products__item">
   <h4 class="products__item_title">
-    {{ productDate.name }}
+    <a class="products__item_link" [routerLink]="['/products', productDate.id]">
+      {{ productDate.name }}</a
+    >
   </h4>
   <div
     appPriceHighlight
@@ -9,5 +11,5 @@
   >
     {{ productDate.price | uah }}
   </div>
-  <btn [class]="'btn'" [text]="'Add to Cart'"></btn>
+  <btn (click)="addOrDeleteItem(productDate)" [class]="'btn'" [text]="buttonText"></btn>
 </div>

@@ -1,0 +1,29 @@
+<div class="side-bar">
+  <div class="side-bar__circle"></div>
+  <nav class="side-bar__nav">
+    <ul class="side-bar__list">
+      <li class="side-bar__item">
+        <a
+          class="side-bar__link"
+          [routerLink]="['users']"
+          routerLinkActive="side-bar__link_active"
+          >Users</a
+        >
+      </li>
+      <li class="side-bar__item">
+        <a
+          class="side-bar__link"
+          [routerLink]="['products']"
+          routerLinkActive="side-bar__link_active"
+          >Products</a
+        >
+      </li>
+    </ul>
+  </nav>
+  <a class="side-bar__logout" [routerLink]="['/']">
+    <div class="side-bar__logout_text">Logout</div>
+    <svg class="side-bar__logout_img">
+      <use href="assets/sprite.svg#icon-logout"></use>
+    </svg>
+  </a>
+</div>

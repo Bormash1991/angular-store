@@ -1,0 +1,20 @@
+<div class="welcome">
+  <div class="container">
+    <h1 class="welcome__title">Welcome to the shop!</h1>
+    <h2 class="welcome__subtitle">Some of our products...</h2>
+    <div *ngIf="loading$ | async" class="welcome__spinner">
+      <app-spinner></app-spinner>
+    </div>
+    <div class="welcome__box">
+      <app-product-item
+        *ngFor="let product of data"
+        [productDate]="product"
+      ></app-product-item>
+    </div>
+    <btn
+      [routerLink]="['products']"
+      [class]="'btn btn_more'"
+      [text]="'Show all list'"
+    ></btn>
+  </div>
+</div>

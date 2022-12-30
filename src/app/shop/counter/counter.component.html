@@ -1,0 +1,13 @@
+<div class="counter">
+  <btn
+    (click)="changeCounter('increment', elem)"
+    [text]="'+'"
+    [class]="'btn btn_plus'"
+  ></btn>
+  <div class="modal__num">{{ elem.counter }}</div>
+  <btn
+    (click)="changeCounter('decrement', elem)"
+    [text]="'-'"
+    [class]="'btn btn_minus'"
+  ></btn>
+</div>

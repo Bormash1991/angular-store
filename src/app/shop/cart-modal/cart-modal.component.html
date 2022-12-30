@@ -1,0 +1,30 @@
+<div [className]="'modal ' + className">
+  <ng-container *ngIf="!data.length">
+    <div class="modal__empty">Your shopping cart is empty!</div>
+  </ng-container>
+  <div class="modal__container">
+    <ul class="modal__list">
+      <li *ngFor="let prod of data" class="modal__item">
+        <div class="modal__inf">
+          <a class="modal__name" [routerLink]="['products', prod.id]"
+            ><div>{{ prod.name }} #{{ prod.id }}</div>
+          </a>
+          <div class="modal__price">
+            Price: {{ prod.price }} × {{ prod.counter }} =
+            {{ prod.price * prod.counter | uah }}
+          </div>
+        </div>
+        <app-counter
+          (mouseClick)="changeCounter($event)"
+          [elem]="prod"
+        ></app-counter>
+        <btn
+          [text]="'×'"
+          [class]="'btn btn_delete'"
+          (click)="delete(prod)"
+        ></btn>
+      </li>
+    </ul>
+    <div *ngIf="data.length" class="modal__total">Total: {{ totalSum }}</div>
+  </div>
+</div>

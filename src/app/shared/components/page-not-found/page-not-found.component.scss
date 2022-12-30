@@ -1,0 +1,13 @@
+.not-found {
+  padding: 210px 0;
+  text-align: center;
+  color: rgba(149, 149, 149, 0.337);
+  &__title {
+    font-weight: 500;
+    font-size: 100px;
+  }
+  &__text {
+    font-weight: 500;
+    font-size: 30px;
+  }
+}

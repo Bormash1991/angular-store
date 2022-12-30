@@ -1,0 +1,40 @@
+<h1 class="modal__title" *ngIf="titleText.length > 0" mat-dialog-title>
+  {{ titleText }}
+</h1>
+<ng-template #formTemplate>
+  <form
+    class="modal__box"
+    [formGroup]="form"
+    *ngIf="className == 'editOrCreate'"
+  >
+    <mat-form-field *ngFor="let field of keys">
+      <mat-label>{{ field }}</mat-label>
+      <input [formControlName]="field" matInput />
+    </mat-form-field>
+  </form>
+</ng-template>
+<ng-template #warningTemplate>
+  <div class="modal__warning" *ngIf="className == 'warning'">
+    <svg class="modal__img">
+      <use href="assets/sprite.svg#icon-error" class="modal__img" ></use>
+    </svg>
+    <div class="modal__text">
+      You will delete product #{{ data.id }} continue?
+    </div>
+  </div>
+</ng-template>
+<div
+  class="modal"
+  *ngIf="className == 'editOrCreate'; else warningTemplate"
+  mat-dialog-content
+>
+  <ng-container *ngTemplateOutlet="formTemplate"></ng-container>
+</div>
+<div mat-dialog-actions>
+  <button class="modal__btn" (click)="closeDialog()" mat-button cdkFocusInitial>
+    Cancel
+  </button>
+  <button class="modal__btn" (click)="showData()" mat-button cdkFocusInitial>
+    OK
+  </button>
+</div>

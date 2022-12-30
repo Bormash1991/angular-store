@@ -1,0 +1,49 @@
+.filter {
+  &__search {
+    margin-right: 30px;
+    width: 240px;
+  }
+  &__option {
+    margin-right: 20px;
+    width: 170px;
+  }
+  &__date {
+    width: 120px;
+    margin-right: 60px;
+  }
+  &__params {
+    width: 115px;
+    margin-right: 60px;
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+      -moz-appearance: textfield;
+    }
+  }
+  &__btn {
+    margin-left: 5px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    border: 2px solid #adaaaaad;
+    font-size: 17px;
+    font-weight: 500;
+    transform: translateY(-25%);
+    transition: 150ms background-color;
+    &:hover {
+      background-color: #e7e3e3;
+    }
+  }
+  &__as,
+  &__by {
+    width: 170px;
+  }
+  &__as {
+    margin-right: 20px;
+  }
+}
+::ng-deep
+  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined)
+  .mat-mdc-form-field-infix {
+  padding-bottom: 7px;
+}

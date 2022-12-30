@@ -3,3 +3,8 @@
 @import "./app/styles/container.scss";
 @import "./app/styles/font.scss";
 @import "./app/styles/base.scss";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html,
+body {
+  height: 100%;
+}
