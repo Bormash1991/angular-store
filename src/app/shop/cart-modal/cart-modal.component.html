@@ -6,7 +6,7 @@
     <ul class="modal__list">
       <li *ngFor="let prod of data" class="modal__item">
         <div class="modal__inf">
-          <a class="modal__name" [routerLink]="[prod.id]"
+          <a class="modal__name" [routerLink]="['products', prod.id]"
             ><div>{{ prod.name }} #{{ prod.id }}</div>
           </a>
           <div class="modal__price">

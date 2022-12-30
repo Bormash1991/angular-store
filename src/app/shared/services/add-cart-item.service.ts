@@ -8,8 +8,7 @@ import { Subject } from 'rxjs';
 export class AddCartItemService {
   data: TypeOfProduct[] =
     this.localStorageService.getData<TypeOfProduct[]>('CartDataCount') || [];
-  private result: [TypeOfProduct, number][] = [];
-  arrSubject$ = new Subject<TypeOfProduct[]>();
+  productsSubj$ = new Subject<TypeOfProduct[]>();
 
   constructor(private localStorageService: LocalStorageService) {}
 
@@ -32,7 +31,7 @@ export class AddCartItemService {
     this.reloadData();
   }
   reloadData() {
-    this.arrSubject$.next(this.data);
+    this.productsSubj$.next(this.data);
   }
   getTotal() {
     return this.data.reduce((acc, item) => acc + item.counter * item.price, 0);
@@ -66,7 +65,7 @@ export class AddCartItemService {
       this.incrementCounter(elem);
     } else if (doing == 'decrement') {
       this.decrementCounter(elem);
-      this.arrSubject$.next(this.data);
+      this.productsSubj$.next(this.data);
     }
   }
   decrementCounter(elem: TypeOfProduct) {

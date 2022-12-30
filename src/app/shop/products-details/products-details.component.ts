@@ -27,29 +27,24 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
     this.productsService.getDate().subscribe((items) => {
       this.allData = items;
       this.productData = this.AddItemDetailsService.getItem(id, this.allData);
-      if (this.productData) {
-        // this.check(this.productData);
-      }
+      this.addCartItemService.reloadData();
     });
-    this.subj = this.addCartItemService.arrSubject$.subscribe((n) =>
+    this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
       this.check(n)
     );
   }
   setData(elem: TypeOfProduct) {
     this.addCartItemService.setData(elem);
-    // this.check(elem);
   }
-  check(elem: TypeOfProduct[]) {
-    // let count = this.addCartItemService.checkCount(elem);
-    // try {
-    //   if (count && elem.id == this.productData.id) {
-    //     this.buttonText = 'In Cart';
-    //   } else if (elem.id == this.productData.id) {
-    //     this.buttonText = 'Add to Cart';
-    //   }
-    // } catch (error) {
-    //   console.log('page-not-found');
-    // }
+  check(elems: TypeOfProduct[]) {
+    for (let i = 0; i < elems.length; i++) {
+      if (elems[i].id == this.productData.id) {
+        this.productData = elems[i];
+        this.buttonText = 'In Cart';
+        return;
+      }
+    }
+    this.buttonText = 'Add to Cart';
   }
   ngOnDestroy() {
     this.subj.unsubscribe();
