@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { UsersTablesComponent } from './components/users-tables/users-tables.component';
 @NgModule({
   declarations: [
     UahPipe,
@@ -20,6 +21,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     TablesComponent,
     FilterComponent,
     SpinnerComponent,
+    UsersTablesComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     TablesComponent,
     FilterComponent,
     SpinnerComponent,
+    UsersTablesComponent,
   ],
 })
 export class SharedModule {}

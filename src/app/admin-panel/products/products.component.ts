@@ -20,17 +20,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private productsService: ProductsService,
     private filterCongig: ConfigService,
-    private filterService: FilterService
+    private filterService: FilterService<TypeOfProduct>
   ) {}
 
   ngOnInit() {
-    this.dataSubj = this.productsService.getDate().subscribe((data) => {
-      if (data.length) {
-        this.loading$.next(false);
-        this.products = this.filterService.setData(data, 5);
-        this.productsLength = data.length;
-      }
-    });
+    this.dataSubj = this.productsService
+      .getData<TypeOfProduct[]>()
+      .subscribe((data) => {
+        if (data.length) {
+          this.loading$.next(false);
+          this.products = this.filterService.setData(data, 5);
+          this.productsLength = data.length;
+        }
+      });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
       this.changeData(elem, 'price');
       if (elem.sortAs) {
@@ -39,7 +41,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
     this.products = [];
   }
-  changeData(elem: filterCongig, param: 'price' | 'date') {
+  changeData(elem: filterCongig, param: 'price' | 'createdAt') {
     let arr = this.filterService.changeData(elem, param);
     this.products = arr[0] as TypeOfProduct[];
     this.productsLength = arr[1] as number;
@@ -56,5 +58,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.filterSubj.unsubscribe();
     this.dataSubj.unsubscribe();
+    this.filterCongig.setDefault();
   }
 }

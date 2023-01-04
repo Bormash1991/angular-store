@@ -31,10 +31,13 @@
     <mat-label>Sort by...</mat-label>
     <mat-select (selectionChange)="setSortBy($event)">
       <mat-option [value]="">None</mat-option>
-      <mat-option value="name">Name</mat-option>
+      <mat-option value="name" *ngIf="param == 'products'">Name</mat-option>
+      <mat-option value="username" *ngIf="param == 'users'"
+        >Username</mat-option
+      >
       <mat-option *ngIf="param == 'products'" value="price">Price</mat-option>
       <mat-option value="id">Id</mat-option>
-      <mat-option *ngIf="param == 'users'" value="date">Date</mat-option>
+      <mat-option *ngIf="param == 'users'" value="createdAt">Date</mat-option>
     </mat-select>
   </mat-form-field>
   <button (click)="openDialog()" class="filter__btn">+</button>

@@ -2,31 +2,34 @@ import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { ProductsService } from 'src/app/shop/products.service';
+import { UsersService } from 'src/app/shared/services/users.service';
 @Component({
   selector: 'app-warning-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
 export class WarningModalComponent implements OnInit {
-  public keys: string[] = Object.keys(this.data);
   public className: string;
   public titleText: string;
   constructor(
     public dialogRef: MatDialogRef<WarningModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: TypeOfProduct,
-    private fb: FormBuilder
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private fb: FormBuilder,
+    private productsService: ProductsService,
+    private usersService: UsersService
   ) {}
-  form: FormGroup = this.fb.group({
-    ...this.data,
-  });
 
   closeDialog() {
     this.dialogRef.close();
   }
   ngOnInit() {}
   showData() {
-    console.log(this.form.getRawValue());
+    if (this.data.type == 'product') {
+      this.productsService.delete(this.data.data.id).subscribe();
+    } else {
+      this.usersService.delete(this.data.data.id).subscribe();
+    }
     this.dialogRef.close();
   }
 }

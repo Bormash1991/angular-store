@@ -10,6 +10,9 @@ import { ShopModule } from './shop/shop.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersModule } from './admin-panel/users/users.module';
 import { ProductsModule } from './admin-panel/products/products.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoginModule } from './login/login.module';
+import { AuthInterceptor } from './shared/services/auth-interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -23,8 +26,16 @@ import { ProductsModule } from './admin-panel/products/products.module';
     BrowserAnimationsModule,
     UsersModule,
     ProductsModule,
+    HttpClientModule,
+    LoginModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

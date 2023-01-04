@@ -3,6 +3,23 @@
     <h1 class="user__title">Users</h1>
     <div class="user__box-main">
       <app-filter [param]="'users'"></app-filter>
+      <div class="user__box-item">
+        <app-users-tables [items]="products"></app-users-tables>
+        <div *ngIf="loading$ | async" class="products__box-spinner">
+          <app-spinner></app-spinner>
+        </div>
+      </div>
     </div>
+    <mat-paginator
+      class="products__paginator"
+      *ngIf="products.length"
+      [pageIndex]="pageIndex"
+      [hidePageSize]="true"
+      [length]="productsLength"
+      (page)="changePage($event)"
+      [pageSize]="5"
+      aria-label="Select page"
+    >
+    </mat-paginator>
   </div>
 </div>

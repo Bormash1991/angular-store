@@ -3,9 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
 
 const DEFAULT_CONFIGURATION: filterCongig = {
-  date: `${new Date().getFullYear()}-${
-    new Date().getMonth() + 1
-  }-${new Date().getDate()}`,
+  createdAt: ``,
   price: 0,
   search: '',
   select: '',
@@ -25,7 +23,9 @@ export class ConfigService {
   get DefaultConfiguration() {
     return this.configuration$.getValue();
   }
-
+  setDefault() {
+    this.configuration$.next(DEFAULT_CONFIGURATION);
+  }
   setSearch(search: string) {
     this.configuration$.next({
       ...this.DefaultConfiguration,
@@ -50,10 +50,10 @@ export class ConfigService {
       price,
     });
   }
-  setDate(date: string) {
+  setDate(createdAt: string) {
     this.configuration$.next({
       ...this.DefaultConfiguration,
-      date,
+      createdAt,
     });
   }
   setSelect(select: string) {

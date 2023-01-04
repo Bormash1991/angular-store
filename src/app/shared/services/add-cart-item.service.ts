@@ -15,7 +15,7 @@ export class AddCartItemService {
   setData(elem: TypeOfProduct) {
     let length = this.data.filter((item) => item.id == elem.id).length;
     if (!length) {
-      elem.counter += 1;
+      elem.counter = 1;
       this.data.push(elem);
     } else {
       this.data.forEach((item) => {

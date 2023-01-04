@@ -7,7 +7,7 @@
       <li *ngFor="let prod of data" class="modal__item">
         <div class="modal__inf">
           <a class="modal__name" [routerLink]="['products', prod.id]"
-            ><div>{{ prod.name }} #{{ prod.id }}</div>
+            ><div>{{ prod.name }}</div>
           </a>
           <div class="modal__price">
             Price: {{ prod.price }} × {{ prod.counter }} =

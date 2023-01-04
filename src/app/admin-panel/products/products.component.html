@@ -4,7 +4,7 @@
     <div class="products__box-main">
       <app-filter [param]="'products'"></app-filter>
       <div class="products__box-item">
-        <app-tables [items]="products" [params]="'name'"></app-tables>
+        <app-tables [items]="products"></app-tables>
         <div *ngIf="loading$ | async" class="products__box-spinner">
           <app-spinner></app-spinner>
         </div>
