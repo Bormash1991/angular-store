@@ -29,4 +29,5 @@ export class ProductsService extends BaseHttpService {
   // getDate(): Observable<TypeOfProduct[]> {
   //   return of(this.data).pipe(delay(1000));
   // }
+ 
 }

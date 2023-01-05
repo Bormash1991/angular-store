@@ -12,6 +12,8 @@ import { CartComponent } from './cart/cart.component';
 import { CounterComponent } from './counter/counter.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ShopRoutingModule } from './shop-routing.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     ShopComponent,
@@ -24,6 +26,12 @@ import { ShopRoutingModule } from './shop-routing.module';
     CounterComponent,
     WelcomePageComponent,
   ],
-  imports: [CommonModule, SharedModule, ShopRoutingModule, RouterModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ShopRoutingModule,
+    RouterModule,
+    MatPaginatorModule,
+  ],
 })
 export class ShopModule {}

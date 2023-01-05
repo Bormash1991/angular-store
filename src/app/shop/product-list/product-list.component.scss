@@ -6,7 +6,7 @@
     color: #1f242a;
   }
   &__spinner {
-    padding: 150px 0 100px 0;
+    padding: 200px 0 150px 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -16,6 +16,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
+  }
+  &__paginator {
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 }
 

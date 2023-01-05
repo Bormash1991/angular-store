@@ -25,4 +25,9 @@ export class BaseHttpService {
   delete(id: string): Observable<Object> {
     return this.http.delete(this.URL + this.params + id);
   }
+  getDataWithLimit<T>(limit: number, page: number) {
+    return this.http.get<T>(
+      this.URL + this.params + `?limit=${limit}&page=${page}`
+    );
+  }
 }

@@ -7,11 +7,20 @@
       </div>
       <div class="products__box">
         <app-product-item
-          *ngFor="let product of data"
+          *ngFor="let product of dataForView"
           [productDate]="product"
         ></app-product-item>
       </div>
-      <btn [class]="'btn btn_more'" [text]="'Load more'"></btn>
+      <mat-paginator
+        class="products__paginator"
+        *ngIf="dataLength"
+        [pageIndex]="pageIndex"
+        [hidePageSize]="true"
+        [length]="dataLength"
+        (page)="changePage($event)"
+        [pageSize]="limit"
+      >
+      </mat-paginator>
     </div>
   </div>
 </main>
