@@ -32,8 +32,7 @@ export class ProductsModalComponent {
     this.dialogRef.close();
   }
   ngOnInit() {
-    let checkValues = Object.values(this.data).filter((elem) => elem != '');
-    if (checkValues.length) {
+    if (this.data.id) {
       this.titleText = 'Edit Product';
     } else {
       this.titleText = 'Add Product';
@@ -49,11 +48,17 @@ export class ProductsModalComponent {
           price: +price,
           description: description,
         })
-        .subscribe((response) => console.log(response));
+        .subscribe({
+          next: (response) => {},
+          error: (error) => {},
+        });
     } else {
       this.productsService
         .update(this.data.id, { ...this.form.getRawValue(), author: 'bohdan' })
-        .subscribe((response) => console.log(response));
+        .subscribe({
+          next: (response) => {},
+          error: (error) => {},
+        });
     }
     this.dialogRef.close();
   }

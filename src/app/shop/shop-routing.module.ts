@@ -32,16 +32,16 @@ const routes: Routes = [
         pathMatch: 'full',
         component: ProductsDetailsComponent,
       },
-      {
-        path: '**',
-        pathMatch: 'full',
-        redirectTo: '404-not-found',
-      },
-      {
-        path: '404-not-found',
-        pathMatch: 'full',
-        component: PageNotFoundComponent,
-      },
+      // {
+      //   path: '**',
+      //   pathMatch: 'full',
+      //   redirectTo: '404-not-found',
+      // },
+      // {
+      //   path: '404-not-found',
+      //   pathMatch: 'full',
+      //   component: PageNotFoundComponent,
+      // },
     ],
   },
 ];

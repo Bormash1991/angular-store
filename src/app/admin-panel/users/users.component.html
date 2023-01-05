@@ -5,13 +5,13 @@
       <app-filter [param]="'users'"></app-filter>
       <div class="user__box-item">
         <app-users-tables [items]="products"></app-users-tables>
-        <div *ngIf="loading$ | async" class="products__box-spinner">
+        <div *ngIf="loading$ | async" class="user__box-spinner">
           <app-spinner></app-spinner>
         </div>
       </div>
     </div>
     <mat-paginator
-      class="products__paginator"
+      class="user__paginator"
       *ngIf="products.length"
       [pageIndex]="pageIndex"
       [hidePageSize]="true"

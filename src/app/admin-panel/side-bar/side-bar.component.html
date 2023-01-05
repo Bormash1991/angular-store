@@ -20,10 +20,20 @@
       </li>
     </ul>
   </nav>
-  <a class="side-bar__logout" [routerLink]="['/']">
-    <div class="side-bar__logout_text">Logout</div>
+  <a
+    class="side-bar__logout"
+    (mouseenter)="showPopup()"
+    (mouseleave)="closePopup()"
+  >
+    <div class="side-bar__logout_text">Exit</div>
     <svg class="side-bar__logout_img">
       <use href="assets/sprite.svg#icon-logout"></use>
     </svg>
+    <div class="side-bar__logout_popup side-bar__popup" *ngIf="activePopup">
+      <a class="side-bar__popup_link" (click)="logout()" [routerLink]="['/']">
+        With logout</a
+      >
+      <a class="side-bar__popup_link" [routerLink]="['/']"> Without logout</a>
+    </div>
   </a>
 </div>

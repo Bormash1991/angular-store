@@ -1,6 +1,5 @@
 .btn {
   display: block;
-
   margin-top: 28px;
   padding: 15px 40px;
   border-radius: 5px;
@@ -60,6 +59,15 @@
     border: none;
     font-size: 25px;
     font-weight: 500;
+  }
+  &_login {
+    margin-top: 0px;
+    padding: 7px 0;
+    width: 120px;
+    background-color: #dfdfdf;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
   }
   &:hover {
     background-color: #a3a4a48d;

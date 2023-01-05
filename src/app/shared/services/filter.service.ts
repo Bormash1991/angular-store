@@ -1,5 +1,4 @@
-import { TypeOfUser } from './../../models/TypeOfUser.interface';
-import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
+
 import { Injectable } from '@angular/core';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
 

@@ -1,3 +1,4 @@
+import { AuthGuard } from './shared/services/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
@@ -11,13 +12,18 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
+  },
+  {
     path: '',
     loadChildren: () => import('./shop/shop.module').then((m) => m.ShopModule),
   },
   {
-    path: '**',
-    pathMatch: 'full',
-    component: PageNotFoundComponent,
+    path: '',
+    loadChildren: () =>
+      import('./errors/errors.module').then((m) => m.ErrorsModule),
   },
 ];
 

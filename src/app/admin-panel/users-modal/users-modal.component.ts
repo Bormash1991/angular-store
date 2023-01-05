@@ -37,11 +37,17 @@ export class UsersModalComponent {
         .create({
           ...this.form.getRawValue(),
         })
-        .subscribe((response) => console.log(response));
+        .subscribe({
+          next: (response) => {},
+          error: (error) => {},
+        });
     } else {
       this.usersService
         .update(this.data.id, { ...this.form.getRawValue() })
-        .subscribe((response) => console.log(response));
+        .subscribe({
+          next: (response) => {},
+          error: (error) => {},
+        });
     }
     console.log(this.form.getRawValue());
     this.dialogRef.close();

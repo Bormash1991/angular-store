@@ -25,7 +25,7 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     this.productsService.getDataById<TypeOfProduct>(id).subscribe((data) => {
       if (!data) {
-        this.router.navigateByUrl('/**');
+        this.router.navigateByUrl('/404');
       } else {
         this.productData = data;
         this.addCartItemService.reloadData();

@@ -16,7 +16,7 @@ export class AuthService {
   getAuthToken() {
     return this.localStorageService.getData('authToken');
   }
-  logIn<T>(data: any) {
+  logIn<T>(data: Object) {
     return this.http.post<T>(this.URL, data);
   }
 }

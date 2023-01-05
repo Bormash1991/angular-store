@@ -1,16 +1,26 @@
 .user {
-  padding: 50px;
+  padding: 48px;
   padding-bottom: 0;
-  height: 100%;
   &__box {
+    position: relative;
     padding: 0 30px;
     &-main {
-      height: 100%;
+      min-height: 586px;
+    }
+    &-spinner {
+      padding: 180px 0;
+      display: flex;
+      justify-content: center;
     }
   }
   &__title {
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 40px;
+  }
+  &__paginator {
+    position: absolute;
+    right: 20px;
+    bottom: 4px;
   }
 }
