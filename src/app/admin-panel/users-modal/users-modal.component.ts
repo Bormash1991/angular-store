@@ -38,14 +38,17 @@ export class UsersModalComponent {
           ...this.form.getRawValue(),
         })
         .subscribe({
-          next: (response) => {},
+          next: (response) => {
+            window.location.reload();
+          },
           error: (error) => {},
         });
     } else {
       this.usersService
         .update(this.data.id, { ...this.form.getRawValue() })
         .subscribe({
-          next: (response) => {},
+          next: (response) => {
+          window.location.reload();},
           error: (error) => {},
         });
     }

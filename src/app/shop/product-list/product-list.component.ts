@@ -37,6 +37,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.loading$.next(true);
     this.dataForView = [];
     this.pageIndex = event.pageIndex;
+    sessionStorage.setItem('pageIndex', JSON.stringify(this.pageIndex));
     this.productsService
       .getDataWithLimit<TypeOfProduct[]>(this.limit, ++event.pageIndex)
       .subscribe((data) => {
@@ -46,7 +47,5 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }
       });
   }
-  ngOnDestroy() {
-    sessionStorage.setItem('pageIndex', JSON.stringify(this.pageIndex));
-  }
+  ngOnDestroy() {}
 }

@@ -23,6 +23,13 @@ const routes: Routes = [
             (m) => m.ProductsModule
           ),
       },
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('src/app/admin-panel/orders/orders.module').then(
+            (m) => m.OrdersModule
+          ),
+      },
     ],
   },
 ];

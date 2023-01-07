@@ -10,12 +10,17 @@ import {
 } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable, tap } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LocalStorageService } from './localstorage.service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private localStorageService: LocalStorageService
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -27,7 +32,25 @@ export class AuthInterceptor implements HttpInterceptor {
       const authReq = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${authToken}`),
       });
-      return next.handle(authReq);
+      return next.handle(authReq).pipe(
+        tap({
+          next: (next) => {},
+          error: (error) => {
+            if (error instanceof HttpErrorResponse) {
+              if (error.status === 401 && this.router.url != '/login') {
+                this.router.navigateByUrl('401');
+                this.localStorageService.deleteData('authToken');
+              }
+              if (error.status === 404) {
+                this.router.navigateByUrl('404');
+              }
+              if (error.status === 403) {
+                this.router.navigateByUrl('403');
+              }
+            }
+          },
+        })
+      );
     }
 
     return next.handle(req).pipe(
@@ -35,7 +58,7 @@ export class AuthInterceptor implements HttpInterceptor {
         next: (next) => {},
         error: (error) => {
           if (error instanceof HttpErrorResponse) {
-            if (error.status === 401) {
+            if (error.status === 401 && this.router.url != '/login') {
               this.router.navigateByUrl('401');
             }
             if (error.status === 404) {

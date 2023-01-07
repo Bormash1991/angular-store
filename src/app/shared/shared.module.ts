@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { UsersTablesComponent } from './components/users-tables/users-tables.component';
+import { OrderTableComponent } from './components/order-table/order-table.component';
 @NgModule({
   declarations: [
     UahPipe,
@@ -22,6 +23,7 @@ import { UsersTablesComponent } from './components/users-tables/users-tables.com
     FilterComponent,
     SpinnerComponent,
     UsersTablesComponent,
+    OrderTableComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { UsersTablesComponent } from './components/users-tables/users-tables.com
     FilterComponent,
     SpinnerComponent,
     UsersTablesComponent,
+    OrderTableComponent,
   ],
 })
 export class SharedModule {}

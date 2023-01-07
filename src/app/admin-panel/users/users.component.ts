@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
     this.dataSubj = this.usersService
       .getData<TypeOfUser[]>()
       .subscribe((data) => {
-        if (data.length) {
+        if (data) {
           this.loading$.next(false);
           this.products = this.filterService.setData(data, 5);
           this.productsLength = data.length;

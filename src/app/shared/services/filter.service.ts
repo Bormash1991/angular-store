@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
 
@@ -10,7 +9,7 @@ export class FilterService<T> {
   private productsSecond: T[] = [];
   private allProductsAfterFilter: T[] = [];
   public productsLength: number;
-  public pageIndex: number;
+  public pageIndex: number = 0;
   private num: number;
   constructor() {}
   setData(data: T[], num: number) {
@@ -22,7 +21,7 @@ export class FilterService<T> {
     this.firstPage();
     return this.products;
   }
-  changeData(elem: filterCongig, param: 'price' | 'createdAt') {
+  changeData(elem: filterCongig, param: 'price' | 'createdAt' | '') {
     let typeOfName = '';
     if (param == 'createdAt') {
       typeOfName = 'username';

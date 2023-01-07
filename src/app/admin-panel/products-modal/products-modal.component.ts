@@ -49,14 +49,18 @@ export class ProductsModalComponent {
           description: description,
         })
         .subscribe({
-          next: (response) => {},
+          next: (response) => {
+            window.location.reload();
+          },
           error: (error) => {},
         });
     } else {
       this.productsService
         .update(this.data.id, { ...this.form.getRawValue(), author: 'bohdan' })
         .subscribe({
-          next: (response) => {},
+          next: (response) => {
+            window.location.reload();
+          },
           error: (error) => {},
         });
     }

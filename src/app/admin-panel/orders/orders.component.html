@@ -1,0 +1,24 @@
+<div class="orders">
+  <div class="orders__box">
+    <h1 class="orders__title">Orders</h1>
+    <div class="orders__box-main">
+      <app-filter [param]="'orders'"></app-filter>
+      <div class="orders__box-item">
+        <app-order-table [items]="orders"></app-order-table>
+        <div *ngIf="loading$ | async" class="orders__box-spinner">
+          <app-spinner></app-spinner>
+        </div>
+      </div>
+    </div>
+    <mat-paginator
+      class="orders__paginator"
+      *ngIf="orders.length"
+      [pageIndex]="pageIndex"
+      [hidePageSize]="true"
+      [length]="ordersLength"
+      (page)="changePage($event)"
+      [pageSize]="5"
+    >
+    </mat-paginator>
+  </div>
+</div>

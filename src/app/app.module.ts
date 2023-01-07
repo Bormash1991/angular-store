@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './login/login.module';
 import { AuthInterceptor } from './shared/services/auth-interceptor.interceptor';
 import { ErrorsModule } from './errors/errors.module';
+import { OrdersModule } from './admin-panel/orders/orders.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,6 +31,7 @@ import { ErrorsModule } from './errors/errors.module';
     HttpClientModule,
     LoginModule,
     ErrorsModule,
+    OrdersModule,
   ],
   providers: [
     {

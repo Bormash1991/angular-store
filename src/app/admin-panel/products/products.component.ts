@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.dataSubj = this.productsService
       .getData<TypeOfProduct[]>()
       .subscribe((data) => {
-        if (data.length) {
+        if (data) {
           this.loading$.next(false);
           this.products = this.filterService.setData(data, 5);
           this.productsLength = data.length;
