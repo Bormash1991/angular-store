@@ -28,7 +28,6 @@ export class OrdersComponent implements OnInit {
         this.loading$.next(false);
         this.orders = this.filterService.setData(data, 5);
         this.ordersLength = data.length;
-        console.log(data);
       }
     });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
