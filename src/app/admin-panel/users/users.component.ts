@@ -5,6 +5,7 @@ import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { CloseOrOpenBarService } from '../shared/services/close-or-open-bar.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -21,7 +22,8 @@ export class UsersComponent implements OnInit {
     private usersService: UsersService,
     private filterCongig: ConfigService,
     private filterService: FilterService<TypeOfUser>,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private closeOrOpenBarService: CloseOrOpenBarService
   ) {}
 
   ngOnInit() {
@@ -43,7 +45,16 @@ export class UsersComponent implements OnInit {
     });
     this.products = [];
   }
-
+  close() {
+    if (this.closeOrOpenBarService.changingState$.getValue()) {
+      this.closeOrOpenBarService.close();
+      this.renderer.removeClass(document.documentElement, 'scroll-block');
+    }
+  }
+  onenMenu() {
+    this.closeOrOpenBarService.open();
+    this.renderer.addClass(document.documentElement, 'scroll-block');
+  }
   changeData(elem: filterCongig, param: 'price' | 'createdAt') {
     let arr = this.filterService.changeData(elem, param);
     this.products = arr[0] as TypeOfUser[];

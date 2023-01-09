@@ -1,10 +1,17 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  Renderer2,
+} from '@angular/core';
 import { TypeOfProduct } from '../../models/TypeOfProduct.inteface';
 import { ProductsService } from '../../shop/products.service';
 import { BehaviorSubject, Subscription, take } from 'rxjs';
 import { filterCongig } from '../../models/TypeOfFilterConfig.interface';
 import { ConfigService } from '../../shared/services/config.service';
 import { FilterService } from '../../shared/services/filter.service';
+import { CloseOrOpenBarService } from '../shared/services/close-or-open-bar.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -20,9 +27,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private productsService: ProductsService,
     private filterCongig: ConfigService,
-    private filterService: FilterService<TypeOfProduct>
+    private filterService: FilterService<TypeOfProduct>,
+    private renderer: Renderer2,
+    private closeOrOpenBarService: CloseOrOpenBarService
   ) {}
-
+  onenMenu() {
+    this.closeOrOpenBarService.open();
+    this.renderer.addClass(document.documentElement, 'scroll-block');
+  }
+  close() {
+    if (this.closeOrOpenBarService.changingState$.getValue()) {
+      this.closeOrOpenBarService.close();
+      this.renderer.removeClass(document.documentElement, 'scroll-block');
+    }
+  }
   ngOnInit() {
     this.dataSubj = this.productsService.getData<TypeOfProduct[]>().subscribe({
       next: (data) => {

@@ -1,6 +1,26 @@
 .orders {
-  padding: 48px;
+  padding: 20px;
   padding-bottom: 0;
+  &__hamburger {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    z-index: 10;
+    &_img {
+      fill: black;
+      width: 25px;
+      height: 25px;
+      border-radius: 5px;
+      transform: translateX(-2px);
+    }
+    transition: 250ms background-color;
+    &:hover {
+      background-color: #a1beb387;
+    }
+  }
   &__box {
     position: relative;
     padding: 0 30px;
@@ -22,5 +42,11 @@
     position: absolute;
     right: 20px;
     bottom: 4px;
+  }
+}
+@media (min-width: 1024px) {
+  .orders {
+    padding: 48px;
+    padding-bottom: 0;
   }
 }

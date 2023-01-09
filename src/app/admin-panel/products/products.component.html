@@ -1,4 +1,9 @@
-<div class="products">
+<button class="products__hamburger" (click)="onenMenu()">
+  <svg class="products__hamburger_img">
+    <use href="assets/sprite.svg#icon-menu"></use>
+  </svg>
+</button>
+<div class="products" (click)="close()">
   <div class="products__box">
     <h1 class="products__title">Products</h1>
     <div class="products__box-main">

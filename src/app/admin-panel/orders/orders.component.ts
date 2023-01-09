@@ -1,10 +1,11 @@
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { OrdersService } from './../../shared/services/orders.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
 import { TypeOfOrder } from 'src/app/models/TypeOfOrder.interface';
+import { CloseOrOpenBarService } from '../shared/services/close-or-open-bar.service';
 
 @Component({
   selector: 'app-orders',
@@ -20,7 +21,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
   constructor(
     private ordersService: OrdersService,
     private filterService: FilterService<TypeOfOrder>,
-    private filterCongig: ConfigService
+    private filterCongig: ConfigService,
+    private renderer: Renderer2,
+    private closeOrOpenBarService: CloseOrOpenBarService
   ) {}
   ngOnInit(): void {
     this.ordersService.getData<TypeOfOrder[]>().subscribe({
@@ -41,7 +44,16 @@ export class OrdersComponent implements OnInit, OnDestroy {
     });
     this.orders = [];
   }
-
+  close() {
+    if (this.closeOrOpenBarService.changingState$.getValue()) {
+      this.closeOrOpenBarService.close();
+      this.renderer.removeClass(document.documentElement, 'scroll-block');
+    }
+  }
+  onenMenu() {
+    this.closeOrOpenBarService.open();
+    this.renderer.addClass(document.documentElement, 'scroll-block');
+  }
   sortData(elem: filterCongig) {
     this.orders = this.filterService.sortData(elem) as TypeOfOrder[];
   }

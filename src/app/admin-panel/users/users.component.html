@@ -1,17 +1,22 @@
-<div class="user">
-  <div class="user__box">
-    <h1 class="user__title">Users</h1>
-    <div class="user__box-main">
+<button class="users__hamburger" (click)="onenMenu()">
+  <svg class="users__hamburger_img">
+    <use href="assets/sprite.svg#icon-menu"></use>
+  </svg>
+</button>
+<div class="users" (click)="close()">
+  <div class="users__box">
+    <h1 class="users__title">Users</h1>
+    <div class="users__box-main">
       <app-filter [param]="'users'"></app-filter>
-      <div class="user__box-item">
+      <div class="users__box-item">
         <app-users-tables [items]="products"></app-users-tables>
-        <div *ngIf="loading$ | async" class="user__box-spinner">
+        <div *ngIf="loading$ | async" class="users__box-spinner">
           <app-spinner></app-spinner>
         </div>
       </div>
     </div>
     <mat-paginator
-      class="user__paginator"
+      class="users__paginator"
       *ngIf="products.length"
       [pageIndex]="pageIndex"
       [hidePageSize]="true"
