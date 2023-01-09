@@ -44,8 +44,9 @@ export class OrderModalComponent implements OnInit {
       this.phone = storagePhone;
     }
     this.form = this.fb.group({
-      name: [this.name, Validators.pattern(/^[a-zA-Z]{0,20}$/)],
+      name: [this.name, Validators.pattern(/^[a-zA-Z ]{0,20}$/)],
       phone: [this.phone, Validators.pattern(/^\+\d{3}\d{3}\d{3}\d{3}$/)],
+      message: ['', Validators.pattern(/^[a-zA-Z ]{0,50}$/)],
     });
     this.localStorageService
       .getData<TypeOfProduct[]>('CartDataCount')
@@ -64,12 +65,15 @@ export class OrderModalComponent implements OnInit {
     this.dialogRef.close();
   }
   sendOrder() {
-    if (this.form.get('phone')?.invalid || this.form.get('name')?.invalid) {
+    if (
+      this.form.get('phone')?.invalid ||
+      this.form.get('name')?.invalid ||
+      this.form.get('message')?.invalid
+    ) {
     } else {
       this.ordersService
         .create<TypeOfOrder>({
           ...this.form.getRawValue(),
-          message: 'Sent in box',
           products: this.products,
         })
         .subscribe({

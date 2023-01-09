@@ -23,12 +23,15 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private filterCongig: ConfigService
   ) {}
   ngOnInit(): void {
-    this.ordersService.getData<TypeOfOrder[]>().subscribe((data) => {
-      if (data) {
-        this.loading$.next(false);
-        this.orders = this.filterService.setData(data, 5);
-        this.ordersLength = data.length;
-      }
+    this.ordersService.getData<TypeOfOrder[]>().subscribe({
+      next: (data) => {
+        if (data) {
+          this.loading$.next(false);
+          this.orders = this.filterService.setData(data, 5);
+          this.ordersLength = data.length;
+        }
+      },
+      error: (error) => {},
     });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
       this.changeData(elem, '');

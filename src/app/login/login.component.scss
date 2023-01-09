@@ -1,6 +1,5 @@
 .login {
   height: 100%;
-
   .container {
     display: flex;
     align-items: center;
@@ -20,8 +19,8 @@
   }
   &__container {
     margin: 0 auto;
-    width: 400px;
-    padding: 40px;
+
+    padding: 20px;
     border: 2px solid rgba(79, 77, 77, 0.078);
     border-radius: 5px;
     box-shadow: 0px 0px 10px 4px rgb(0 0 0 / 5%);
@@ -34,6 +33,14 @@
       display: flex;
       justify-content: space-around;
       margin-top: 10px;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .login {
+    &__container {
+      width: 400px;
+      padding: 40px;
     }
   }
 }

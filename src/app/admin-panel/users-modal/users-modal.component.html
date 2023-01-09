@@ -9,10 +9,20 @@
 </div>
 
 <div mat-dialog-actions>
-  <button class="modal__btn" (click)="closeDialog()" mat-button cdkFocusInitial>
-    Cancel
-  </button>
-  <button class="modal__btn" (click)="showData()" mat-button cdkFocusInitial>
-    OK
-  </button>
+  <btn
+    [text]="'Cancel'"
+    class="btn btn_modal"
+    (click)="closeDialog()"
+    mat-button
+    cdkFocusInitial
+  >
+  </btn>
+  <btn
+    [text]="'OK'"
+    class="btn btn_modal"
+    (click)="showData()"
+    mat-button
+    cdkFocusInitial
+  >
+  </btn>
 </div>

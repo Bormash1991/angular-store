@@ -25,15 +25,16 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dataSubj = this.usersService
-      .getData<TypeOfUser[]>()
-      .subscribe((data) => {
+    this.dataSubj = this.usersService.getData<TypeOfUser[]>().subscribe({
+      next: (data) => {
         if (data) {
           this.loading$.next(false);
           this.products = this.filterService.setData(data, 5);
           this.productsLength = data.length;
         }
-      });
+      },
+      error: (error) => {},
+    });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
       this.changeData(elem, 'createdAt');
       if (elem.sortAs) {

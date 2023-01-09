@@ -1,6 +1,7 @@
 .modal {
   width: 450px;
   padding-bottom: 0;
+  color: black;
   &__title {
     text-align: center;
   }
@@ -13,17 +14,7 @@
       font-size: 17px;
     }
   }
-  &__btn {
-    display: block;
-    margin: 0 auto;
-    margin-top: -10px;
-    padding: 8px 0;
-    width: 120px;
-    background-color: #dfdfdf;
-    border-radius: 5px;
-    border: 1px solid black;
-    color: black;
-  }
+
   &__img {
     display: block;
     margin: 0 auto;

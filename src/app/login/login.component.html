@@ -1,25 +1,3 @@
-<!-- <h1 class="modal__title" mat-dialog-title>Log In</h1>
-<div class="modal" mat-dialog-content>
-  <form class="modal__box" [formGroup]="form">
-    <mat-form-field>
-      <mat-label> Username </mat-label>
-      <input formControlName="username" matInput type="text" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input formControlName="password" matInput type="password" />
-    </mat-form-field>
-  </form>
-</div>
-
-<div mat-dialog-actions>
-  <button class="modal__btn" (click)="closeDialog()" mat-button cdkFocusInitial>
-    Cancel
-  </button>
-  <button class="modal__btn" (click)="showData()" mat-button cdkFocusInitial>
-    OK
-  </button>
-</div> -->
 <div class="login">
   <div class="container">
     <div class="login__container">
@@ -38,10 +16,10 @@
         Login or password incorrect
       </div>
       <div class="login__box-btn">
-        <btn [text]="'Cancel'" class="btn btn_login" (click)="cancel()"
+        <btn [text]="'Cancel'" class="btn btn_modal" (click)="cancel()"
           >Cancel</btn
         >
-        <btn [text]="'OK'" class="btn btn_login" (click)="redirect()"></btn>
+        <btn [text]="'OK'" class="btn btn_modal" (click)="redirect()"></btn>
       </div>
     </div>
   </div>

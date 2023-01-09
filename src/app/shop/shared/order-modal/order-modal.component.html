@@ -9,6 +9,10 @@
       <mat-label>Phone</mat-label>
       <input formControlName="phone" type="tel" matInput />
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>message</mat-label>
+      <input formControlName="message" type="text" matInput />
+    </mat-form-field>
     <mat-checkbox
       *ngIf="!phone.length && !phone.length"
       (change)="onCheckboxChange($event)"
@@ -27,10 +31,20 @@
 </div>
 
 <div mat-dialog-actions>
-  <button class="modal__btn" (click)="closeDialog()" mat-button cdkFocusInitial>
-    Cancel
-  </button>
-  <button class="modal__btn" (click)="sendOrder()" mat-button cdkFocusInitial>
-    OK
-  </button>
+  <btn
+    [text]="'Cancel'"
+    class="btn btn_modal"
+    (click)="closeDialog()"
+    mat-button
+    cdkFocusInitial
+  >
+  </btn>
+  <btn
+    [text]="'OK'"
+    class="btn btn_modal"
+    (click)="sendOrder()"
+    mat-button
+    cdkFocusInitial
+  >
+  </btn>
 </div>

@@ -1,5 +1,6 @@
 .details {
   padding-top: 35px;
+  padding-bottom: 20px;
   &__title,
   &__name,
   &__descr {
@@ -7,8 +8,9 @@
     font-size: 28px;
     color: #1f242a;
   }
+
   &__spinner {
-    padding: 240px 0 170px 0;
+    padding: 120px 0 170px 0;
     width: 100%;
     display: flex;
     justify-content: center;

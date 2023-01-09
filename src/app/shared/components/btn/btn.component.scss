@@ -135,10 +135,12 @@
     font-size: 25px;
     font-weight: 500;
   }
-  &_login {
+  &_modal {
+    display: block;
     margin-top: 0px;
     padding: 7px 0;
-    width: 120px;
+    width: 90px;
+    margin: 0 auto;
     background-color: #dfdfdf;
     border-radius: 5px;
     border: 1px solid black;
@@ -157,6 +159,16 @@
     &_plus,
     &_minus {
       padding: 0px;
+    }
+    &_modal {
+      width: 120px;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .btn {
+    &_modal {
+      width: 120px;
     }
   }
 }
