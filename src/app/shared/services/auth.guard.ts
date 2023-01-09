@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate() {
-    if (this.authService.getAuthToken()) {
+    if (this.authService.getAuthToken().length != 0) {
       return true;
     } else {
       this.router.navigateByUrl('401');

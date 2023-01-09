@@ -18,6 +18,10 @@
     border-radius: 5px;
     border: 1px solid black;
     color: black;
+    transition: 250ms background-color;
+    &:hover {
+      background-color: #959b9ead;
+    }
   }
   &__img {
     display: block;

@@ -17,7 +17,7 @@ export class UsersTablesComponent {
     this.dialog.open(UsersModalComponent, {
       data: {
         data: {
-          password: item.password,
+          password: '',
         },
         id: item.id,
       },

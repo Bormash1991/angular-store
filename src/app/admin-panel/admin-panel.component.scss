@@ -1,7 +1,18 @@
 .panel {
+  overflow: hidden;
   &__container {
     width: 100%;
     display: grid;
-    grid-template-columns: 20% 0% 80%;
+    grid-template-columns: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .panel {
+    &__container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 20% 0% 80%;
+    }
   }
 }

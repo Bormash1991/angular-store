@@ -1,5 +1,8 @@
 <div *ngIf="productData" class="details">
   <div class="container">
+    <div *ngIf="loading$ | async" class="details__spinner">
+      <app-spinner></app-spinner>
+    </div>
     <h2 class="details__title">Products > Product #{{ productData.id }}</h2>
     <h3 class="details__name">Product #{{ productData.id }}</h3>
     <div class="details__descr">{{ productData.name }}</div>

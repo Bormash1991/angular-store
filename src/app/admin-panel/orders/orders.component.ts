@@ -1,6 +1,6 @@
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { OrdersService } from './../../shared/services/orders.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
@@ -11,7 +11,7 @@ import { TypeOfOrder } from 'src/app/models/TypeOfOrder.interface';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
   orders: TypeOfOrder[] = [];
   public loading$ = new BehaviorSubject<boolean>(true);
   public ordersLength: number;
@@ -52,5 +52,9 @@ export class OrdersComponent implements OnInit {
     let arr = this.filterService.changePage(event);
     this.orders = arr[0] as TypeOfOrder[];
     this.pageIndex = arr[1] as number;
+  }
+  ngOnDestroy() {
+    this.filterSubj.unsubscribe();
+    this.filterCongig.setDefault();
   }
 }

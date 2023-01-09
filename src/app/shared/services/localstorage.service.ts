@@ -11,10 +11,10 @@ export class LocalStorageService {
   deleteData(key: string) {
     localStorage.removeItem(key);
   }
-  getData<T>(key: string): T | undefined {
+  getData<T>(key: string): T | [] {
     const item = localStorage.getItem(key);
     if (item == null) {
-      return undefined;
+      return [];
     } else {
       return JSON.parse(item);
     }

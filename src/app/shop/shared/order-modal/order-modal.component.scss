@@ -1,6 +1,13 @@
 .modal {
   width: 450px;
   padding-bottom: 0;
+  &__title {
+    text-align: center;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+  }
   &__btn {
     display: block;
     margin: 0 auto;
@@ -16,19 +23,21 @@
       background-color: #959b9ead;
     }
   }
-  &__img {
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 80px;
-    height: 70px;
-    fill: #ff8303ed;
+  .mat-mdc-checkbox {
+    margin-top: -10px;
+    margin-bottom: 5px;
   }
-  &__text {
-    padding: 19px;
-    font-size: 20px;
+  &__container {
     color: black;
+  }
+  &__product {
+    margin: 10px 0 15px 0;
+  }
+  &__index {
+    margin-bottom: 2px;
     font-weight: 500;
-    text-align: center;
+  }
+  &__name {
+    margin-right: 10px;
   }
 }

@@ -1,6 +1,13 @@
 .modal {
   width: 450px;
   padding-bottom: 0;
+  &__text {
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 40px;
+    color: black;
+  }
   &__btn {
     display: block;
     margin: 0 auto;
@@ -15,20 +22,5 @@
     &:hover {
       background-color: #959b9ead;
     }
-  }
-  &__img {
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 80px;
-    height: 70px;
-    fill: #ff8303ed;
-  }
-  &__text {
-    padding: 19px;
-    font-size: 20px;
-    color: black;
-    font-weight: 500;
-    text-align: center;
   }
 }

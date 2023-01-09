@@ -1,14 +1,8 @@
-import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ProductsService } from './../../shop/products.service';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-const defaultCongig = {
-  name: '',
-  author: 'bohdan',
-  price: 0,
-  description: '',
-};
+
 @Component({
   selector: 'app-products-modal',
   templateUrl: './products-modal.component.html',
@@ -44,7 +38,6 @@ export class ProductsModalComponent {
       this.productsService
         .create({
           name: name,
-          author: 'bohdan',
           price: +price,
           description: description,
         })
@@ -56,7 +49,11 @@ export class ProductsModalComponent {
         });
     } else {
       this.productsService
-        .update(this.data.id, { ...this.form.getRawValue(), author: 'bohdan' })
+        .update(this.data.id, {
+          name: name,
+          price: +price,
+          description: description,
+        })
         .subscribe({
           next: (response) => {
             window.location.reload();

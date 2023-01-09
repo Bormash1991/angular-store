@@ -1,6 +1,17 @@
 .user {
-  padding: 48px;
+  padding: 20px;
   padding-bottom: 0;
+  &__hamburger {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    &_img {
+      fill: black;
+      width: 25px;
+      height: 25px;
+      transform: translateX(-2px);
+    }
+  }
   &__box {
     position: relative;
     padding: 0 30px;
@@ -22,5 +33,36 @@
     position: absolute;
     right: 20px;
     bottom: 4px;
+  }
+}
+@media (min-width: 1024px) {
+  .user {
+    padding: 48px;
+    padding-bottom: 0;
+    &__hamburger {
+      display: none;
+    }
+    &__box {
+      position: relative;
+      padding: 0 30px;
+      &-main {
+        min-height: 586px;
+      }
+      &-spinner {
+        padding: 180px 0;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &__title {
+      font-size: 30px;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+    &__paginator {
+      position: absolute;
+      right: 20px;
+      bottom: 4px;
+    }
   }
 }

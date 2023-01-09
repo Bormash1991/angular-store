@@ -1,4 +1,4 @@
-<div class="side-bar">
+<div [className]="'side-bar ' + activeBarclass">
   <div class="side-bar__circle"></div>
   <nav class="side-bar__nav">
     <ul class="side-bar__list">
@@ -30,8 +30,8 @@
   </nav>
   <a
     class="side-bar__logout"
-    (mouseenter)="showPopup()"
-    (mouseleave)="closePopup()"
+    (click)="showOrClosePopup()"
+    (mouseleave)="close()"
   >
     <div class="side-bar__logout_text">Exit</div>
     <svg class="side-bar__logout_img">

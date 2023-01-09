@@ -1,5 +1,11 @@
 import { TypeOfOrder } from './../../../models/TypeOfOrder.interface';
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrdersModalComponent } from 'src/app/admin-panel/orders-modal/orders-modal.component';
 import { UsersModalComponent } from 'src/app/admin-panel/users-modal/users-modal.component';
@@ -13,7 +19,9 @@ import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 })
 export class OrderTableComponent {
   @Input() items: TypeOfOrder[];
+  price: number = 0;
   constructor(public dialog: MatDialog) {}
+
   openEditDialog(item: any) {
     this.dialog.open(OrdersModalComponent, {
       data: {

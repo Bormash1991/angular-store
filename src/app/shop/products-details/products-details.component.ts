@@ -3,6 +3,7 @@ import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
 import { ProductsService } from 'src/app/shop/products.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-products-details',
@@ -14,6 +15,7 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
   buttonText: string = 'Add to Cart';
   subj: any;
   allData: TypeOfProduct[];
+  loading$ = new BehaviorSubject<boolean>(true);
   constructor(
     private route: ActivatedRoute,
     private addCartItemService: AddCartItemService,
@@ -26,9 +28,10 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
     this.productsService.getDataById<TypeOfProduct>(id).subscribe((data) => {
       if (!data) {
         this.router.navigateByUrl('/404');
-      } else {
+      } else if (data) {
         this.productData = data;
         this.addCartItemService.reloadData();
+        this.loading$.next(false);
       }
     });
     this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
@@ -43,10 +46,10 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
       if (elems[i].id == this.productData.id) {
         this.productData = elems[i];
         this.buttonText = 'In Cart';
+
         return;
       }
     }
-    this.buttonText = 'Add to Cart';
   }
   ngOnDestroy() {
     this.subj.unsubscribe();

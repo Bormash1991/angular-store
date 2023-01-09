@@ -9,11 +9,18 @@ import { RouterModule } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartModalComponent } from './cart-modal/cart-modal.component';
 import { CartComponent } from './cart/cart.component';
-import { CounterComponent } from './counter/counter.component';
+import { CounterComponent } from './shared/counter/counter.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { TotalBtnComponent } from './shared/total-btn/total-btn.component';
+import { OrderModalComponent } from './shared/order-modal/order-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ThanksModalComponent } from './shared/thanks-modal/thanks-modal.component';
 @NgModule({
   declarations: [
     ShopComponent,
@@ -25,6 +32,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CartComponent,
     CounterComponent,
     WelcomePageComponent,
+    TotalBtnComponent,
+    OrderModalComponent,
+    ThanksModalComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +42,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ShopRoutingModule,
     RouterModule,
     MatPaginatorModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
   ],
 })
 export class ShopModule {}

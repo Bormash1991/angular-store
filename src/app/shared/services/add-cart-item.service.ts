@@ -33,6 +33,14 @@ export class AddCartItemService {
   reloadData() {
     this.productsSubj$.next(this.data);
   }
+  deleteAllData() {
+    this.data = [];
+    this.localStorageService.setData<TypeOfProduct[]>(
+      'CartDataCount',
+      this.data
+    );
+    this.reloadData();
+  }
   getTotal() {
     return this.data.reduce((acc, item) => acc + item.counter * item.price, 0);
   }

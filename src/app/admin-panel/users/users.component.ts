@@ -1,5 +1,5 @@
 import { TypeOfUser } from 'src/app/models/TypeOfUser.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
 import { ConfigService } from 'src/app/shared/services/config.service';
@@ -20,7 +20,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private filterCongig: ConfigService,
-    private filterService: FilterService<TypeOfUser>
+    private filterService: FilterService<TypeOfUser>,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -41,6 +42,7 @@ export class UsersComponent implements OnInit {
     });
     this.products = [];
   }
+
   changeData(elem: filterCongig, param: 'price' | 'createdAt') {
     let arr = this.filterService.changeData(elem, param);
     this.products = arr[0] as TypeOfUser[];

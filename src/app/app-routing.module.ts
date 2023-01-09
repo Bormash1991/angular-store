@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.co
 const routes: Routes = [
   {
     path: 'admin-panel',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./admin-panel/admin-panel.module').then(
         (m) => m.AdminPanelModule

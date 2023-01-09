@@ -112,17 +112,33 @@ export class FilterService<T> {
       this.firstPage();
       return this.products;
     }
-    this.allProductsAfterFilter.sort(this.byField(elem.sortBy, elem.sortAs));
+    if (elem.sortBy == 'price') {
+      this.allProductsAfterFilter.sort(
+        this.byFieldPrice(elem.sortBy, elem.sortAs)
+      );
+    } else {
+      this.allProductsAfterFilter.sort(this.byField(elem.sortBy, elem.sortAs));
+    }
     this.firstPage();
     return this.products;
   }
-  byField(field: string, from: string) {
+  byFieldPrice(field: string, from: string) {
     return (a: any, b: any) =>
       from == 'less'
         ? a[field] > b[field]
           ? 1
           : -1
         : a[field] < b[field]
+        ? 1
+        : -1;
+  }
+  byField(field: string, from: string) {
+    return (a: any, b: any) =>
+      from == 'less'
+        ? a[field].toLocaleLowerCase() > b[field].toLocaleLowerCase()
+          ? 1
+          : -1
+        : a[field].toLocaleLowerCase() < b[field].toLocaleLowerCase()
         ? 1
         : -1;
   }

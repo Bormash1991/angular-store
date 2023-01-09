@@ -1,5 +1,5 @@
 import { MatSelectModule } from '@angular/material/select';
-import { NgModule, forwardRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminPanelRoutingModule } from './admin-panel-routing.module';
 import { AdminPanelComponent } from './admin-panel.component';
@@ -7,11 +7,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { SharedModule } from '../shared/shared.module';
 import { WarningModalComponent } from './warning-modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UsersModalComponent } from './users-modal/users-modal.component';

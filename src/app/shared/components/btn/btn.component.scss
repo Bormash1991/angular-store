@@ -1,3 +1,78 @@
+// .btn {
+//   display: block;
+//   margin-top: 28px;
+//   padding: 15px 40px;
+//   border-radius: 5px;
+//   background-color: #a3a4a43d;
+//   font-size: 18px;
+//   transition: 250ms background-color;
+//   &_details {
+//     padding: 12px 25px;
+//   }
+//   &_more {
+//     padding: 10px 20px;
+//     margin: 0 auto;
+//     margin-top: 35px;
+//     margin-bottom: 50px;
+//     font-weight: 400;
+//     font-size: 15px;
+//     border-radius: 5px;
+//     background-color: #94aaba6b;
+//     border: 2px solid #9e9d9c32;
+//     box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 5%);
+//     transition: 250ms background-color;
+//     &:hover {
+//       background-color: #94aabaad;
+//     }
+//   }
+
+//   &_plus,
+//   &_minus {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-top: 0px;
+//     padding: 0px;
+//     width: 25px;
+//     height: 25px;
+//     font-size: 20px;
+//     background-color: white;
+//     color: rgb(63, 62, 62);
+//     border: 1.5px solid rgba(146, 138, 138, 0.186);
+//     box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 5%);
+//   }
+//   &_minus {
+//     font-size: 22px;
+//     line-height: 1;
+//   }
+//   &_delete {
+//     margin: 0 0 0 20px;
+//     padding: 2px 0 0 0;
+//     width: 25px;
+//     height: 25px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     background-color: rgba(128, 128, 128, 0.464);
+//     color: white;
+//     border-radius: 100%;
+//     border: none;
+//     font-size: 25px;
+//     font-weight: 500;
+//   }
+//   &_login {
+//     margin-top: 0px;
+//     padding: 7px 0;
+//     width: 120px;
+//     background-color: #dfdfdf;
+//     border-radius: 5px;
+//     border: 1px solid black;
+//     color: black;
+//   }
+//   &:hover {
+//     background-color: #a3a4a48d;
+//   }
+// }
 .btn {
   display: block;
   margin-top: 28px;
@@ -14,7 +89,7 @@
     margin: 0 auto;
     margin-top: 35px;
     margin-bottom: 50px;
-    font-size: 400;
+    font-weight: 400;
     font-size: 15px;
     border-radius: 5px;
     background-color: #94aaba6b;
@@ -71,5 +146,17 @@
   }
   &:hover {
     background-color: #a3a4a48d;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .btn {
+    padding: 10px 15px;
+    &_more {
+      margin-bottom: 20px;
+    }
+    &_plus,
+    &_minus {
+      padding: 0px;
+    }
   }
 }

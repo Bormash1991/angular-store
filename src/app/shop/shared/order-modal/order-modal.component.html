@@ -1,0 +1,36 @@
+<h1 class="modal__title" mat-dialog-title>Your order</h1>
+<div class="modal" mat-dialog-content>
+  <form class="modal__box" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone</mat-label>
+      <input formControlName="phone" type="tel" matInput />
+    </mat-form-field>
+    <mat-checkbox
+      *ngIf="!phone.length && !phone.length"
+      (change)="onCheckboxChange($event)"
+      [color]="'#509179'"
+    >
+      Save name and phone</mat-checkbox
+    >
+    <div class="modal__container">
+      <div class="modal__product" *ngFor="let item of products; let i = index">
+        <div class="modal__index">Product: {{ i + 1 }}</div>
+        <div class="modal__name">Name: {{ item.name }}</div>
+        <div class="modal__quantity">Quantity: {{ item.quantity }}</div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button class="modal__btn" (click)="closeDialog()" mat-button cdkFocusInitial>
+    Cancel
+  </button>
+  <button class="modal__btn" (click)="sendOrder()" mat-button cdkFocusInitial>
+    OK
+  </button>
+</div>

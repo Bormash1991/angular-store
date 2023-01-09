@@ -1,0 +1,18 @@
+.btn {
+  display: block;
+  padding: 5px 10px;
+  font-weight: 400;
+  font-size: 15px;
+  border-radius: 5px;
+  background-color: #9dabb66b;
+  border: 2px solid #9e9d9c32;
+  box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 5%);
+  transition: 250ms background-color;
+  &__cart {
+    padding: 10px 15px;
+    font-size: 18px;
+  }
+  &:hover {
+    background-color: #94aabaad;
+  }
+}
