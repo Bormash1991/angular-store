@@ -31,20 +31,15 @@
 </div>
 
 <div mat-dialog-actions>
-  <btn
-    [text]="'Cancel'"
-    class="btn btn_modal"
+  <button
+    class="modal__btn" 
     (click)="closeDialog()"
     mat-button
     cdkFocusInitial
   >
-  </btn>
-  <btn
-    [text]="'OK'"
-    class="btn btn_modal"
-    (click)="sendOrder()"
-    mat-button
-    cdkFocusInitial
-  >
-  </btn>
+    Cancel
+  </button>
+  <button class="modal__btn" (click)="sendOrder()" mat-button cdkFocusInitial>
+    OK
+  </button>
 </div>

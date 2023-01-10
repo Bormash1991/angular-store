@@ -37,13 +37,6 @@ export class UsersModalComponent {
         .create({
           ...this.form.getRawValue(),
         })
-<<<<<<< HEAD
-        .subscribe((response) => console.log(response));
-    } else {
-      this.usersService
-        .update(this.data.id, { ...this.form.getRawValue() })
-        .subscribe((response) => console.log(response));
-=======
         .subscribe({
           next: (response) => {
             window.location.reload();
@@ -55,10 +48,10 @@ export class UsersModalComponent {
         .update(this.data.id, { ...this.form.getRawValue() })
         .subscribe({
           next: (response) => {
-          window.location.reload();},
+            window.location.reload();
+          },
           error: (error) => {},
         });
->>>>>>> additional
     }
     console.log(this.form.getRawValue());
     this.dialogRef.close();

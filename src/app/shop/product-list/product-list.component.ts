@@ -19,14 +19,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   pageIndex: number = JSON.parse(sessionStorage.getItem('pageIndex')!) || 0;
   ngOnInit(): void {
     this.productsService.getData<TypeOfProduct[]>().subscribe((data) => {
-<<<<<<< HEAD
-      this.data = data;
-      if (this.data.length) {
-        this.loading$.next(false);
-=======
       if (data) {
         this.dataLength = data.length;
->>>>>>> additional
       }
     });
     let index = this.pageIndex;

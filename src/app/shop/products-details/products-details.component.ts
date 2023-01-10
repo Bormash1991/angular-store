@@ -27,18 +27,11 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     this.productsService.getDataById<TypeOfProduct>(id).subscribe((data) => {
       if (!data) {
-<<<<<<< HEAD
-        this.router.navigateByUrl('/**');
-      } else {
-        this.productData = data;
-        this.addCartItemService.reloadData();
-=======
         this.router.navigateByUrl('/404');
       } else if (data) {
         this.productData = data;
         this.addCartItemService.reloadData();
         this.loading$.next(false);
->>>>>>> additional
       }
     });
     this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
@@ -53,10 +46,10 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
       if (elems[i].id == this.productData.id) {
         this.productData = elems[i];
         this.buttonText = 'In Cart';
-
         return;
       }
     }
+    this.buttonText = 'Add to Cart';
   }
   ngOnDestroy() {
     this.subj.unsubscribe();

@@ -30,4 +30,26 @@
     font-weight: 500;
     text-align: center;
   }
+  &__btn {
+    display: block;
+    margin-top: 0px;
+    padding: 7px 0;
+    width: 90px;
+    margin: 0 auto;
+    background-color: #dfdfdf;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+    transition: 250ms background-color;
+    &:hover {
+      background-color: #a3a4a48d;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .modal {
+    &__btn {
+      width: 120px;
+    }
+  }
 }
