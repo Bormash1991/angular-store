@@ -1,9 +1,8 @@
-interface startType {
-  id: number;
+export interface TypeOfProduct {
+  id: string;
   name: string;
   price: number;
-}
-export interface TypeOfProduct extends startType {
-  price: number;
+  description: string;
   counter: number;
+  extraInfo: Object;
 }

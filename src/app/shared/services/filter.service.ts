@@ -1,19 +1,20 @@
+import { TypeOfUser } from './../../models/TypeOfUser.interface';
+import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { Injectable } from '@angular/core';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
-import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FilterService {
-  public products: TypeOfProduct[] = [];
-  private productsSecond: TypeOfProduct[] = [];
-  private allProductsAfterFilter: TypeOfProduct[] = [];
+export class FilterService<T> {
+  public products: T[] = [];
+  private productsSecond: T[] = [];
+  private allProductsAfterFilter: T[] = [];
   public productsLength: number;
   public pageIndex: number;
   private num: number;
   constructor() {}
-  setData(data: TypeOfProduct[], num: number) {
+  setData(data: T[], num: number) {
     this.products = data;
     this.productsSecond = [...data];
     this.allProductsAfterFilter = [...data];
@@ -22,16 +23,21 @@ export class FilterService {
     this.firstPage();
     return this.products;
   }
-  changeData(elem: filterCongig, param: 'price' | 'date') {
-    let keyProducts = param as keyof TypeOfProduct;
+  changeData(elem: filterCongig, param: 'price' | 'createdAt') {
+    let typeOfName = '';
+    if (param == 'createdAt') {
+      typeOfName = 'username';
+    } else {
+      typeOfName = 'name';
+    }
+    let keyProducts = param as keyof T;
     let keyFilter = param as keyof filterCongig;
     if (elem[keyFilter] && elem.select && elem.search) {
-      this.products = this.productsSecond.filter(
-        (product) =>
-          product.name
-            .toLocaleLowerCase()
-            .search(elem.search.toLocaleLowerCase()) >= 0
-      );
+      this.products = this.productsSecond.filter((product: any) => {
+        product[typeOfName]
+          .toLocaleLowerCase()
+          .search(elem.search.toLocaleLowerCase()) >= 0;
+      });
       if (elem.select == 'More than') {
         this.products = this.products.filter(
           (product) => product[keyProducts] > elem[keyFilter]
@@ -63,8 +69,9 @@ export class FilterService {
     }
     if (elem.search && !elem[keyFilter] && !elem.select) {
       this.products = this.productsSecond.filter(
-        (product) =>
-          product.name.toLowerCase().search(elem.search.toLowerCase()) >= 0
+        (product: any) =>
+          product[typeOfName].toLowerCase().search(elem.search.toLowerCase()) >=
+          0
       );
       this.productsLength = this.products.length;
       this.pageIndex = 0;

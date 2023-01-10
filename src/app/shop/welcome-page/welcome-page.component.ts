@@ -13,7 +13,7 @@ export class WelcomePageComponent implements OnInit {
   loading$ = new BehaviorSubject<boolean>(true);
   constructor(private productsService: ProductsService) {}
   ngOnInit(): void {
-    this.productsService.getDate().subscribe((data) => {
+    this.productsService.getData<TypeOfProduct[]>().subscribe((data) => {
       this.data = data.slice(0, 3);
       if (this.data.length) {
         this.loading$.next(false);
