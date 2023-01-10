@@ -1,5 +1,5 @@
 export interface filterCongig {
-  createdAt: string;
+  updatedAt: string;
   price: number;
   search: string;
   select: string;

@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
 
 const DEFAULT_CONFIGURATION: filterCongig = {
-  createdAt: ``,
+  updatedAt: ``,
   price: 0,
   search: '',
   select: '',
@@ -50,10 +50,10 @@ export class ConfigService {
       price,
     });
   }
-  setDate(createdAt: string) {
+  setDate(updatedAt: string) {
     this.configuration$.next({
       ...this.DefaultConfiguration,
-      createdAt,
+      updatedAt,
     });
   }
   setSelect(select: string) {

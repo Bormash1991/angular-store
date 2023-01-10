@@ -32,12 +32,13 @@ export class OrdersComponent implements OnInit, OnDestroy {
           this.loading$.next(false);
           this.orders = this.filterService.setData(data, 5);
           this.ordersLength = data.length;
+          console.log(data);
         }
       },
       error: (error) => {},
     });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
-      this.changeData(elem, '');
+      this.changeData(elem, 'updatedAtOrders');
       if (elem.sortAs) {
         this.sortData(elem);
       }
@@ -57,7 +58,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
   sortData(elem: filterCongig) {
     this.orders = this.filterService.sortData(elem) as TypeOfOrder[];
   }
-  changeData(elem: filterCongig, param: 'price' | 'createdAt' | '') {
+  changeData(
+    elem: filterCongig,
+    param: 'price' | 'updatedAtUsers' | 'updatedAtOrders'
+  ) {
     let arr = this.filterService.changeData(elem, param);
     this.orders = arr[0] as TypeOfOrder[];
     this.ordersLength = arr[1] as number;
