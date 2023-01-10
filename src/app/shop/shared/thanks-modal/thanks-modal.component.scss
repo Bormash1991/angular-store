@@ -1,5 +1,5 @@
 .modal {
-  width: 450px;
+  width: 100%;
   padding-bottom: 0;
   &__text {
     font-size: 25px;
@@ -22,5 +22,10 @@
     &:hover {
       background-color: #959b9ead;
     }
+  }
+}
+@media (min-width: 768px) {
+  .modal {
+    width: 450px;
   }
 }
