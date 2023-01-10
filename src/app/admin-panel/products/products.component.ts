@@ -60,7 +60,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
     this.products = [];
   }
-  changeData(elem: filterCongig, param: 'price' | 'createdAt') {
+  changeData(
+    elem: filterCongig,
+    param: 'price' | 'updatedAtUsers' | 'updatedAtOrders'
+  ) {
     let arr = this.filterService.changeData(elem, param);
     this.products = arr[0] as TypeOfProduct[];
     this.productsLength = arr[1] as number;

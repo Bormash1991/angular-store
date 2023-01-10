@@ -21,31 +21,40 @@ export class FilterService<T> {
     this.firstPage();
     return this.products;
   }
-  changeData(elem: filterCongig, param: 'price' | 'createdAt' | '') {
+  changeData(
+    elem: filterCongig,
+    param: 'price' | 'updatedAtUsers' | 'updatedAtOrders'
+  ) {
     let typeOfName = '';
-    if (param == 'createdAt') {
+    let nextParam = '';
+    if (param == 'updatedAtUsers') {
+      nextParam = 'updatedAt';
       typeOfName = 'username';
-    } else {
+    } else if (param == 'updatedAtOrders') {
+      nextParam = 'updatedAt';
+      typeOfName = 'name';
+    } else if (param == 'price') {
+      nextParam = 'price';
       typeOfName = 'name';
     }
-    let keyProducts = param as keyof T;
-    let keyFilter = param as keyof filterCongig;
+    let keyProducts = nextParam as keyof T;
+    let keyFilter = nextParam as keyof filterCongig;
     if (elem[keyFilter] && elem.select && elem.search) {
-      this.products = this.productsSecond.filter((product: any) => {
-        product[typeOfName]
-          .toLocaleLowerCase()
-          .search(elem.search.toLocaleLowerCase()) >= 0;
-      });
       if (elem.select == 'More than') {
-        this.products = this.products.filter(
+        this.products = this.productsSecond.filter(
           (product) => product[keyProducts] > elem[keyFilter]
         );
       }
       if (elem.select == 'Less than') {
-        this.products = this.products.filter(
+        this.products = this.productsSecond.filter(
           (product) => product[keyProducts] < elem[keyFilter]
         );
       }
+      this.products = this.products.filter(
+        (product: any) =>
+          product[typeOfName].toLowerCase().search(elem.search.toLowerCase()) >=
+          0
+      );
       this.productsLength = this.products.length;
       this.pageIndex = 0;
       this.allProductsAfterFilter = [...this.products];
@@ -75,7 +84,7 @@ export class FilterService<T> {
       this.pageIndex = 0;
       this.allProductsAfterFilter = this.products;
     }
-    if (!elem.search && !elem[keyFilter]) {
+    if ((!elem.search && !elem[keyFilter]) || (!elem.select && !elem.search)) {
       this.products = this.productsSecond;
       this.productsLength = this.productsSecond.length;
       this.pageIndex = 0;

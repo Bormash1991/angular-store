@@ -38,7 +38,7 @@ export class UsersComponent implements OnInit {
       error: (error) => {},
     });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
-      this.changeData(elem, 'createdAt');
+      this.changeData(elem, 'updatedAtUsers');
       if (elem.sortAs) {
         this.sortData(elem);
       }
@@ -55,7 +55,10 @@ export class UsersComponent implements OnInit {
     this.closeOrOpenBarService.open();
     this.renderer.addClass(document.documentElement, 'scroll-block');
   }
-  changeData(elem: filterCongig, param: 'price' | 'createdAt') {
+  changeData(
+    elem: filterCongig,
+    param: 'price' | 'updatedAtUsers' | 'updatedAtOrders'
+  ) {
     let arr = this.filterService.changeData(elem, param);
     this.products = arr[0] as TypeOfUser[];
     this.productsLength = arr[1] as number;

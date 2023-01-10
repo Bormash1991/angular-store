@@ -3,7 +3,7 @@
     <mat-label>Search...</mat-label>
     <input #searchInput matInput type="text" />
   </mat-form-field>
-  <mat-form-field class="filter__option" *ngIf="param != 'orders'">
+  <mat-form-field class="filter__option">
     <mat-label>Option</mat-label>
     <mat-select [value]="" (selectionChange)="setSelect($event)">
       <mat-option [value]="">None</mat-option>
@@ -15,7 +15,7 @@
     <mat-label>Value</mat-label>
     <input #priceInput matInput type="number" />
   </mat-form-field>
-  <mat-form-field *ngIf="param == 'users'" class="filter__date">
+  <mat-form-field *ngIf="param != 'products'" class="filter__date">
     <mat-label>Value</mat-label>
     <input #dateInput matInput type="date" />
   </mat-form-field>
@@ -39,7 +39,7 @@
       >
       <mat-option *ngIf="param == 'products'" value="price">Price</mat-option>
       <mat-option value="id" *ngIf="param != 'orders'">Id</mat-option>
-      <mat-option *ngIf="param == 'users'" value="createdAt">Date</mat-option>
+      <mat-option *ngIf="param != 'products'" value="updatedAt">Date</mat-option>
     </mat-select>
   </mat-form-field>
   <button *ngIf="param != 'orders'" (click)="openDialog()" class="filter__btn">
