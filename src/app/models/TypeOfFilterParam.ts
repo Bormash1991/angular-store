@@ -1,1 +1,1 @@
-export type param = 'users' | 'products';
+export type param = 'users' | 'products' | 'orders';

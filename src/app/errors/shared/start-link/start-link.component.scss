@@ -1,0 +1,16 @@
+.link {
+  display: inline-block;
+  padding: 4px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.28;
+  color: rgb(75, 72, 72);
+  border-radius: 5px;
+  transition: 250ms background-color;
+  background-color: rgb(217, 210, 210);
+  &:hover {
+    background-color: rgba(228, 221, 221, 0.616);
+  }
+}

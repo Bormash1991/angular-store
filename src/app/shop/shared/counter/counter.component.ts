@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
-import { TypeOfProduct } from './../../models/TypeOfProduct.inteface';
+import { TypeOfProduct } from '../../../models/TypeOfProduct.inteface';
 @Component({
   selector: 'app-counter',
   templateUrl: './counter.component.html',

@@ -12,7 +12,9 @@ import { UsersModule } from './admin-panel/users/users.module';
 import { ProductsModule } from './admin-panel/products/products.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './login/login.module';
-import { AuthInterceptor } from './shared/services/auth-interceptor';
+import { AuthInterceptor } from './shared/services/auth-interceptor.interceptor';
+import { ErrorsModule } from './errors/errors.module';
+import { OrdersModule } from './admin-panel/orders/orders.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,6 +30,8 @@ import { AuthInterceptor } from './shared/services/auth-interceptor';
     ProductsModule,
     HttpClientModule,
     LoginModule,
+    ErrorsModule,
+    OrdersModule,
   ],
   providers: [
     {

@@ -1,15 +1,25 @@
 <header class="header">
   <div class="header__container container">
+    <button class="header__hamburger" (click)="openMenu()">
+      <svg class="header__hamburger_img">
+        <use href="assets/sprite.svg#icon-menu"></use>
+      </svg>
+    </button>
     <a href="#" class="header__logo" [routerLink]="['']">
       <svg class="header__logo_img header__icon">
         <use href="assets/sprite.svg#icon-shop"></use>
       </svg>
       <div class="header__logo_text header__text">Store</div>
     </a>
-    <nav class="header__nav">
+    <nav [className]="'header__nav ' + activeClass">
+      <button class="header__close" (click)="closeMenu()">×</button>
       <ul class="header__nav_list">
         <li>
-          <a class="header__nav_item" [routerLink]="['products']">
+          <a
+            class="header__nav_item"
+            (click)="closeMenu()"
+            [routerLink]="['products']"
+          >
             <svg class="header__nav_img header__icon">
               <use href="assets/sprite.svg#icon-catalogue"></use>
             </svg>
@@ -17,7 +27,10 @@
           >
         </li>
         <li (mouseenter)="hover()" (mouseleave)="leave()" (click)="click()">
-          <a class="header__nav_item" [routerLink]="['products/cart']"
+          <a
+            class="header__nav_item"
+            (click)="closeMenu()"
+            [routerLink]="['products/cart']"
             ><svg class="header__nav_img header__icon">
               <use href="assets/sprite.svg#icon-shopping-cart"></use>
             </svg>
@@ -29,6 +42,12 @@
           ></app-cart-modal>
         </li>
       </ul>
+      <a class="header__btn" routerLink="login">
+        <div class="header__btn_text">Admin</div>
+        <svg class="header__btn_img">
+          <use href="assets/sprite.svg#icon-right-arrow"></use>
+        </svg>
+      </a>
     </nav>
   </div>
 </header>

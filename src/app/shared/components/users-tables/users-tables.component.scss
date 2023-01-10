@@ -1,11 +1,28 @@
 .item {
   display: grid;
-  grid-template-columns: 0.5fr 2fr 2fr 0.3fr 0.3fr;
+  grid-template-columns: 0.5fr 2fr 3fr 0.3fr 0.3fr;
   align-items: center;
   font-size: 21px;
   padding: 27px 10px;
   background-color: #f5f5f5;
   border-radius: 5px;
+  line-height: 1.28;
+  &__popup {
+    position: absolute;
+    padding: 10px;
+    top: -50px;
+    left: 25px;
+    opacity: 0;
+    color: black;
+    border-radius: 5px;
+    background-color: rgb(211, 209, 209);
+    transition: 150ms opacity;
+    z-index: 2;
+    overflow: visible;
+    &:hover {
+      opacity: 0 !important;
+    }
+  }
   &__id {
     position: relative;
     &:hover {
@@ -13,29 +30,16 @@
         opacity: 1;
       }
     }
-    &-popup {
-      position: absolute;
-      padding: 10px;
-      top: -5px;
-      left: 25px;
-      opacity: 0;
-      color: black;
-      border-radius: 5px;
-      background-color: rgb(211, 209, 209);
-      transition: 150ms opacity;
-      z-index: 2;
-      &:hover {
-        opacity: 0 !important;
-      }
-    }
   }
-  &__name {
+  &__name,
+  &__date {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
   &__container {
     display: flex;
     flex-direction: column;
@@ -56,7 +60,6 @@
   }
   &__img {
     transform: translate(4%, 5%);
-
     width: 25px;
     height: 25px;
     fill: black;

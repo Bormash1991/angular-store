@@ -21,6 +21,7 @@ export class ProductItemComponent implements OnInit {
   buttonText: string = 'Add to Cart';
   subj: any;
   secondData: TypeOfProduct[];
+  @Input() buttonClass: string = '';
   constructor(
     private addCartItemService: AddCartItemService,
     private changeDetector: ChangeDetectorRef,
@@ -29,7 +30,7 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.router.url == '/products/cart') {
-      this.buttonText = 'Remove from Cart';
+      this.buttonText = 'Remove ';
       return;
     }
     this.secondData = this.addCartItemService.getData();
@@ -52,7 +53,6 @@ export class ProductItemComponent implements OnInit {
       this.changeDetector.detectChanges();
     }
     for (let i = 0; i < elems.length; i++) {
-    
       if (elems[i].id == this.productDate.id && elems[i].counter) {
         this.buttonText = 'In Cart';
         this.changeDetector.detectChanges();

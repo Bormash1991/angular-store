@@ -1,11 +1,12 @@
 .item {
   display: grid;
-  grid-template-columns: 0.5fr 2fr 2fr 0.3fr 0.3fr;
+  grid-template-columns: 0.5fr 2fr 1fr 0.3fr 0.3fr;
   align-items: center;
   font-size: 21px;
   padding: 27px 10px;
   background-color: #f5f5f5;
   border-radius: 5px;
+  line-height: 1.28;
   &__id {
     position: relative;
     &:hover {
@@ -29,7 +30,8 @@
       }
     }
   }
-  &__name {
+  &__name,
+  &__price {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;

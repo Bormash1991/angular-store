@@ -1,11 +1,22 @@
 .details {
   padding-top: 35px;
+<<<<<<< HEAD
+=======
+  padding-bottom: 20px;
+>>>>>>> additional
   &__title,
   &__name,
   &__descr {
     font-weight: 400;
     font-size: 28px;
     color: #1f242a;
+  }
+
+  &__spinner {
+    padding: 120px 0 170px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   &__name,
   &__descr {

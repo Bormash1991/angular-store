@@ -8,6 +8,9 @@ export class LocalStorageService {
   setData<T>(key: string, data: T) {
     localStorage.setItem(key, JSON.stringify(data));
   }
+  deleteData(key: string) {
+    localStorage.removeItem(key);
+  }
   getData<T>(key: string): T | [] {
     const item = localStorage.getItem(key);
     if (item == null) {

@@ -8,16 +8,11 @@
     display: flex;
     flex-direction: column;
   }
-  &__btn {
-    display: block;
-    margin: 0 auto;
-    margin-top: -10px;
-    padding: 8px 0;
-    width: 120px;
-    background-color: #dfdfdf;
-    border-radius: 5px;
-    border: 1px solid black;
-    color: black;
+  &__label {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+    margin-bottom: 5px;
   }
   &__img {
     display: block;

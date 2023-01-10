@@ -1,12 +1,29 @@
 .products {
-  padding: 50px;
+  padding: 20px;
   padding-bottom: 0;
-  &__box {
-    position: relative;
-    padding: 0 30px;
-    &-main {
-      min-height: 586px;
+  &__hamburger {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    z-index: 10;
+    &_img {
+      fill: black;
+      width: 25px;
+      height: 25px;
+      border-radius: 5px;
+      transform: translateX(-2px);
     }
+    transition: 250ms background-color;
+    &:hover {
+      background-color: #a1beb387;
+    }
+  }
+  &__box {
+    padding: 0 30px;
     &-spinner {
       padding: 180px 0;
       display: flex;
@@ -19,8 +36,15 @@
     margin-bottom: 40px;
   }
   &__paginator {
-    position: absolute;
-    right: 20px;
-    bottom: 4px;
+    margin-top: 5px;
+  }
+}
+@media (min-width: 1024px) {
+  .products {
+    padding: 48px;
+    padding-bottom: 0;
+    &__hamburger {
+      display: none;
+    }
   }
 }

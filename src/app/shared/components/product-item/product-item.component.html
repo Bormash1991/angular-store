@@ -11,5 +11,9 @@
   >
     {{ productDate.price | uah }}
   </div>
-  <btn (click)="addOrDeleteItem(productDate)" [class]="'btn'" [text]="buttonText"></btn>
+  <btn
+    (click)="addOrDeleteItem(productDate)"
+    [class]="'btn ' + buttonClass"
+    [text]="buttonText"
+  ></btn>
 </div>

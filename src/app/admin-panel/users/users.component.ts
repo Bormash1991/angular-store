@@ -1,10 +1,11 @@
 import { TypeOfUser } from 'src/app/models/TypeOfUser.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filterCongig } from 'src/app/models/TypeOfFilterConfig.interface';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { CloseOrOpenBarService } from '../shared/services/close-or-open-bar.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -20,19 +21,22 @@ export class UsersComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private filterCongig: ConfigService,
-    private filterService: FilterService<TypeOfUser>
+    private filterService: FilterService<TypeOfUser>,
+    private renderer: Renderer2,
+    private closeOrOpenBarService: CloseOrOpenBarService
   ) {}
 
   ngOnInit() {
-    this.dataSubj = this.usersService
-      .getData<TypeOfUser[]>()
-      .subscribe((data) => {
-        if (data.length) {
+    this.dataSubj = this.usersService.getData<TypeOfUser[]>().subscribe({
+      next: (data) => {
+        if (data) {
           this.loading$.next(false);
           this.products = this.filterService.setData(data, 5);
           this.productsLength = data.length;
         }
-      });
+      },
+      error: (error) => {},
+    });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
       this.changeData(elem, 'createdAt');
       if (elem.sortAs) {
@@ -40,6 +44,16 @@ export class UsersComponent implements OnInit {
       }
     });
     this.products = [];
+  }
+  close() {
+    if (this.closeOrOpenBarService.changingState$.getValue()) {
+      this.closeOrOpenBarService.close();
+      this.renderer.removeClass(document.documentElement, 'scroll-block');
+    }
+  }
+  onenMenu() {
+    this.closeOrOpenBarService.open();
+    this.renderer.addClass(document.documentElement, 'scroll-block');
   }
   changeData(elem: filterCongig, param: 'price' | 'createdAt') {
     let arr = this.filterService.changeData(elem, param);

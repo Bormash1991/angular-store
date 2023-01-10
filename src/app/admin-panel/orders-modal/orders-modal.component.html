@@ -1,0 +1,47 @@
+<h1 class="modal__title" mat-dialog-title>Edit order</h1>
+<div class="modal" mat-dialog-content>
+  <form class="modal__box" [formGroup]="form">
+    <mat-form-field *ngFor="let field of keys">
+      <mat-label>{{ field }}</mat-label>
+      <input [formControlName]="field" matInput />
+    </mat-form-field>
+    <div formArrayName="products">
+      <div *ngFor="let item of controls; let i = index">
+        <div [formGroupName]="i">
+          <div class="modal__product_title">Produc №{{ i + 1 }}</div>
+          <mat-form-field>
+            <mat-label>name</mat-label>
+            <input formControlName="name" matInput />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>id</mat-label>
+            <input formControlName="id" matInput />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>quantity</mat-label>
+            <input formControlName="quantity" matInput />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <btn
+    [text]="'Cancel'"
+    class="btn btn_modal"
+    (click)="closeDialog()"
+    mat-button
+    cdkFocusInitial
+  >
+  </btn>
+  <btn
+    [text]="'OK'"
+    class="btn btn_modal"
+    (click)="showData()"
+    mat-button
+    cdkFocusInitial
+  >
+  </btn>
+</div>

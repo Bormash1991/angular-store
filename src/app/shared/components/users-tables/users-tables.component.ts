@@ -1,5 +1,5 @@
+import { TypeOfUser } from './../../../models/TypeOfUser.interface';
 import { Component, Input } from '@angular/core';
-import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { WarningModalComponent } from '../../../admin-panel/warning-modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersModalComponent } from 'src/app/admin-panel/users-modal/users-modal.component';
@@ -9,7 +9,7 @@ import { UsersModalComponent } from 'src/app/admin-panel/users-modal/users-modal
   styleUrls: ['./users-tables.component.scss'],
 })
 export class UsersTablesComponent {
-  @Input() items: any;
+  @Input() items: TypeOfUser[];
 
   constructor(public dialog: MatDialog) {}
 
@@ -17,15 +17,15 @@ export class UsersTablesComponent {
     this.dialog.open(UsersModalComponent, {
       data: {
         data: {
-          password: item.password,
+          password: '',
         },
         id: item.id,
       },
     });
   }
-  openDeleteDialog(item: TypeOfProduct) {
+  openDeleteDialog(item: TypeOfUser) {
     this.dialog.open(WarningModalComponent, {
-      data: { data: { id: item.id }, type: '' },
+      data: { data: { id: item.id }, type: 'user' },
     });
   }
 }

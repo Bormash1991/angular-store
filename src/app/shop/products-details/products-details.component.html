@@ -1,13 +1,18 @@
-<div *ngIf="productData" class="details">
+<div class="details">
   <div class="container">
-    <h2 class="details__title">Products > Product #{{ productData.id }}</h2>
-    <h3 class="details__name">Product #{{ productData.id }}</h3>
-    <div class="details__descr">{{ productData.name }}</div>
-    <div class="details__price">{{ productData.price | uah }}</div>
-    <btn
-      [class]="'btn btn_details'"
-      [text]="buttonText"
-      (click)="setData(productData)"
-    ></btn>
+    <div *ngIf="loading$ | async" class="details__spinner">
+      <app-spinner></app-spinner>
+    </div>
+    <div class="details__box" *ngIf="productData">
+      <h2 class="details__title">Products > Product #{{ productData.id }}</h2>
+      <h3 class="details__name">Product #{{ productData.id }}</h3>
+      <div class="details__descr">{{ productData.name }}</div>
+      <div class="details__price">{{ productData.price | uah }}</div>
+      <btn
+        [class]="'btn btn_details'"
+        [text]="buttonText"
+        (click)="setData(productData)"
+      ></btn>
+    </div>
   </div>
 </div>

@@ -1,14 +1,8 @@
-import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ProductsService } from './../../shop/products.service';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-const defaultCongig = {
-  name: '',
-  author: 'bohdan',
-  price: 0,
-  description: '',
-};
+
 @Component({
   selector: 'app-products-modal',
   templateUrl: './products-modal.component.html',
@@ -18,6 +12,7 @@ export class ProductsModalComponent {
   public keys: string[] = Object.keys(this.data.data);
   public className: string;
   public titleText: string;
+  showLabel: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<ProductsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -32,8 +27,7 @@ export class ProductsModalComponent {
     this.dialogRef.close();
   }
   ngOnInit() {
-    let checkValues = Object.values(this.data).filter((elem) => elem != '');
-    if (checkValues.length) {
+    if (this.data.id) {
       this.titleText = 'Edit Product';
     } else {
       this.titleText = 'Add Product';
@@ -41,20 +35,37 @@ export class ProductsModalComponent {
   }
   showData() {
     let { name, price, description } = this.form.getRawValue();
-    if (this.titleText == 'Add Product') {
-      this.productsService
-        .create({
-          name: name,
-          author: 'bohdan',
-          price: +price,
-          description: description,
-        })
-        .subscribe((response) => console.log(response));
+    if (+price == 0) {
+      this.showLabel = true;
     } else {
-      this.productsService
-        .update(this.data.id, { ...this.form.getRawValue(), author: 'bohdan' })
-        .subscribe((response) => console.log(response));
+      if (this.titleText == 'Add Product') {
+        this.productsService
+          .create({
+            name: name,
+            price: +price,
+            description: description,
+          })
+          .subscribe({
+            next: (response) => {
+              window.location.reload();
+            },
+            error: (error) => {},
+          });
+      } else {
+        this.productsService
+          .update(this.data.id, {
+            name: name,
+            price: +price,
+            description: description,
+          })
+          .subscribe({
+            next: (response) => {
+              window.location.reload();
+            },
+            error: (error) => {},
+          });
+      }
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
 }

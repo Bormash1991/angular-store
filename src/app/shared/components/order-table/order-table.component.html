@@ -1,0 +1,17 @@
+<div class="item__container">
+  <div class="item" *ngFor="let item of items">
+    <div class="item__name">{{ item.name }}</div>
+    <div class="item__phone">{{ item.phone }}</div>
+
+    <button class="item__btn" (click)="openEditDialog(item)">
+      <svg class="item__img">
+        <use href="assets/sprite.svg#icon-edit" class="item__img"></use>
+      </svg>
+    </button>
+    <button class="item__btn" (click)="openDeleteDialog(item)">
+      <svg class="item__img">
+        <use href="assets/sprite.svg#icon-delete" class="item__img"></use>
+      </svg>
+    </button>
+  </div>
+</div>

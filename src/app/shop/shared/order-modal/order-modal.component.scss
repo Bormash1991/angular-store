@@ -1,0 +1,33 @@
+.modal {
+  padding-bottom: 0;
+  &__title {
+    text-align: center;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mat-mdc-checkbox {
+    margin-top: -10px;
+    margin-bottom: 5px;
+  }
+  &__container {
+    color: black;
+  }
+  &__product {
+    margin: 10px 0 15px 0;
+  }
+  &__index {
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  &__name {
+    margin-right: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .modal {
+    width: 450px;
+  }
+}

@@ -8,15 +8,15 @@ import { AddCartItemService } from 'src/app/shared/services/add-cart-item.servic
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit, OnDestroy {
-  data: TypeOfProduct[];
+  data: TypeOfProduct[] = [];
   totalSum: number = 0;
   subj: any;
   constructor(private addCartItemService: AddCartItemService) {}
   ngOnInit(): void {
     this.data = this.addCartItemService.getData();
-    this.subj = this.addCartItemService.productsSubj$.subscribe(() =>
-      this.changeData(this.addCartItemService.getData())
-    );
+    this.subj = this.addCartItemService.productsSubj$.subscribe(() => {
+      this.changeData(this.addCartItemService.getData());
+    });
     this.totalSum = this.addCartItemService.getTotal();
   }
   changeCounter(elem: ['increment' | 'decrement', TypeOfProduct]) {

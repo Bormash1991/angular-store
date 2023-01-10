@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UsersModalComponent } from './users-modal/users-modal.component';
 import { ProductsModalComponent } from './products-modal/products-modal.component';
+import { OrdersModalComponent } from './orders-modal/orders-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProductsModalComponent } from './products-modal/products-modal.componen
     WarningModalComponent,
     UsersModalComponent,
     ProductsModalComponent,
+    OrdersModalComponent,
   ],
   imports: [
     CommonModule,

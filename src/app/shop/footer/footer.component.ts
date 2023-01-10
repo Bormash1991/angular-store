@@ -8,8 +8,12 @@ import { LoginComponent } from 'src/app/login/login.component';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
+<<<<<<< HEAD
   constructor(public dialog: MatDialog) {}
   openModal() {
     this.dialog.open(LoginComponent);
   }
+=======
+  constructor() {}
+>>>>>>> additional
 }

@@ -1,0 +1,26 @@
+.page {
+  text-align: center;
+  height: 100%;
+  color: rgba(149, 149, 149, 0.337);
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__box {
+    transform: translateY(-50px);
+  }
+  &__title {
+    font-weight: 500;
+    font-size: 100px;
+    line-height: 1.1;
+    margin-bottom: 0;
+  }
+  &__text {
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.28;
+  }
+}
