@@ -117,8 +117,7 @@
 @media (min-width: 1024px) {
   .side-bar {
     position: relative;
-    padding: 40px 40px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     transform: translateX(0);
     &__close {
@@ -126,6 +125,12 @@
     }
   }
 }
+@media (min-width: 1440px) {
+  .side-bar {
+    height: 100vh;
+  }
+}
+
 @keyframes show {
   from {
     opacity: 0;

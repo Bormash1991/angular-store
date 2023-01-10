@@ -16,9 +16,10 @@
   &__empty {
     padding: 250px 0 50px 0;
     text-align: center;
-    font-size: 50px;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.634);
+    line-height: 1.28;
+    font-size: 25px;
   }
   &__total {
     display: block;
@@ -48,6 +49,9 @@
     }
     &__footer {
       padding-bottom: 60px;
+    }
+    &__empty {
+      font-size: 50px;
     }
   }
 }

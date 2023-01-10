@@ -12,6 +12,7 @@ export class ProductsModalComponent {
   public keys: string[] = Object.keys(this.data.data);
   public className: string;
   public titleText: string;
+  showLabel: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<ProductsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,33 +35,37 @@ export class ProductsModalComponent {
   }
   showData() {
     let { name, price, description } = this.form.getRawValue();
-    if (this.titleText == 'Add Product') {
-      this.productsService
-        .create({
-          name: name,
-          price: +price,
-          description: description,
-        })
-        .subscribe({
-          next: (response) => {
-            window.location.reload();
-          },
-          error: (error) => {},
-        });
+    if (+price == 0) {
+      this.showLabel = true;
     } else {
-      this.productsService
-        .update(this.data.id, {
-          name: name,
-          price: +price,
-          description: description,
-        })
-        .subscribe({
-          next: (response) => {
-            window.location.reload();
-          },
-          error: (error) => {},
-        });
+      if (this.titleText == 'Add Product') {
+        this.productsService
+          .create({
+            name: name,
+            price: +price,
+            description: description,
+          })
+          .subscribe({
+            next: (response) => {
+              window.location.reload();
+            },
+            error: (error) => {},
+          });
+      } else {
+        this.productsService
+          .update(this.data.id, {
+            name: name,
+            price: +price,
+            description: description,
+          })
+          .subscribe({
+            next: (response) => {
+              window.location.reload();
+            },
+            error: (error) => {},
+          });
+      }
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
 }

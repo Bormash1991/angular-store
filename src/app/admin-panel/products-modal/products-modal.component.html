@@ -5,6 +5,7 @@
       <mat-label>{{ field }}</mat-label>
       <input [formControlName]="field" matInput />
     </mat-form-field>
+    <div class="modal__label" *ngIf="showLabel">Incorect price</div>
   </form>
 </div>
 
@@ -16,7 +17,6 @@
     mat-button
     cdkFocusInitial
   >
-
   </btn>
   <btn
     [text]="'OK'"
@@ -25,6 +25,5 @@
     mat-button
     cdkFocusInitial
   >
- 
   </btn>
 </div>

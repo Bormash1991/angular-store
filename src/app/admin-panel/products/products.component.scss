@@ -23,11 +23,7 @@
     }
   }
   &__box {
-    position: relative;
     padding: 0 30px;
-    &-main {
-      min-height: 673px;
-    }
     &-spinner {
       padding: 180px 0;
       display: flex;
@@ -40,19 +36,15 @@
     margin-bottom: 40px;
   }
   &__paginator {
-    position: absolute;
-    right: 20px;
-    bottom: 4px;
+    margin-top: 5px;
   }
 }
 @media (min-width: 1024px) {
   .products {
     padding: 48px;
     padding-bottom: 0;
-    &__box {
-      &-main {
-        min-height: 586px;
-      }
+    &__hamburger {
+      display: none;
     }
   }
 }
