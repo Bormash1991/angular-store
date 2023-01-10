@@ -13,6 +13,7 @@ import { AddCartItemService } from 'src/app/shared/services/add-cart-item.servic
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { OrdersService } from 'src/app/shared/services/orders.service';
 import { ThanksModalComponent } from '../thanks-modal/thanks-modal.component';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-order-modal',
   templateUrl: './order-modal.component.html',
@@ -23,7 +24,9 @@ export class OrderModalComponent implements OnInit {
   checked: boolean = false;
   name: string = '';
   phone: string = '';
+  checkInputs: boolean = false;
   form: FormGroup;
+  sub: Subscription;
   constructor(
     public dialogRef: MatDialogRef<OrderModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -44,7 +47,7 @@ export class OrderModalComponent implements OnInit {
       this.phone = storagePhone;
     }
     this.form = this.fb.group({
-      name: [this.name, Validators.pattern(/^[a-zA-Z ]{0,20}$/)],
+      name: [this.name, Validators.pattern(/^[a-zA-Z ]{1,20}$/)],
       phone: [this.phone, Validators.pattern(/^\+\d{3}\d{3}\d{3}\d{3}$/)],
       message: ['', Validators.pattern(/^[a-zA-Z ]{0,50}$/)],
     });
@@ -57,6 +60,11 @@ export class OrderModalComponent implements OnInit {
           name: elem.name,
         })
       );
+    this.sub = this.form.valueChanges.subscribe((value) => {
+      if (value.name || value.phone) {
+        this.checkInputs = false;
+      }
+    });
   }
   onCheckboxChange(value: MatCheckboxChange) {
     this.checked = value.checked;
@@ -64,7 +72,13 @@ export class OrderModalComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close();
   }
+
   sendOrder() {
+    let { name, phone } = this.form.getRawValue();
+    if (!name || !phone) {
+      this.checkInputs = true;
+      return;
+    }
     if (
       this.form.get('phone')?.invalid ||
       this.form.get('name')?.invalid ||

@@ -20,6 +20,7 @@
     >
       Save name and phone</mat-checkbox
     >
+    <div class="modal__label" *ngIf="checkInputs">incorrect name or phone</div>
     <div class="modal__container">
       <div class="modal__product" *ngFor="let item of products; let i = index">
         <div class="modal__index">Product: {{ i + 1 }}</div>
@@ -31,12 +32,7 @@
 </div>
 
 <div mat-dialog-actions>
-  <button
-    class="modal__btn" 
-    (click)="closeDialog()"
-    mat-button
-    cdkFocusInitial
-  >
+  <button class="modal__btn" (click)="closeDialog()" mat-button cdkFocusInitial>
     Cancel
   </button>
   <button class="modal__btn" (click)="sendOrder()" mat-button cdkFocusInitial>
