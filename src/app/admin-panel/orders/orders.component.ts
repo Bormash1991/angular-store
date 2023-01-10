@@ -32,7 +32,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
           this.loading$.next(false);
           this.orders = this.filterService.setData(data, 5);
           this.ordersLength = data.length;
-          console.log(data);
         }
       },
       error: (error) => {},
