@@ -41,13 +41,19 @@
             [className]="className"
           ></app-cart-modal>
         </li>
+        <li>
+          <a
+            (click)="closeMenu()"
+            class="header__nav_item header__btn"
+            routerLink="login"
+          >
+            <div class="header__btn_text">Admin</div>
+            <svg class="header__btn_img">
+              <use href="assets/sprite.svg#icon-right-arrow"></use>
+            </svg>
+          </a>
+        </li>
       </ul>
-      <a class="header__btn" routerLink="login">
-        <div class="header__btn_text">Admin</div>
-        <svg class="header__btn_img">
-          <use href="assets/sprite.svg#icon-right-arrow"></use>
-        </svg>
-      </a>
     </nav>
   </div>
 </header>

@@ -113,6 +113,7 @@
     display: flex;
     align-items: center;
     border: none;
+    margin-top: 50px;
     padding: 5px 7px;
     background-color: rgba(0, 0, 0, 0);
     gap: 4px;
@@ -122,9 +123,6 @@
     color: black;
     width: 96px;
     color: white;
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.037);
-    }
     &_text {
       font-weight: 400;
       font-size: 18px;
@@ -134,10 +132,6 @@
       width: 25px;
       height: 25px;
       transform: translateY(1px);
-    }
-    transition: 250ms background-color;
-    &:hover {
-      background-color: #a1beb387;
     }
   }
 }
