@@ -30,6 +30,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         if (data) {
           this.dataForView = data;
           this.loading$.next(false);
+          this.dataLength = data.length;
         }
       });
   }

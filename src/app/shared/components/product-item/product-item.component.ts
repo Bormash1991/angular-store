@@ -1,5 +1,6 @@
 import { TypeOfProduct } from '../../../models/TypeOfProduct.inteface';
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -15,6 +16,7 @@ import { Router } from '@angular/router';
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductItemComponent implements OnInit {
   @Input() productDate: TypeOfProduct;
@@ -33,8 +35,6 @@ export class ProductItemComponent implements OnInit {
       this.buttonText = 'Remove ';
       return;
     }
-    this.secondData = this.addCartItemService.getData();
-    this.check(this.secondData);
     this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
       this.check(n)
     );

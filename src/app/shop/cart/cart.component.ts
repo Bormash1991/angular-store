@@ -13,11 +13,9 @@ export class CartComponent implements OnInit, OnDestroy {
   subj: any;
   constructor(private addCartItemService: AddCartItemService) {}
   ngOnInit(): void {
-    this.data = this.addCartItemService.getData();
-    this.subj = this.addCartItemService.productsSubj$.subscribe(() => {
-      this.changeData(this.addCartItemService.getData());
+    this.subj = this.addCartItemService.productsSubj$.subscribe((data) => {
+      this.changeData(data);
     });
-    this.totalSum = this.addCartItemService.getTotal();
   }
   changeCounter(elem: ['increment' | 'decrement', TypeOfProduct]) {
     this.addCartItemService.changeCounter(elem[0], elem[1]);

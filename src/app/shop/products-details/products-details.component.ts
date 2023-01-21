@@ -30,13 +30,12 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl('/404');
       } else if (data) {
         this.productData = data;
-        this.addCartItemService.reloadData();
         this.loading$.next(false);
+        this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
+          this.check(n)
+        );
       }
     });
-    this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
-      this.check(n)
-    );
   }
   setData(elem: TypeOfProduct) {
     this.addCartItemService.setData(elem);

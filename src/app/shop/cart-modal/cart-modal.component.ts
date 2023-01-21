@@ -1,5 +1,6 @@
 import { TypeOfProduct } from './../../models/TypeOfProduct.inteface';
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,

@@ -1,14 +1,14 @@
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './localstorage.service';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AddCartItemService {
   data: TypeOfProduct[] =
     this.localStorageService.getData<TypeOfProduct[]>('CartDataCount') || [];
-  productsSubj$ = new Subject<TypeOfProduct[]>();
+  productsSubj$ = new BehaviorSubject<TypeOfProduct[]>(this.data);
 
   constructor(private localStorageService: LocalStorageService) {}
 
