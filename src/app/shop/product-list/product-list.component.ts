@@ -18,21 +18,20 @@ export class ProductListComponent implements OnInit, OnDestroy {
   limit: number = 8;
   pageIndex: number = JSON.parse(sessionStorage.getItem('pageIndex')!) || 0;
   ngOnInit(): void {
+    let index = this.pageIndex;
     this.productsService.getData<TypeOfProduct[]>().subscribe((data) => {
       if (data) {
         this.dataLength = data.length;
+        this.productsService
+          .getDataWithLimit<TypeOfProduct[]>(this.limit, ++index)
+          .subscribe((data) => {
+            if (data) {
+              this.dataForView = data;
+              this.loading$.next(false);
+            }
+          });
       }
     });
-    let index = this.pageIndex;
-    this.productsService
-      .getDataWithLimit<TypeOfProduct[]>(this.limit, ++index)
-      .subscribe((data) => {
-        if (data) {
-          this.dataForView = data;
-          this.loading$.next(false);
-          this.dataLength = data.length;
-        }
-      });
   }
   changePage(event: any) {
     this.loading$.next(true);
