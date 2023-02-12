@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class BaseHttpService {
   protected params = '';
-  private URL = 'https://hys-fe-course-api.vercel.app/';
+  private URL = 'http://localhost:3000/';
   constructor(private http: HttpClient) {}
 
   getData<T>(): Observable<T> {
     return this.http.get<T>(this.URL + this.params);
   }
+
   getDataById<T>(id: any): Observable<T> {
     return this.http.get<T>(this.URL + this.params + id);
   }

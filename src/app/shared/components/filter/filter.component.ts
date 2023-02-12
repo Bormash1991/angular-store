@@ -49,7 +49,7 @@ export class FilterComponent implements AfterViewInit {
     if (this.param == 'products') {
       this.dialog.open(ProductsModalComponent, {
         data: {
-          data: { name: '', price: '', description: '' },
+          data: { name: '', price: '', description: '', quantity: '' },
           id: '',
         },
       });

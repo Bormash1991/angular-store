@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   form: FormGroup = this.fb.group({
-    username: '',
+    email: '',
     password: '',
   });
   cancel() {
@@ -37,10 +37,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   redirect() {
     this.authService
-      .logIn<{ access_token: string }>(this.form.getRawValue())
+      .logIn<{ token: string }>(this.form.getRawValue())
       .subscribe({
         next: (response) => {
-          this.authService.setAuthToken(response.access_token);
+          this.authService.setAuthToken(response.token);
           this.router.navigateByUrl('admin-panel');
           this.showLabel = false;
         },

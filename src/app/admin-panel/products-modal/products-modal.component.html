@@ -5,6 +5,9 @@
       <mat-label>{{ field }}</mat-label>
       <input [formControlName]="field" matInput />
     </mat-form-field>
+
+    <input type="file" multiple (change)="upload($event)" />
+
     <div class="modal__label" *ngIf="showLabel">Incorect price</div>
   </form>
 </div>
