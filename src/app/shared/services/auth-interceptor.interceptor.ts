@@ -37,7 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
           next: (next) => {},
           error: (error) => {
             if (error instanceof HttpErrorResponse) {
-              if (error.status === 401 && this.router.url != '/login') {
+              if (error.status === 400 && this.router.url != '/login') {
                 this.router.navigateByUrl('401');
                 this.localStorageService.deleteData('authToken');
               }

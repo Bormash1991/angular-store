@@ -5,7 +5,6 @@ import { AuthGuard } from '../shared/services/auth.guard';
 const routes: Routes = [
   {
     path: '',
-   
     component: AdminPanelComponent,
     children: [
       { path: '', redirectTo: 'users', pathMatch: 'full' },

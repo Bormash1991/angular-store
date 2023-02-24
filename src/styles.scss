@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "swiper/css/thumbs";
+@import "css-star-rating/scss/star-rating";
 @import "./app/styles/reset.scss";
 @import "./app/styles/container.scss";
 @import "./app/styles/font.scss";
@@ -7,4 +12,7 @@
 html,
 body {
   height: 100%;
+}
+* [title] {
+  pointer-events: none;
 }

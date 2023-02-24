@@ -15,7 +15,7 @@ export class SideBarComponent implements OnInit {
   activePopup = false;
   activeBarclass = '';
   logout() {
-    this.localStorageService.deleteData('authToken');
+    this.localStorageService.deleteData('token');
   }
   ngOnInit() {
     this.closeOrOpenBarService.changingState$.subscribe((value) => {

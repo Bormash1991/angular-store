@@ -1,10 +1,21 @@
 <footer class="footer">
   <div class="container">
-    <a class="footer__btn" routerLink="login">
-      <div class="footer__btn_text">Admin</div>
-      <svg class="footer__btn_img">
-        <use href="assets/sprite.svg#icon-right-arrow"></use>
-      </svg>
+    <a
+      [class]="'footer__btn ' + hover"
+      (click)="showPopupOrLogin($event)"
+      (mouseleave)="popupClose()"
+    >
+      {{ text }}
+      <div class="footer__popup" *ngIf="activePopup" (mouseenter)="hideHover()">
+        <a class="footer__popup_link" [routerLink]="['/']"> Settings</a>
+        <a
+          class="footer__popup_link"
+          *ngIf="canShowAdmin"
+          routerLink="admin-panel"
+          >Admin panel</a
+        >
+        <a class="footer__popup_link" (click)="logOut()">Log Out</a>
+      </div>
     </a>
   </div>
 </footer>

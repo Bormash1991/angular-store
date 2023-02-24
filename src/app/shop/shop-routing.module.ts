@@ -14,34 +14,26 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
+
         component: WelcomePageComponent,
       },
       {
         path: 'products',
-        pathMatch: 'full',
+
         component: ProductListComponent,
       },
       {
         path: 'products/cart',
-        pathMatch: 'full',
+
         component: CartComponent,
       },
       {
         path: 'products/:id',
-        pathMatch: 'full',
-        component: ProductsDetailsComponent,
+        loadChildren: () =>
+          import('./products-details/products-details.module').then(
+            (m) => m.ProductsDetailsModule
+          ),
       },
-      // {
-      //   path: '**',
-      //   pathMatch: 'full',
-      //   redirectTo: '404-not-found',
-      // },
-      // {
-      //   path: '404-not-found',
-      //   pathMatch: 'full',
-      //   component: PageNotFoundComponent,
-      // },
     ],
   },
 ];

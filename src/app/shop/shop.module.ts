@@ -21,12 +21,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ThanksModalComponent } from './shared/thanks-modal/thanks-modal.component';
+import { ProductsDetailsModule } from './products-details/products-details.module';
+
 @NgModule({
   declarations: [
     ShopComponent,
     HeaderComponent,
     FooterComponent,
-    ProductsDetailsComponent,
     ProductListComponent,
     CartModalComponent,
     CartComponent,
@@ -48,6 +49,7 @@ import { ThanksModalComponent } from './shared/thanks-modal/thanks-modal.compone
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    ProductsDetailsModule,
   ],
 })
 export class ShopModule {}

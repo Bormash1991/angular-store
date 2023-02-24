@@ -1,0 +1,147 @@
+.details {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  &__title,
+  &__name,
+  &__descr {
+    font-weight: 400;
+    font-size: 28px;
+    color: #1f242a;
+  }
+  &__container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 15px;
+  }
+  &__box-slider {
+    display: flex;
+    flex-direction: column;
+  }
+  &__inf {
+    padding-left: 100px;
+    &_buy {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+  }
+  &__item {
+    border-radius: 5px;
+    height: 24px;
+    width: 24px;
+    &:hover {
+      outline: 2px solid #509179b2;
+      outline-offset: 2.5px;
+    }
+    &_active {
+      outline: 2px solid #509179b2;
+      outline-offset: 2.5px;
+    }
+  }
+  &__colors {
+    &_text {
+      font-size: 15px;
+      span {
+        color: #797878;
+      }
+    }
+    &_box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 7px 0;
+      padding-left: 4px;
+    }
+  }
+  &__availability {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 400;
+    background-color: #f4faf6;
+    padding: 6px 9px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  &__guarantee {
+    margin-top: 20px;
+    span {
+      font-weight: 900;
+      font-size: 16px;
+    }
+  }
+  &__spinner {
+    padding: 120px 0 170px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  &__name,
+  &__descr {
+    font-size: 22px;
+    margin-top: 65px;
+  }
+  &__descr {
+    margin-top: 27px;
+  }
+  &__price {
+    font-size: 30px;
+  }
+}
+.is {
+  color: rgba(0, 128, 0, 0.83);
+}
+.not {
+  color: red;
+}
+.border {
+  border: 1px solid rgba(201, 196, 196, 0.477);
+  border-radius: 5px;
+  padding: 10px 25px;
+}
+.swiper {
+  &-main {
+    margin: 0 0 0 0;
+    img {
+      width: 90%;
+    }
+  }
+  &-thumb {
+    margin: 0 0 0 0;
+    height: 85px;
+    margin-top: 10px;
+    padding: 20px 0 10px 0;
+    width: 80%;
+    img {
+      width: auto;
+    }
+  }
+  &-slide {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    &-thumb {
+      &-active {
+        img {
+          outline: 2px solid #509179b2;
+          outline-offset: 2px;
+        }
+      }
+    }
+  }
+  &-button {
+    &-next,
+    &-prev {
+      transition: 250ms color;
+      &:active {
+        color: black;
+      }
+    }
+    &-disable {
+      display: none;
+    }
+  }
+  --swiper-navigation-color: red;
+  --swiper-navigation-size: 25px;
+  --swiper-navigation-sides-offset: 0px;
+}

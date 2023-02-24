@@ -5,30 +5,64 @@
   .footer {
     display: block;
     padding-bottom: 50px;
+
     &__btn {
-      display: flex;
-      align-items: center;
+      position: relative;
+      display: block;
+      text-align: center;
       border: none;
       padding: 5px 7px;
       background-color: rgba(0, 0, 0, 0);
-      gap: 4px;
       border-radius: 4px;
       transition: 250ms background-color;
       text-decoration: none;
       color: black;
-      width: 96px;
+      max-width: 190px;
+      font-weight: 500;
+      font-size: 20px;
       &:hover {
         background-color: rgba(0, 0, 0, 0.037);
       }
-      &_text {
+    }
+
+    &__popup {
+      position: absolute;
+      bottom: 30px;
+      left: 0px;
+      background-color: rgb(243, 238, 238);
+      border-radius: 5px;
+      animation: show 250ms;
+      z-index: 20;
+      &_link {
+        display: block;
+        text-decoration: none;
+        padding: 12px 15px;
+        border-radius: 5px;
         font-weight: 400;
-        font-size: 18px;
+        color: black;
+        transition: 150ms background-color;
+        text-align: left;
+        &:hover {
+          background-color: #a3a8a79f;
+        }
       }
+
       &_img {
         width: 25px;
         height: 25px;
         transform: translateY(1px);
       }
     }
+  }
+}
+.hide {
+  background-color: transparent !important;
+}
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

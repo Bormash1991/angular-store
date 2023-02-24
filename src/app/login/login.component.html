@@ -5,15 +5,21 @@
       <form class="login__box" [formGroup]="form">
         <mat-form-field>
           <mat-label> Email </mat-label>
-          <input formControlName="email" matInput type="text" />
+          <input formControlName="email" matInput type="email" />
         </mat-form-field>
+        <div class="login__error-text">
+          {{ errorMessages["email"] }}
+        </div>
         <mat-form-field>
           <mat-label>Password</mat-label>
           <input formControlName="password" matInput type="password" />
         </mat-form-field>
+        <div class="login__error-text">
+          {{ errorMessages["password"] }}
+        </div>
       </form>
-      <div class="login__error-text" *ngIf="showLabel">
-        Login or password incorrect
+      <div class="login__error-text">
+        {{ textError }}
       </div>
       <div class="login__box-btn">
         <btn [text]="'Cancel'" class="btn btn_modal" (click)="cancel()"

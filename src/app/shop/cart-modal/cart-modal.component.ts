@@ -1,3 +1,4 @@
+import { API_PATH } from './../../shared/services/base-http.service';
 import { TypeOfProduct } from './../../models/TypeOfProduct.inteface';
 import {
   ChangeDetectionStrategy,
@@ -19,6 +20,7 @@ export class CartModalComponent implements OnChanges {
   totalSum: number;
   @Input() className: string;
   @Output() mouse = new EventEmitter();
+  path = API_PATH;
   constructor(private addCartItemService: AddCartItemService) {}
   ngOnChanges(): void {
     this.data = this.addCartItemService.getData();

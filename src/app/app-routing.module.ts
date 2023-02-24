@@ -17,6 +17,13 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginModule),
   },
   {
+    path: 'registration',
+    loadChildren: () =>
+      import('./registration/registration.module').then(
+        (m) => m.RegistrationModule
+      ),
+  },
+  {
     path: '',
     loadChildren: () => import('./shop/shop.module').then((m) => m.ShopModule),
   },
@@ -24,6 +31,13 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./errors/errors.module').then((m) => m.ErrorsModule),
+  },
+  {
+    path: 'products-details',
+    loadChildren: () =>
+      import('./shop/products-details/products-details.module').then(
+        (m) => m.ProductsDetailsModule
+      ),
   },
 ];
 

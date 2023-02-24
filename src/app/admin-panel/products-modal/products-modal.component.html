@@ -5,11 +5,31 @@
       <mat-label>{{ field }}</mat-label>
       <input [formControlName]="field" matInput />
     </mat-form-field>
-
+    <div formArrayName="otherIds">
+      Id товарів з іншим кольором
+      <div *ngFor="let item of controls; let i = index">
+        <div [formGroupName]="i">
+          <div class="modal__array_title">id №{{ i + 1 }}</div>
+          <mat-form-field>
+            <mat-label>id</mat-label>
+            <input formControlName="id" matInput />
+          </mat-form-field>
+        </div>
+      </div>
+      <button (click)="addLabel()">+</button>
+    </div>
     <input type="file" multiple (change)="upload($event)" />
 
     <div class="modal__label" *ngIf="showLabel">Incorect price</div>
   </form>
+  <div class="modal__imgs" *ngIf="titleText == 'Edit Product'">
+    <div class="modal__img_container" *ngFor="let src of images">
+      <img [src]="path + src" class="modal__img" />
+      <button class="modal__img_delete" (click)="addToDeleteImages(src)">
+        ×
+      </button>
+    </div>
+  </div>
 </div>
 
 <div mat-dialog-actions>

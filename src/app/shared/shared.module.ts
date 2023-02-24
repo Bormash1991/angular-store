@@ -13,6 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { UsersTablesComponent } from './components/users-tables/users-tables.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
+import { StarRatingModule } from 'angular-star-rating';
+import { RatingComponent } from './components/rating/rating.component';
 @NgModule({
   declarations: [
     UahPipe,
@@ -24,6 +26,7 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
     SpinnerComponent,
     UsersTablesComponent,
     OrderTableComponent,
+    RatingComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
+    StarRatingModule.forRoot(),
   ],
   exports: [
     UahPipe,
@@ -42,6 +46,7 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
     SpinnerComponent,
     UsersTablesComponent,
     OrderTableComponent,
+    RatingComponent,
   ],
 })
 export class SharedModule {}

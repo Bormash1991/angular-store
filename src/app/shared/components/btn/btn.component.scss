@@ -1,14 +1,33 @@
-
 .btn {
   display: block;
-  margin-top: 28px;
+  // margin-top: 28px;
   padding: 15px 40px;
   border-radius: 5px;
   background-color: #a3a4a43d;
   font-size: 18px;
   transition: 250ms background-color;
+  &:hover {
+    background-color: #a3a4a48d;
+  }
+  &_products {
+    padding: 7px 7px;
+    font-size: 14px;
+    background-color: #509179;
+    border: none;
+    color: white;
+    &:hover {
+      background-color: #509179d1;
+    }
+  }
   &_details {
     padding: 12px 25px;
+    font-size: 20px;
+    background-color: #509179;
+    border: none;
+    color: white;
+    &:hover {
+      background-color: #509179d1;
+    }
   }
   &_more {
     padding: 10px 20px;
@@ -72,10 +91,8 @@
     border: 1px solid black;
     color: black;
   }
-  &:hover {
-    background-color: #a3a4a48d;
-  }
 }
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .btn {
     padding: 10px 15px;

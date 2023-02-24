@@ -1,10 +1,22 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { API_PATH } from './../../shared/services/base-http.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  OnChanges,
+} from '@angular/core';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
+import {
+  ActivatedRoute,
+  Router,
+  NavigationEnd,
+  EventType,
+} from '@angular/router';
 import { ProductsService } from 'src/app/shop/products.service';
-import { BehaviorSubject } from 'rxjs';
-
+import { BehaviorSubject, Subscription, filter } from 'rxjs';
+import { UpdateInfService } from './shared/update-inf.service';
 @Component({
   selector: 'app-products-details',
   templateUrl: './products-details.component.html',
@@ -12,43 +24,30 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ProductsDetailsComponent implements OnInit, OnDestroy {
   productData: TypeOfProduct;
-  buttonText: string = 'Add to Cart';
-  subj: any;
-  allData: TypeOfProduct[];
-  loading$ = new BehaviorSubject<boolean>(true);
+  subj: Subscription;
+  path = API_PATH;
   constructor(
-    private route: ActivatedRoute,
-    private addCartItemService: AddCartItemService,
+    private UpdateInfService: UpdateInfService,
+    private router: Router,
     private productsService: ProductsService,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    this.subj = this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.getData();
+      });
+    this.getData();
+  }
+  getData(newId: string = '') {
+    const id = newId || this.route.snapshot.paramMap.get('id');
     this.productsService.getDataById<TypeOfProduct>(id).subscribe((data) => {
-      if (!data) {
-        this.router.navigateByUrl('/404');
-      } else if (data) {
+      if (data) {
         this.productData = data;
-        this.loading$.next(false);
-        this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
-          this.check(n)
-        );
       }
     });
-  }
-  setData(elem: TypeOfProduct) {
-    this.addCartItemService.setData(elem);
-  }
-  check(elems: TypeOfProduct[]) {
-    for (let i = 0; i < elems.length; i++) {
-      if (elems[i].id == this.productData.id) {
-        this.productData = elems[i];
-        this.buttonText = 'In Cart';
-        return;
-      }
-    }
-    this.buttonText = 'Add to Cart';
   }
   ngOnDestroy() {
     this.subj.unsubscribe();

@@ -5,4 +5,11 @@ export interface TypeOfProduct {
   description: string;
   counter: number;
   extraInfo: Object;
+  images: string[];
+  comments: any[];
+  quantity: number;
+  guarantee: string;
+  color: string;
+  cssColor: string;
+  otherIds: string[];
 }

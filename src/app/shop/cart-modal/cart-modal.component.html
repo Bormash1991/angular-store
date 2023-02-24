@@ -5,15 +5,18 @@
   <div class="modal__container">
     <ul class="modal__list">
       <li *ngFor="let prod of data" class="modal__item">
-        <div class="modal__inf">
-          <a class="modal__name" [routerLink]="['products', prod.id]"
-            ><div>{{ prod.name }}</div>
-          </a>
-          <div class="modal__price">
-            Price: {{ prod.price }} × {{ prod.counter }} =
-            {{ prod.price * prod.counter | uah }}
+        <a [routerLink]="['products', prod.id]" class="modal__link_box">
+          <div class="modal__img_box">
+            <img class="modal__img" [src]="path + prod.images[0]" alt="" />
           </div>
-        </div>
+          <div class="modal__inf">
+            <div class="modal__name">{{ prod.name }}</div>
+            <div class="modal__price">
+              Price: {{ prod.price }} × {{ prod.counter }} =
+              {{ prod.price * prod.counter | uah }}
+            </div>
+          </div>
+        </a>
         <app-counter
           (mouseClick)="changeCounter($event)"
           [elem]="prod"

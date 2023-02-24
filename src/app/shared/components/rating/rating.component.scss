@@ -1,0 +1,15 @@
+.rating {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 10px;
+  transform: scale(0.9) translateX(-18px);
+  &_details {
+    width: 250px;
+    margin-top: 20px;
+  }
+  &__number {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

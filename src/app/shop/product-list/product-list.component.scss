@@ -1,5 +1,8 @@
 .products {
   padding-top: 35px;
+  &__container {
+    padding-bottom: 30px;
+  }
   &__title {
     font-weight: 400;
     font-size: 28px;
@@ -24,6 +27,9 @@
 }
 @media (min-width: 768px) {
   .products {
+    &__container {
+      padding-bottom: 50px;
+    }
     &__box {
       grid-template-columns: 1fr 1fr;
     }

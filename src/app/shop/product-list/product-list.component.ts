@@ -1,8 +1,8 @@
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ProductsService } from 'src/app/shop/products.service';
-import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -19,19 +19,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
   pageIndex: number = JSON.parse(sessionStorage.getItem('pageIndex')!) || 0;
   ngOnInit(): void {
     let index = this.pageIndex;
-    this.productsService.getData<TypeOfProduct[]>().subscribe((data) => {
-      if (data) {
-        this.dataLength = data.length;
-        this.productsService
-          .getDataWithLimit<TypeOfProduct[]>(this.limit, ++index)
-          .subscribe((data) => {
-            if (data) {
-              this.dataForView = data;
-              this.loading$.next(false);
-            }
-          });
-      }
-    });
+    this.productsService
+      .getDataWithLimit<[TypeOfProduct[], number]>(this.limit, ++index)
+      .subscribe((data) => {
+        if (data) {
+          this.dataLength = data[1];
+          this.dataForView = data[0];
+          this.loading$.next(false);
+        }
+      });
   }
   changePage(event: any) {
     this.loading$.next(true);
@@ -39,10 +35,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.pageIndex = event.pageIndex;
     sessionStorage.setItem('pageIndex', JSON.stringify(this.pageIndex));
     this.productsService
-      .getDataWithLimit<TypeOfProduct[]>(this.limit, ++event.pageIndex)
+      .getDataWithLimit<[TypeOfProduct[], number]>(
+        this.limit,
+        ++event.pageIndex
+      )
       .subscribe((data) => {
         if (data) {
-          this.dataForView = data;
+          this.dataForView = data[0];
           this.loading$.next(false);
         }
       });

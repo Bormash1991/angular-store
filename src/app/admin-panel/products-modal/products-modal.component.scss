@@ -14,13 +14,34 @@
     font-size: 18px;
     margin-bottom: 5px;
   }
-  &__img {
-    display: block;
-    margin: 0 auto;
+  &__imgs {
     margin-top: 20px;
-    width: 80px;
-    height: 70px;
-    fill: #ff8303ed;
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  &__img {
+    width: 90px;
+    &_container {
+      position: relative;
+      &:hover {
+        .modal__img_delete {
+          display: block;
+        }
+      }
+    }
+    &_delete {
+      position: absolute;
+      display: none;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      font-size: 30px;
+      background-color: rgba(0, 0, 0, 0.437);
+      color: white;
+    }
   }
   &__text {
     padding: 19px;

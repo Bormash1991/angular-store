@@ -1,6 +1,6 @@
 <main class="main">
   <div class="products">
-    <div class="container">
+    <div class="container products__container">
       <h2 class="products__title">Products</h2>
       <div *ngIf="loading$ | async" class="products__spinner">
         <app-spinner></app-spinner>
@@ -13,7 +13,7 @@
       </div>
       <mat-paginator
         class="products__paginator"
-        *ngIf="dataLength"
+        *ngIf="dataLength > 8"
         [pageIndex]="pageIndex"
         [hidePageSize]="true"
         [length]="dataLength"

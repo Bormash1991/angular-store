@@ -1,19 +1,27 @@
 <div class="products__item">
+  <div class="swiper" #swiper>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let item of productDate.images">
+        <img [src]="path + item" loading="lazy" />
+        <div class="swiper-lazy-preloader"></div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
   <h4 class="products__item_title">
     <a class="products__item_link" [routerLink]="['/products', productDate.id]">
       {{ productDate.name }}</a
     >
   </h4>
-  <div
-    appPriceHighlight
-    [price]="productDate.price"
-    class="products__item_price"
-  >
-    {{ productDate.price | uah }}
+  <app-rating [data]="productDate"></app-rating>
+  <div class="products__item_box">
+    <div class="products__item_price">
+      {{ productDate.price | uah }}
+    </div>
+    <btn
+      (click)="addOrDeleteItem(productDate)"
+      [class]="'btn ' + buttonClass"
+      [text]="buttonText"
+    ></btn>
   </div>
-  <btn
-    (click)="addOrDeleteItem(productDate)"
-    [class]="'btn ' + buttonClass"
-    [text]="buttonText"
-  ></btn>
 </div>

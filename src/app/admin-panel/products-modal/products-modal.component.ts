@@ -1,7 +1,10 @@
+import { API_PATH } from './../../shared/services/base-http.service';
 import { ProductsService } from './../../shop/products.service';
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Product } from 'src/app/models/TypeOfOrder.interface';
+import { FilesService } from 'src/app/shared/services/files.service';
 
 @Component({
   selector: 'app-products-modal',
@@ -13,17 +16,24 @@ export class ProductsModalComponent {
   public className: string;
   public titleText: string;
   private formData = new FormData();
+  path = API_PATH;
   showLabel: boolean = false;
+  deleteImagesPath: string[] = [];
+  images = [...this.data.images];
   constructor(
     public dialogRef: MatDialogRef<ProductsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private filesService: FilesService
   ) {}
   form: FormGroup = this.fb.group({
     ...this.data.data,
+    otherIds: this.fb.array([]),
   });
-
+  get controls() {
+    return (this.form.get('otherIds') as FormArray).controls;
+  }
   closeDialog() {
     this.dialogRef.close();
   }
@@ -33,29 +43,53 @@ export class ProductsModalComponent {
     } else {
       this.titleText = 'Add Product';
     }
+    this.initProducts();
+  }
+  addLabel() {
+    const products = this.form.get('otherIds') as FormArray;
+    products.push(this.initProduct(''));
+  }
+  initProducts() {
+    const products = this.form.get('otherIds') as FormArray;
+    this.data.otherIds.forEach((item: Product) =>
+      products.push(this.initProduct(item))
+    );
+  }
+  initProduct(id: any): FormGroup {
+    return this.fb.group({
+      id: [id],
+    });
   }
   upload(event: any) {
-    const file: File[] = [];
     [...event.target.files].forEach((item: File) => {
       this.formData.append('files', item, item.name);
     });
+  }
+  addToDeleteImages(id: string) {
+    this.deleteImagesPath.push(id);
 
-    // const images: any = [];
-    // for (let i = 0; i < files.length; i++) {
-    //   const reader = new FileReader();
-    //   reader.readAsDataURL(files[i]);
-    //   reader.onload = () => {
-    //     images.push(reader.result);
-    //   };
-    // }
+    this.images.forEach((item: string, i: number) => {
+      if (item == id) {
+        this.images.splice(i, 1);
+      }
+    });
   }
   showData() {
     let keys = Object.keys(this.form.getRawValue());
     let value = this.form.getRawValue();
 
-    keys.forEach((item) => {
+    for (let item of keys) {
+      if (item == 'otherIds') {
+        const id = value.otherIds.map((item: any) => item.id);
+        if (!value['otherIds'][0].id) {
+          this.formData.append('otherIds', JSON.stringify([]));
+        } else {
+          this.formData.append('otherIds', JSON.stringify(id));
+        }
+        continue;
+      }
       this.formData.append(`${item}`, value[item]);
-    });
+    }
 
     if (this.titleText == 'Add Product') {
       this.productsService.create(this.formData).subscribe({
@@ -67,18 +101,25 @@ export class ProductsModalComponent {
         },
       });
     } else {
-      this.productsService
-        .update(this.data.id, {
-          // name: name,
-          // price: +price,
-          // description: description,
-        })
-        .subscribe({
-          next: (response) => {
-            window.location.reload();
-          },
-          error: (error) => {},
+      if (this.deleteImagesPath) {
+        this.deleteImagesPath.forEach((path) => {
+          this.filesService.delete(path).subscribe({
+            next: (response) => {},
+            error: (error) => {
+              console.log(error);
+            },
+          });
         });
+      }
+
+      this.formData.append('oldImages', JSON.stringify(this.images));
+
+      this.productsService.update(this.data.id, this.formData).subscribe({
+        next: (response) => {
+          window.location.reload();
+        },
+        error: (error) => {},
+      });
     }
     this.dialogRef.close();
   }

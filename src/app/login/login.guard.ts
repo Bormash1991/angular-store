@@ -8,11 +8,12 @@ import { AuthService } from '../shared/services/auth.service';
 export class LoginGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate() {
-    if (this.authService.getAuthToken().length) {
-      this.router.navigateByUrl('admin-panel');
-      return false;
-    } else {
-      return true;
-    }
+    // if (this.authService.getdecodeToken().role === 'ADMIN') {
+    //   this.router.navigateByUrl('admin-panel');
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+    return true;
   }
 }

@@ -21,8 +21,13 @@ export class TablesComponent {
           name: item.name,
           price: item.price,
           description: item.description,
+          color: item.color,
+          cssColor: item.cssColor,
+          guarantee: item.guarantee,
         },
         id: item.id,
+        images: item.images,
+        otherIds: item.otherIds,
       },
     });
   }
