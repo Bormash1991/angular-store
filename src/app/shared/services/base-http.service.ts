@@ -21,8 +21,8 @@ export class BaseHttpService {
   create<T>(data: T): Observable<T> {
     return this.http.post<T>(API_PATH + this.params, data);
   }
-  update<T>(id: string, data: T): Observable<T> {
-    return this.http.patch<T>(API_PATH + this.params + id, data);
+  update<T>(id: string, data: T, addPath: string = ''): Observable<T> {
+    return this.http.patch<T>(API_PATH + this.params +addPath + id, data);
   }
   delete(id: string): Observable<Object> {
     return this.http.delete(API_PATH + this.params + id);

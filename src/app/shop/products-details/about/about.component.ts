@@ -22,6 +22,7 @@ export class AboutComponent implements OnInit {
   productData: TypeOfProduct;
   buttonText: string = 'Add to Cart';
   subj: Subscription;
+  dataSubj: Subscription;
   allData: TypeOfProduct[];
   loading$ = new BehaviorSubject<boolean>(true);
   path = API_PATH;
@@ -63,7 +64,6 @@ export class AboutComponent implements OnInit {
     }
   }
   constructor(
-    private route: ActivatedRoute,
     private addCartItemService: AddCartItemService,
     private productsService: ProductsService,
     private router: Router,
@@ -73,18 +73,15 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.subj = this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.getData();
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.otherColors = [];
+          this.productData = false as any;
+          this.loading$.next(true);
+        }
       });
-    this.getData();
-  }
-  getData(newId: string = '') {
-    this.otherColors = [];
-    this.productData = false as any;
-    const id = newId || this.route.snapshot.paramMap.get('id');
-    this.productsService.getDataById<TypeOfProduct>(id).subscribe((data) => {
+    this.dataSubj = this.UpdateInfService.getData().subscribe((data) => {
       if (data) {
-        this.UpdateInfService.setData(data);
         this.productData = data;
         this.loading$.next(false);
         this.setOtherColors(data);
@@ -135,5 +132,6 @@ export class AboutComponent implements OnInit {
   }
   ngOnDestroy() {
     this.subj.unsubscribe();
+    this.dataSubj.unsubscribe();
   }
 }

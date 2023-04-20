@@ -91,7 +91,11 @@ export class FilterService<T> {
       this.allProductsAfterFilter = [...this.products];
     }
     this.firstPage();
-    return [this.products, this.productsLength, this.pageIndex];
+    return {
+      items: this.products,
+      itemsLength: this.productsLength,
+      pageIndex: this.pageIndex,
+    };
   }
   firstPage() {
     this.products = this.allProductsAfterFilter.slice(0, this.num);
@@ -108,12 +112,15 @@ export class FilterService<T> {
     }
     if (index < lastIndex) {
       this.products = this.allProductsAfterFilter.slice(
-        index * 5,
-        lastIndex * 5
+        index * this.num,
+        lastIndex * this.num
       );
       this.pageIndex--;
     }
-    return [this.products, this.pageIndex];
+    return {
+      items: this.products,
+      pageIndex: this.pageIndex,
+    };
   }
   sortData(elem: filterCongig) {
     if (!elem.sortBy) {
@@ -150,5 +157,13 @@ export class FilterService<T> {
         : a[field].toLocaleLowerCase() < b[field].toLocaleLowerCase()
         ? 1
         : -1;
+  }
+  resetData() {
+    this.products = [];
+    this.productsSecond = [];
+    this.allProductsAfterFilter = [];
+    this.productsLength = 0;
+    this.num = 0;
+    this.pageIndex = 0;
   }
 }

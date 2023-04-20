@@ -13,7 +13,7 @@
       {{ productDate.name }}</a
     >
   </h4>
-  <app-rating [data]="productDate"></app-rating>
+  <app-rating [data]="productDate.comments"></app-rating>
   <div class="products__item_box">
     <div class="products__item_price">
       {{ productDate.price | uah }}

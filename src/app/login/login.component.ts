@@ -11,9 +11,9 @@ import { ErrorsObject } from '../models/errorMessages.interface';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  sub: Subscription;
-  textError: string = '';
-  errorMessages: ErrorsObject = {};
+  private sub: Subscription;
+  protected textError: string = '';
+  protected errorMessages: ErrorsObject = {};
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.sub = this.form.valueChanges.subscribe((value) => {
       if (value.password || value.email) {
         this.textError = '';
+        this.errorMessages = {};
       }
     });
   }

@@ -1,0 +1,37 @@
+<h1 class="modal__title" mat-dialog-title>Додати коментар</h1>
+<div class="modal" mat-dialog-content>
+  <form class="modal__box" [formGroup]="form">
+    <star-rating-control
+      staticColor="ok"
+      [readOnly]="false"
+      [hoverEnabled]="true"
+      formControlName="stars"
+      class="modal__rating"
+    ></star-rating-control>
+    <div class="modal__label">
+      {{ errorMessages["stars"] }}
+    </div>
+    <mat-form-field class="modal__text">
+      <textarea formControlName="text" matInput></textarea>
+    </mat-form-field>
+    <div class="modal__label">
+      {{ errorMessages["text"] }}
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="modal__box_btn">
+  <btn
+    [text]="'Cancel'"
+    [class]="'btn btn_modal btn_modal-left'"
+    (click)="closeDialog()"
+    mat-button
+  >
+  </btn>
+  <btn
+    [text]="'OK'"
+    [class]="'btn btn_modal btn_modal-right'"
+    (click)="sendData()"
+    mat-button
+  >
+  </btn>
+</div>

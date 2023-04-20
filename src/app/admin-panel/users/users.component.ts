@@ -59,18 +59,21 @@ export class UsersComponent implements OnInit {
     elem: filterCongig,
     param: 'price' | 'updatedAtUsers' | 'updatedAtOrders'
   ) {
-    let arr = this.filterService.changeData(elem, param);
-    this.products = arr[0] as TypeOfUser[];
-    this.productsLength = arr[1] as number;
-    this.pageIndex = arr[2] as number;
+    let { items, itemsLength, pageIndex } = this.filterService.changeData(
+      elem,
+      param
+    );
+    this.products = items;
+    this.productsLength = itemsLength;
+    this.pageIndex = pageIndex;
   }
   sortData(elem: filterCongig) {
-    this.products = this.filterService.sortData(elem) as [];
+    this.products = this.filterService.sortData(elem);
   }
   changePage(event: any) {
-    let arr = this.filterService.changePage(event);
-    this.products = arr[0] as TypeOfUser[];
-    this.pageIndex = arr[1] as number;
+    let { items, pageIndex } = this.filterService.changePage(event);
+    this.products = items;
+    this.pageIndex = pageIndex;
   }
   ngOnDestroy() {
     this.filterSubj.unsubscribe();

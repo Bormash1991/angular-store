@@ -1,7 +1,10 @@
 <div class="details" *ngIf="productData">
   <div class="container">
     <h2 class="details__title">{{ productData.name }}</h2>
-    <app-rating [data]="productData" [addClass]="'rating_details'"></app-rating>
+    <app-rating
+      [data]="productData.comments"
+      [addClass]="'rating_details'"
+    ></app-rating>
   </div>
   <div class="details__tabs">
     <div class="container">

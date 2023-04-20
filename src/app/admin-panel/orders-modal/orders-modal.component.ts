@@ -1,6 +1,6 @@
 import { OrdersService } from './../../shared/services/orders.service';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Product } from 'src/app/models/TypeOfOrder.interface';
 @Component({
@@ -42,7 +42,7 @@ export class OrdersModalComponent implements OnInit {
       id: [product.id],
       name: [product.name],
     });
-  }
+  }  
 
   closeDialog() {
     this.dialogRef.close();

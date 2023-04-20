@@ -1,0 +1,38 @@
+.modal {
+  padding-bottom: 0;
+  overflow: visible;
+  &__title {
+    text-align: center;
+  }
+  &__rating {
+    margin-bottom: 20px;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+    &_btn {
+      margin-top: 20px;
+    }
+  }
+  &__label {
+    text-align: center;
+    color: red;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: -10px;
+  }
+  &__text {
+    margin-top: 15px;
+  }
+  &__container {
+    color: black;
+  }
+}
+@media (min-width: 768px) {
+  .modal {
+    width: 450px;
+    &__btn {
+      width: 120px;
+    }
+  }
+}

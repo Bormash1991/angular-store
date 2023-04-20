@@ -1,11 +1,11 @@
-<div class="details">
+<div class="about">
   <div class="container">
-    <div *ngIf="loading$ | async" class="details__spinner">
+    <div *ngIf="loading$ | async" class="about__spinner">
       <app-spinner></app-spinner>
     </div>
-    <div class="details__box" *ngIf="productData">
-      <div class="details__container">
-        <div class="details__box-slider">
+    <div class="about__box" *ngIf="productData">
+      <div class="about__container">
+        <div class="about__box-slider">
           <div class="swiper swiper-main" #swiper>
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let item of productData.images">
@@ -26,50 +26,50 @@
             </div>
           </div>
         </div>
-        <div class="details__inf">
-          <div class="details__colors">
-            <div class="details__colors_text">
+        <div class="about__inf">
+          <div class="about__colors">
+            <div class="about__colors_text">
               <span>Колір: </span>{{ productData.color }}
             </div>
-            <div class="details__colors_box">
+            <div class="about__colors_box">
               <a
-                class="details__item"
+                class="about__item"
                 [routerLink]="['/products', productData.id]"
-                routerLinkActive="details__item_active"
+                routerLinkActive="about__item_active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 [style]="'background-color:' + productData.cssColor"
               >
               </a>
               <a
                 *ngFor="let item of otherColors"
-                class="details__item"
+                class="about__item"
                 (click)="updateData(item)"
-                routerLinkActive="details__item_active"
+                routerLinkActive="about__item_active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 [style]="'background-color:' + item.cssColor"
               >
               </a>
             </div>
           </div>
-          <div [class]="'details__availability ' + availabilityClass">
+          <div [class]="'about__availability ' + availabilityClass">
             {{ availabilityText }}
           </div>
-          <div class="details__inf_buy border">
-            <div class="details__price">{{ productData.price | uah }}</div>
+          <div class="about__inf_buy border">
+            <div class="about__price">{{ productData.price | uah }}</div>
             <btn
-              [class]="'btn btn_details'"
+              [class]="'btn btn_about'"
               [text]="buttonText"
               (click)="setData(productData)"
             ></btn>
           </div>
-          <div class="details__guarantee border">
+          <div class="about__guarantee border">
             <span>Гарантія.</span>{{ productData.guarantee }} Обмін/повернення
             товару впродовж 14 днів
           </div>
         </div>
       </div>
 
-      <div class="details__descr">{{ productData.description }}</div>
+      <div class="about__descr">{{ productData.description }}</div>
     </div>
   </div>
 </div>

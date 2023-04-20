@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RegistrationComponent } from './registration.component';
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
 @NgModule({
   declarations: [RegistrationComponent],
   imports: [
@@ -13,9 +12,8 @@ import { SharedModule } from '../shared/shared.module';
     RegistrationRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     SharedModule,
+    MaterialModule,
   ],
 })
 export class RegistrationModule {}

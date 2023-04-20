@@ -1,6 +1,5 @@
 .btn {
   display: block;
-  // margin-top: 28px;
   padding: 15px 40px;
   border-radius: 5px;
   background-color: #a3a4a43d;
@@ -29,6 +28,15 @@
       background-color: #509179d1;
     }
   }
+  &_about {
+    padding: 15px 35px;
+    background-color: #509179;
+    border: none;
+    color: white;
+    &:hover {
+      background-color: #509179d1;
+    }
+  }
   &_more {
     padding: 10px 20px;
     margin: 0 auto;
@@ -45,7 +53,17 @@
       background-color: #94aabaad;
     }
   }
-
+  &_comments {
+    padding: 10px 20px;
+    border: 1px solid #ebebeb;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    color: #3e77aa;
+    &:hover {
+      color: #3187d1;
+      background-color: #f5f5f5;
+    }
+  }
   &_plus,
   &_minus {
     display: flex;
@@ -90,6 +108,22 @@
     border-radius: 5px;
     border: 1px solid black;
     color: black;
+    border: 1px solid #ebebeb;
+    &-left {
+      background-color: #f5f5f5;
+      color: #3e77aa;
+      &:hover {
+        color: #1f7ed0;
+        background-color: #f5f5f5;
+      }
+    }
+    &-right {
+      background-color: #3e77aa;
+      color: white;
+      &:hover {
+        background-color: #1f7ed0;
+      }
+    }
   }
 }
 
@@ -111,7 +145,7 @@
 @media (min-width: 1024px) {
   .btn {
     &_modal {
-      width: 120px;
+      width: 150px;
     }
   }
 }

@@ -6,10 +6,18 @@ export interface TypeOfProduct {
   counter: number;
   extraInfo: Object;
   images: string[];
-  comments: any[];
+  comments: Comments[];
   quantity: number;
   guarantee: string;
   color: string;
   cssColor: string;
   otherIds: string[];
+}
+
+export interface Comments {
+  text: string;
+  username: string;
+  userId: string;
+  stars: number;
+  _id: string;
 }

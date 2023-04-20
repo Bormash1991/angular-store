@@ -1,10 +1,11 @@
-<div [class]="'rating ' + addClass">
+<div [className]="'rating ' + addClass">
   <star-rating
-    title=""
+    (starClickChange)="onClick($event)"
     staticColor="ok"
     [showHalfStars]="true"
     [readOnly]="readOnly"
     [rating]="ratingNumber"
+    [hoverEnabled]="!readOnly"
   ></star-rating>
-  <div class="rating__number">{{ rewiesQuantity }}</div>
+  <div *ngIf="readOnly" class="rating__number">{{ rewiesQuantity }}</div>
 </div>

@@ -24,8 +24,7 @@ export class ProductsModalComponent {
     public dialogRef: MatDialogRef<ProductsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private productsService: ProductsService,
-    private filesService: FilesService
+    private productsService: ProductsService
   ) {}
   form: FormGroup = this.fb.group({
     ...this.data.data,
@@ -101,19 +100,11 @@ export class ProductsModalComponent {
         },
       });
     } else {
-      if (this.deleteImagesPath) {
-        this.deleteImagesPath.forEach((path) => {
-          this.filesService.delete(path).subscribe({
-            next: (response) => {},
-            error: (error) => {
-              console.log(error);
-            },
-          });
-        });
-      }
-
       this.formData.append('oldImages', JSON.stringify(this.images));
-
+      this.formData.append(
+        'deletedImages',
+        JSON.stringify(this.deleteImagesPath)
+      );
       this.productsService.update(this.data.id, this.formData).subscribe({
         next: (response) => {
           window.location.reload();

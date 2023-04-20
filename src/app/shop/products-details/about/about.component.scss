@@ -1,6 +1,5 @@
-.details {
-  padding-top: 30px;
-  padding-bottom: 20px;
+.about {
+  padding-bottom: 40px;
   &__title,
   &__name,
   &__descr {
@@ -11,7 +10,7 @@
   &__container {
     display: grid;
     grid-template-columns: 50% 50%;
-    margin-top: 15px;
+    margin-top: 30px;
   }
   &__box-slider {
     display: flex;
@@ -40,6 +39,7 @@
     }
   }
   &__colors {
+    margin-top: 160px;
     &_text {
       font-size: 15px;
       span {
@@ -82,7 +82,8 @@
     margin-top: 65px;
   }
   &__descr {
-    margin-top: 27px;
+    margin-top: 50px;
+    line-height: 1.18;
   }
   &__price {
     font-size: 30px;
@@ -99,6 +100,7 @@
   border-radius: 5px;
   padding: 10px 25px;
 }
+
 .swiper {
   &-main {
     margin: 0 0 0 0;

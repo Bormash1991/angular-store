@@ -55,21 +55,24 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.renderer.addClass(document.documentElement, 'scroll-block');
   }
   sortData(elem: filterCongig) {
-    this.orders = this.filterService.sortData(elem) as TypeOfOrder[];
+    this.orders = this.filterService.sortData(elem);
   }
   changeData(
     elem: filterCongig,
     param: 'price' | 'updatedAtUsers' | 'updatedAtOrders'
   ) {
-    let arr = this.filterService.changeData(elem, param);
-    this.orders = arr[0] as TypeOfOrder[];
-    this.ordersLength = arr[1] as number;
-    this.pageIndex = arr[2] as number;
+    let { items, itemsLength, pageIndex } = this.filterService.changeData(
+      elem,
+      param
+    );
+    this.orders = items;
+    this.ordersLength = itemsLength;
+    this.pageIndex = pageIndex;
   }
   changePage(event: any) {
-    let arr = this.filterService.changePage(event);
-    this.orders = arr[0] as TypeOfOrder[];
-    this.pageIndex = arr[1] as number;
+    let { items, pageIndex } = this.filterService.changePage(event);
+    this.orders = items;
+    this.pageIndex = pageIndex;
   }
   ngOnDestroy() {
     this.filterSubj.unsubscribe();

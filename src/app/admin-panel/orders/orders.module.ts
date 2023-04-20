@@ -1,18 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
   declarations: [OrdersComponent],
-  imports: [
-    CommonModule,
-    OrdersRoutingModule,
-    SharedModule,
-    MatPaginatorModule,
-  ],
+  imports: [CommonModule, OrdersRoutingModule, SharedModule, MaterialModule],
 })
 export class OrdersModule {}

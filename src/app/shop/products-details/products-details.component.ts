@@ -1,3 +1,4 @@
+import { Comments } from './../../models/TypeOfProduct.inteface';
 import { API_PATH } from './../../shared/services/base-http.service';
 import {
   ChangeDetectionStrategy,
@@ -6,6 +7,8 @@ import {
   OnInit,
   ViewChild,
   OnChanges,
+  ElementRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import {
@@ -15,7 +18,7 @@ import {
   EventType,
 } from '@angular/router';
 import { ProductsService } from 'src/app/shop/products.service';
-import { BehaviorSubject, Subscription, filter } from 'rxjs';
+import { BehaviorSubject, Subscription, filter, switchMap } from 'rxjs';
 import { UpdateInfService } from './shared/update-inf.service';
 @Component({
   selector: 'app-products-details',
@@ -26,6 +29,7 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
   productData: TypeOfProduct;
   subj: Subscription;
   path = API_PATH;
+  previousUrl = '';
   constructor(
     private UpdateInfService: UpdateInfService,
     private router: Router,
@@ -36,16 +40,20 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subj = this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.getData();
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd && this.previousUrl !== event.url) {
+          this.getData();
+          this.previousUrl = event.url;
+        }
       });
     this.getData();
   }
-  getData(newId: string = '') {
-    const id = newId || this.route.snapshot.paramMap.get('id');
+  getData() {
+    const id = this.route.snapshot.paramMap.get('id');
     this.productsService.getDataById<TypeOfProduct>(id).subscribe((data) => {
       if (data) {
         this.productData = data;
+        this.UpdateInfService.setData(data);
       }
     });
   }
