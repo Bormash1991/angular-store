@@ -1,4 +1,4 @@
-# HysAngular
+# Angular-store
 
 Deploy link https://bormash1991.github.io/angular-store/
 
