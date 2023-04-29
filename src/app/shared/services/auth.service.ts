@@ -4,32 +4,26 @@ import { LocalStorageService } from './localstorage.service';
 import jwt_decode from 'jwt-decode';
 import { decodedUser } from 'src/app/models/decodedUser.interface';
 import { unauthorizedUser } from 'src/app/models/unauthorizedUser.interface';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private URL = 'http://localhost:3000/auth/';
-  constructor(
-    private http: HttpClient,
-    private localStorageService: LocalStorageService
-  ) {}
-  setAuthToken(token: String) {
-    this.localStorageService.setData('token', token);
+  constructor(private fireAuth: AngularFireAuth, private router: Router) {}
+
+  login(email: string, password: string) {
+    return this.fireAuth.signInWithEmailAndPassword(email, password);
   }
-  getdecodeToken(): decodedUser | unauthorizedUser {
-    const token = this.localStorageService.getData<string>('token');
-    if (typeof token == 'string') {
-      return jwt_decode(token);
-    }
-    return { username: 'none', role: 'USER' };
+  registration(email: string, password: string) {
+    return this.fireAuth.createUserWithEmailAndPassword(email, password);
   }
-  getAuthToken(): string | [] {
-    return this.localStorageService.getData('token');
+  logOut() {
+    this.fireAuth.signOut().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
-  logIn<T>(data: Object) {
-    return this.http.post<T>(this.URL + 'login', data);
-  }
-  registration<T>(data: Object) {
-    return this.http.post<T>(this.URL + 'registration', data);
+  resetPassword(email: string) {
+    return this.fireAuth.sendPasswordResetEmail(email);
   }
 }

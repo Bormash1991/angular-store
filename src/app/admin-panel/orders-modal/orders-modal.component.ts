@@ -49,14 +49,14 @@ export class OrdersModalComponent implements OnInit {
   }
 
   showData() {
-    this.ordersService
-      .update(this.data.id, { ...this.form.getRawValue() })
-      .subscribe({
-        next: (response) => {
-          window.location.reload();
-        },
-        error: (error) => {},
-      });
+    // this.ordersService
+    //   .update(this.data.id, { ...this.form.getRawValue() })
+    //   .subscribe({
+    //     next: (response) => {
+    //       window.location.reload();
+    //     },
+    //     error: (error) => {},
+    //   });
     this.dialogRef.close();
   }
 }

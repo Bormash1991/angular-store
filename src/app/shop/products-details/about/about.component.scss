@@ -1,5 +1,6 @@
 .about {
   padding-bottom: 40px;
+
   &__title,
   &__name,
   &__descr {
@@ -9,15 +10,18 @@
   }
   &__container {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 45% 55%;
     margin-top: 30px;
   }
+
   &__box-slider {
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
   &__inf {
-    padding-left: 100px;
+    padding-left: 160px;
+    padding-right: 120px;
     &_buy {
       display: flex;
       align-items: center;
@@ -70,12 +74,7 @@
       font-size: 16px;
     }
   }
-  &__spinner {
-    padding: 120px 0 170px 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+
   &__name,
   &__descr {
     font-size: 22px;
@@ -134,16 +133,22 @@
   &-button {
     &-next,
     &-prev {
-      transition: 250ms color;
-      &:active {
-        color: black;
+      background-color: #f5f5f5;
+      padding: 22px;
+      border-radius: 50%;
+      &:hover {
+        background-color: #ebe3e3;
+      }
+      &::after {
+        font-size: 18px;
+        font-weight: 900;
       }
     }
     &-disable {
       display: none;
     }
   }
-  --swiper-navigation-color: red;
+  --swiper-navigation-color: rgba(0, 0, 0, 0.879);
   --swiper-navigation-size: 25px;
   --swiper-navigation-sides-offset: 0px;
 }

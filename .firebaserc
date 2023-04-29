@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-store-daaa7": {
+      "hosting": {
+        "angular-store": [
+          "angular-store-daaa7"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-store-daaa7"
+  }
+}

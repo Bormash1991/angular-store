@@ -43,28 +43,28 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     });
   }
   redirect() {
-    this.authService
-      .registration<{ token: string }>(this.form.getRawValue())
-      .subscribe({
-        next: (response) => {
-          this.authService.setAuthToken(response.token);
-          this.router.navigateByUrl('');
-          this.errorMessages = {};
-        },
-        error: (error) => {
-          if (error.status === 401) {
-            this.form.patchValue({ email: '', password: '' });
-          } else if (error.status === 400) {
-            error.error.forEach((error: string) => {
-              const name = error.split(' - ')[0],
-                text = error.split(' - ')[1];
-              this.errorMessages[name] = text;
-            });
-          } else {
-            throwError(() => error);
-          }
-        },
-      });
+    // this.authService
+    //   .registration<{ token: string }>(this.form.getRawValue())
+    //   .subscribe({
+    //     next: (response) => {
+    //       this.authService.setAuthToken(response.token);
+    //       this.router.navigateByUrl('');
+    //       this.errorMessages = {};
+    //     },
+    //     error: (error) => {
+    //       if (error.status === 401) {
+    //         this.form.patchValue({ email: '', password: '' });
+    //       } else if (error.status === 400) {
+    //         error.error.forEach((error: string) => {
+    //           const name = error.split(' - ')[0],
+    //             text = error.split(' - ')[1];
+    //           this.errorMessages[name] = text;
+    //         });
+    //       } else {
+    //         throwError(() => error);
+    //       }
+    //     },
+    //   });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

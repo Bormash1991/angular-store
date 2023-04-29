@@ -1,5 +1,6 @@
 .products {
   padding-top: 35px;
+
   &__container {
     padding-bottom: 30px;
   }
@@ -9,10 +10,7 @@
     color: #1f242a;
   }
   &__spinner {
-    padding: 240px 0 170px 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+
   }
   &__box {
     margin-top: 50px;

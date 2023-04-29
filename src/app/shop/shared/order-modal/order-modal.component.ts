@@ -86,22 +86,22 @@ export class OrderModalComponent implements OnInit {
     ) {
     } else {
       this.ordersService
-        .create<TypeOfOrder>({
-          ...this.form.getRawValue(),
-          products: this.products,
-        })
-        .subscribe({
-          next: () => {
-            let { name, phone } = this.form.getRawValue();
-            if (this.checked) {
-              this.localStorageService.setData('name', name);
-              this.localStorageService.setData('phone', phone);
-            }
-            this.dialog.open(ThanksModalComponent, {});
-            this.addCartItemService.deleteAllData();
-          },
-          error: () => {},
-        });
+        // .create<TypeOfOrder>({
+        //   ...this.form.getRawValue(),
+        //   products: this.products,
+        // })
+        // .subscribe({
+        //   next: () => {
+        //     let { name, phone } = this.form.getRawValue();
+        //     if (this.checked) {
+        //       this.localStorageService.setData('name', name);
+        //       this.localStorageService.setData('phone', phone);
+        //     }
+        //     this.dialog.open(ThanksModalComponent, {});
+        //     this.addCartItemService.deleteAllData();
+        //   },
+        //   error: () => {},
+        // });
       this.dialogRef.close();
     }
   }

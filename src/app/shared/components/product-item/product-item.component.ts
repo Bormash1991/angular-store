@@ -17,7 +17,6 @@ import {
 import { AddCartItemService } from '../../services/add-cart-item.service';
 import { Router } from '@angular/router';
 import Swiper, { Navigation, Pagination } from 'swiper';
-import { API_PATH } from '../../services/base-http.service';
 
 @Component({
   selector: 'app-product-item',
@@ -33,7 +32,7 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() buttonClass: string = 'btn_products';
   @ViewChild('swiper') sliderRef: ElementRef<HTMLElement>;
   swiper: Swiper;
-  path = API_PATH;
+
   rewiesQuantity: string = '';
   ratingNumber: number = 0;
   constructor(
@@ -52,17 +51,19 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges {
     );
   }
   ngOnChanges() {
-    this.ratingNumber =
-      this.productDate.comments.reduce((acc, next) => {
-        return (acc += +next.stars);
-      }, 0) / this.productDate.comments.length;
-    this.rewiesQuantity =
-      this.productDate.comments.length == 1
-        ? this.productDate.comments.length + ' відгук'
-        : this.productDate.comments.length > 1 &&
-          this.productDate.comments.length < 5
-        ? this.productDate.comments.length + ' відгуки'
-        : this.productDate.comments.length + ' відгуків';
+    // if (this.productDate.comments) {
+    //   this.ratingNumber =
+    //     this.productDate.comments.reduce((acc, next) => {
+    //       return (acc += +next.stars);
+    //     }, 0) / this.productDate.comments.length;
+    //   this.rewiesQuantity =
+    //     this.productDate.comments.length == 1
+    //       ? this.productDate.comments.length + ' відгук'
+    //       : this.productDate.comments.length > 1 &&
+    //         this.productDate.comments.length < 5
+    //       ? this.productDate.comments.length + ' відгуки'
+    //       : this.productDate.comments.length + ' відгуків';
+    // }
   }
   ngAfterViewInit() {
     this.swiper = new Swiper(this.sliderRef.nativeElement, {

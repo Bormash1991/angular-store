@@ -1,1 +1,6 @@
-<p>characteristics works!</p>
+<div class="characteristics">
+  <div *ngIf="loading$ | async" class="comments__spinner">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="container">11</div>
+</div>

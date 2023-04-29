@@ -19,32 +19,31 @@ export class FooterComponent implements OnInit {
   canShowAdmin = false;
   hover = 'show';
   ngOnInit(): void {
-    const username = this.authService.getdecodeToken().username;
-    if (username !== 'none') {
-      this.text = `Hello, ${username}`;
-      if (this.authService.getdecodeToken().role == 'ADMIN') {
-        this.canShowAdmin = true;
-      }
-    }
+    // const username = this.authService.getdecodeToken().username;
+    // if (username !== 'none') {
+    //   this.text = `Hello, ${username}`;
+    //    if (this.authService.getdecodeToken().role == 'ADMIN') {
+    //      this.canShowAdmin = true;
+    //    }
+    // }
   }
   logOut() {
     this.localStorageService.deleteData('token');
-    window.location.reload();
+    this.router.navigate(['/login']);
   }
   showPopupOrLogin(event: any) {
-    if (this.authService.getdecodeToken().username !== 'none') {
-      if (this.activePopup == true) {
-        this.activePopup = false;
-        this.hover = '';
-      } else {
-        this.hover = 'hide';
-        this.activePopup = true;
-      }
-
-      return;
-    } else if (event.target.className != 'footer__popup_link') {
-      this.router.navigateByUrl('login');
-    }
+    // if (this.authService.getdecodeToken().username !== 'none') {
+    //   if (this.activePopup == true) {
+    //     this.activePopup = false;
+    //     this.hover = '';
+    //   } else {
+    //     this.hover = 'hide';
+    //     this.activePopup = true;
+    //   }
+    //   return;
+    // } else if (event.target.className != 'footer__popup_link') {
+    //   this.router.navigateByUrl('login');
+    // }
   }
   popupClose() {
     this.activePopup = false;

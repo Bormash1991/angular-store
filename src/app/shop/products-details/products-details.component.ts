@@ -1,5 +1,4 @@
 import { Comments } from './../../models/TypeOfProduct.inteface';
-import { API_PATH } from './../../shared/services/base-http.service';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ import {
   NavigationEnd,
   EventType,
 } from '@angular/router';
-import { ProductsService } from 'src/app/shop/products.service';
+import { ProductsService } from 'src/app/shared/services/products.service';
 import { BehaviorSubject, Subscription, filter, switchMap } from 'rxjs';
 import { UpdateInfService } from './shared/update-inf.service';
 @Component({
@@ -28,7 +27,7 @@ import { UpdateInfService } from './shared/update-inf.service';
 export class ProductsDetailsComponent implements OnInit, OnDestroy {
   productData: TypeOfProduct;
   subj: Subscription;
-  path = API_PATH;
+
   previousUrl = '';
   constructor(
     private UpdateInfService: UpdateInfService,
@@ -49,8 +48,8 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
     this.getData();
   }
   getData() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.productsService.getDataById<TypeOfProduct>(id).subscribe((data) => {
+    const id = this.route.snapshot.paramMap.get('id') as string;
+    this.productsService.getProductById(id).subscribe((data) => {
       if (data) {
         this.productData = data;
         this.UpdateInfService.setData(data);

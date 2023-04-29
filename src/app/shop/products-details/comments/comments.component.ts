@@ -5,6 +5,7 @@ import { Comments, TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCommentModalComponent } from '../add-comment-modal/add-comment-modal.component';
+import { UsersService } from 'src/app/shared/services/users.service';
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
@@ -18,13 +19,14 @@ export class CommentsComponent implements OnInit, OnDestroy {
   protected limit: number = 5;
   private productId: string;
   constructor(
-    private UpdateInfService: UpdateInfService,
+    private updateInfService: UpdateInfService,
     private filterService: FilterService<Comments>,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
-    this.UpdateInfService.getData().subscribe((data: TypeOfProduct) => {
+    this.updateInfService.getData().subscribe((data: TypeOfProduct) => {
       if (data) {
         this.productId = data.id;
         this.loading$.next(false);
@@ -35,6 +37,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
         this.commentsLength = data.comments.length;
       }
     });
+    this.usersService.getUser().subscribe((user) => console.log(user));
   }
   changePage(event: any) {
     let { items, pageIndex } = this.filterService.changePage(event);

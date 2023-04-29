@@ -20,14 +20,16 @@ export class TablesComponent {
         data: {
           name: item.name,
           price: item.price,
-          description: item.description,
           color: item.color,
           cssColor: item.cssColor,
           guarantee: item.guarantee,
+          quantity: item.quantity,
         },
+        description: item.description,
         id: item.id,
         images: item.images,
         otherIds: item.otherIds,
+        characteristics: item.characteristics,
       },
     });
   }

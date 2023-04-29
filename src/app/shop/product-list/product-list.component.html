@@ -1,26 +1,24 @@
-<main class="main">
-  <div class="products">
-    <div class="container products__container">
-      <h2 class="products__title">Products</h2>
-      <div *ngIf="loading$ | async" class="products__spinner">
-        <app-spinner></app-spinner>
-      </div>
-      <div class="products__box">
-        <app-product-item
-          *ngFor="let product of dataForView"
-          [productDate]="product"
-        ></app-product-item>
-      </div>
-      <mat-paginator
-        class="products__paginator"
-        *ngIf="dataLength > 8"
-        [pageIndex]="pageIndex"
-        [hidePageSize]="true"
-        [length]="dataLength"
-        (page)="changePage($event)"
-        [pageSize]="limit"
-      >
-      </mat-paginator>
+<main class="products">
+  <div class="container products__container">
+    <h2 class="products__title">Products</h2>
+    <div *ngIf="loading$ | async" class="products__spinner">
+      <app-spinner></app-spinner>
     </div>
+    <div class="products__box">
+      <app-product-item
+        *ngFor="let product of dataForView"
+        [productDate]="product"
+      ></app-product-item>
+    </div>
+    <mat-paginator
+      class="products__paginator"
+      *ngIf="dataLength > 8"
+      [pageIndex]="pageIndex"
+      [hidePageSize]="true"
+      [length]="dataLength"
+      (page)="changePage($event)"
+      [pageSize]="limit"
+    >
+    </mat-paginator>
   </div>
 </main>

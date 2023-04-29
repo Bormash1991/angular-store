@@ -26,20 +26,15 @@
             <div class="header__nav_text header__text">Products</div></a
           >
         </li>
-        <li (mouseenter)="hover()" (mouseleave)="leave()" (click)="click()">
+        <li >
           <a
             class="header__nav_item"
-            (click)="closeMenu()"
+           
             [routerLink]="['products/cart']"
             ><svg class="header__nav_img header__icon">
               <use href="assets/sprite.svg#icon-shopping-cart"></use>
             </svg>
-            <div class="header__nav_text header__text">Cart</div>
           </a>
-          <app-cart-modal
-            (mouse)="change($event)"
-            [className]="className"
-          ></app-cart-modal>
         </li>
         <li>
           <a

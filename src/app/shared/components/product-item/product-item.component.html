@@ -2,7 +2,7 @@
   <div class="swiper" #swiper>
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let item of productDate.images">
-        <img [src]="path + item" loading="lazy" />
+        <img [src]="item" loading="lazy" />
         <div class="swiper-lazy-preloader"></div>
       </div>
     </div>

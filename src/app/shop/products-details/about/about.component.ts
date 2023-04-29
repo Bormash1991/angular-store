@@ -9,9 +9,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription, filter, first, map } from 'rxjs';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
-import { API_PATH } from 'src/app/shared/services/base-http.service';
 import Swiper, { Navigation, Pagination, Thumbs } from 'swiper';
-import { ProductsService } from '../../products.service';
+import { ProductsService } from '../../../shared/services/products.service';
 import { UpdateInfService } from '../shared/update-inf.service';
 @Component({
   selector: 'app-about',
@@ -25,7 +24,6 @@ export class AboutComponent implements OnInit {
   dataSubj: Subscription;
   allData: TypeOfProduct[];
   loading$ = new BehaviorSubject<boolean>(true);
-  path = API_PATH;
   availabilityClass: string = '';
   availabilityText: string = '';
   otherColors: any[] = [];
@@ -85,7 +83,7 @@ export class AboutComponent implements OnInit {
         this.productData = data;
         this.loading$.next(false);
         this.setOtherColors(data);
-        if (data.quantity) {
+        if (+data.quantity) {
           this.availabilityText = 'Є в наявності';
           this.availabilityClass = 'is';
         } else {
@@ -105,17 +103,17 @@ export class AboutComponent implements OnInit {
     this.loading$.next(true);
   }
   setOtherColors(data: TypeOfProduct) {
-    data.otherIds.forEach((item) => {
-      this.productsService
-        .getDataById<TypeOfProduct>(item)
-        .subscribe((response) => {
-          this.otherColors.push({
-            color: response.color,
-            cssColor: response.cssColor,
-            id: response.id,
-          });
-        });
-    });
+    // data.otherIds.forEach((item) => {
+    //   this.productsService
+    //     .getDataById<TypeOfProduct>(item)
+    //     .subscribe((response) => {
+    //       this.otherColors.push({
+    //         color: response.color,
+    //         cssColor: response.cssColor,
+    //         id: response.id,
+    //       });
+    //     });
+    // });
   }
   setData(elem: TypeOfProduct) {
     this.addCartItemService.setData(elem);

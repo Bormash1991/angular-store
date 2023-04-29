@@ -8,7 +8,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, catchError, map, of } from 'rxjs';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../../shared/services/products.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,19 +18,8 @@ export class DetailsGuard implements CanActivate {
     private router: Router,
     private productsService: ProductsService
   ) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.paramMap.get('id');
-    return this.productsService.getDataById<TypeOfProduct>(id).pipe(
-      map(() => {
-        return true;
-      }),
-      catchError((error) => {
-        this.router.navigateByUrl('/404');
-        return of(false);
-      })
-    );
+    return true;
   }
 }

@@ -1,8 +1,14 @@
 .wrapper {
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
+  &__header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
   &__main {
+    height: inherit;
     flex: 1 1 auto;
   }
 }

@@ -32,27 +32,27 @@ export class UsersModalComponent {
     }
   }
   showData() {
-    if (this.titleText == 'Add User') {
-      this.usersService
-        .create({
-          ...this.form.getRawValue(),
-        })
-        .subscribe({
-          next: (response) => {
-            window.location.reload();
-          },
-          error: (error) => {},
-        });
-    } else {
-      this.usersService
-        .update(this.data.id, { ...this.form.getRawValue() })
-        .subscribe({
-          next: (response) => {
-            window.location.reload();
-          },
-          error: (error) => {},
-        });
-    }
+    // if (this.titleText == 'Add User') {
+    //   this.usersService
+    //     .create({
+    //       ...this.form.getRawValue(),
+    //     })
+    //     .subscribe({
+    //       next: (response) => {
+    //         window.location.reload();
+    //       },
+    //       error: (error) => {},
+    //     });
+    // } else {
+    //   this.usersService
+    //     .update(this.data.id, { ...this.form.getRawValue() })
+    //     .subscribe({
+    //       next: (response) => {
+    //         window.location.reload();
+    //       },
+    //       error: (error) => {},
+    //     });
+    // }
     console.log(this.form.getRawValue());
     this.dialogRef.close();
   }

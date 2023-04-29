@@ -1,33 +1,72 @@
 <h1 class="modal__title" mat-dialog-title>{{ titleText }}</h1>
 <div class="modal" mat-dialog-content>
   <form class="modal__box" [formGroup]="form">
-    <mat-form-field *ngFor="let field of keys">
-      <mat-label>{{ field }}</mat-label>
-      <input [formControlName]="field" matInput />
-    </mat-form-field>
-    <div formArrayName="otherIds">
-      Id товарів з іншим кольором
-      <div *ngFor="let item of controls; let i = index">
-        <div [formGroupName]="i">
-          <div class="modal__array_title">id №{{ i + 1 }}</div>
-          <mat-form-field>
-            <mat-label>id</mat-label>
-            <input formControlName="id" matInput />
-          </mat-form-field>
+    <div class="modal__box_grid">
+      <mat-form-field *ngFor="let field of keys">
+        <mat-label>{{ field }}</mat-label>
+        <input [formControlName]="field" matInput />
+      </mat-form-field>
+    </div>
+
+    <quill-editor
+      formControlName="description"
+      class="modal__editor"
+      [modules]="modules"
+    ></quill-editor>
+
+    <div class="modal__array">
+      <div formArrayName="otherIds">
+        <div class="modal__box_title">
+          Id товарів з іншим кольором <button (click)="addIdLabel()">+</button>
+        </div>
+        <div
+          class="modal__box_ids"
+          *ngFor="let item of controlsIds; let i = index"
+        >
+          <div [formGroupName]="i">
+            <div class="modal__array_box">
+              <mat-form-field class="modal__array_input">
+                <mat-label>id</mat-label>
+                <input formControlName="id" matInput />
+              </mat-form-field>
+              <button class="modal__array_delete" (click)="deleteIdInput(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <button (click)="addLabel()">+</button>
+      <div formArrayName="characteristics">
+        <div class="modal__box_title">
+          Характеристики, приклад заповнення(екран - 12 дюймів)
+          <button>+</button>
+        </div>
+        <div
+          class="modal__box_ids"
+          *ngFor="let item of controlsChar; let i = index"
+        >
+          <div [formGroupName]="i">
+            <div class="modal__array_box">
+              <mat-form-field class="modal__array_input">
+                <mat-label>characteristics</mat-label>
+                <input formControlName="char" matInput />
+              </mat-form-field>
+              <button class="modal__array_delete" (click)="deleteCharInput(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <input type="file" multiple (change)="upload($event)" />
+    <input type="file" class="modal__file" multiple (change)="upload($event)" />
 
     <div class="modal__label" *ngIf="showLabel">Incorect price</div>
   </form>
-  <div class="modal__imgs" *ngIf="titleText == 'Edit Product'">
-    <div class="modal__img_container" *ngFor="let src of images">
-      <img [src]="path + src" class="modal__img" />
-      <button class="modal__img_delete" (click)="addToDeleteImages(src)">
-        ×
-      </button>
+  <div class="modal__imgs">
+    <div class="modal__img_container" *ngFor="let src of img">
+      <img [src]="src" class="modal__img" />
+      <button class="modal__img_delete" (click)="deleteImg(src)">×</button>
     </div>
   </div>
 </div>

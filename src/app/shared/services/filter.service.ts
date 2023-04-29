@@ -19,6 +19,7 @@ export class FilterService<T> {
     this.productsLength = data.length;
     this.num = num;
     this.firstPage();
+    this.pageIndex = 0;
     return this.products;
   }
   changeData(
