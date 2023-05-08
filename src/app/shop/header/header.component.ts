@@ -1,42 +1,57 @@
-import { Component, HostListener, Renderer2 } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  OnInit,
+  Output,
+  Renderer2,
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CartModalComponent } from '../cart-modal/cart-modal.component';
+import { SideBarService } from '../shared/services/side-bar.service';
+import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
+import { ChangeCatalogueStateService } from 'src/app/shop/shared/services/change-catalogue-state.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  productsLenght: number;
   public className: string = 'hide';
   activeClass: string = '';
-  constructor(private router: Router, private renderer: Renderer2) {}
-  change(name: string) {
-    this.className = name;
+  showCatalogue: boolean = false;
+  constructor(
+    public dialog: MatDialog,
+    private sideBarService: SideBarService,
+    private addCartItemService: AddCartItemService,
+    private changeCatalogueStateService: ChangeCatalogueStateService
+  ) {}
+  ngOnInit(): void {
+    this.addCartItemService.productsSubj$.subscribe(
+      (products) =>
+        (this.productsLenght = products.reduce(
+          (acc, item) => (acc += item.counter),
+          0
+        ))
+    );
+    this.changeCatalogueStateService.getCatalogueState().subscribe((value) => {
+      this.showCatalogue = value;
+    });
   }
-  hover(): void {
-    if (window.outerWidth > 1024) {
-      this.className = 'show';
-      if (this.router.url == '/products/cart') {
-        this.className = 'hide';
-      }
+  changeCatalogueState() {
+    if (this.showCatalogue) {
+      this.showCatalogue = false;
+    } else {
+      this.showCatalogue = true;
     }
+    this.changeCatalogueStateService.setCatalogueState(this.showCatalogue);
   }
-
   openMenu() {
-    this.activeClass = 'header__nav_active';
-
-    this.renderer.addClass(document.documentElement, 'scroll-block');
+    this.sideBarService.setSidebarStatus(true);
   }
-  closeMenu() {
-    this.activeClass = '';
-
-    this.renderer.removeClass(document.documentElement, 'scroll-block');
-  }
-  leave() {
-    this.className = 'hide';
-  }
-  click() {
-    if (this.router.url == '/products/cart') {
-      this.className = 'hide';
-    }
+  openDialog() {
+    this.dialog.open(CartModalComponent);
   }
 }

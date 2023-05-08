@@ -1,0 +1,37 @@
+.chars {
+  padding: 20px 0;
+  &__box {
+    margin-top: 60px;
+    width: 80%;
+    &:first-child {
+      margin-top: 0;
+    }
+    &_item {
+      display: grid;
+      grid-template-columns: 40% auto;
+      gap: 15px;
+      margin-top: 15px;
+    }
+  }
+  &__title {
+    margin-bottom: 30px;
+    font-size: 23px;
+  }
+  &__name {
+    span {
+      position: relative;
+      padding-right: 16px;
+      background-color: #fff;
+    }
+    position: relative;
+    &::before {
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+
+      width: 100%;
+      border-bottom: 1px dotted #d2d2d2;
+      content: "";
+    }
+  }
+}

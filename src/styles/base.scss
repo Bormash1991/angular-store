@@ -1,12 +1,33 @@
 * {
   box-sizing: border-box;
 }
-
+.mat-mdc-dialog-actions {
+  justify-content: space-around !important;
+}
+a:focus {
+  outline: none;
+}
 .scroll-block {
-  position: fixed;
   width: 100%;
   overflow-y: hidden;
 }
-.mat-mdc-dialog-actions {
-  justify-content: space-around !important;
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  opacity: 1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #929191c2;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-button {
+  background: #ffffff;
+  height: 2px;
 }

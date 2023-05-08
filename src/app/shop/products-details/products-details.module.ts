@@ -10,6 +10,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { AddCommentModalComponent } from './add-comment-modal/add-comment-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
+import { ShopModule } from '../shop.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { StarRatingModule } from 'angular-star-rating';
     FormsModule,
     ReactiveFormsModule,
     StarRatingModule.forRoot(),
+    
   ],
 })
 export class ProductsDetailsModule {}

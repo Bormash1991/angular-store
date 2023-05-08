@@ -10,11 +10,13 @@ import { ShopModule } from './shop/shop.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersModule } from './admin-panel/users/users.module';
 import { ProductsModule } from './admin-panel/products/products.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './login/login.module';
-import { AuthInterceptor } from './shared/services/auth-interceptor.interceptor';
 import { ErrorsModule } from './errors/errors.module';
 import { OrdersModule } from './admin-panel/orders/orders.module';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -32,13 +34,10 @@ import { OrdersModule } from './admin-panel/orders/orders.module';
     LoginModule,
     ErrorsModule,
     OrdersModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
   ],
   bootstrap: [AppComponent],
 })

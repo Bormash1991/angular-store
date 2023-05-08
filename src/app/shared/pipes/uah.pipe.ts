@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class UahPipe implements PipeTransform {
   transform(value: number): string {
-    return '₴' + value.toString();
+    return value.toString() + '₴';
   }
 }

@@ -39,29 +39,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
   redirect() {
-    this.authService
-      .logIn<{ token: string }>(this.form.getRawValue())
-      .subscribe({
-        next: (response) => {
-          this.authService.setAuthToken(response.token);
-          this.router.navigateByUrl('admin-panel');
-          this.textError = '';
-        },
-        error: (error) => {
-          if (error.status === 401) {
-            this.form.patchValue({ email: '', password: '' });
-            this.textError = error.error.message;
-          } else if (error.status === 400) {
-            error.error.forEach((error: string) => {
-              const name = error.split(' - ')[0],
-                text = error.split(' - ')[1];
-              this.errorMessages[name] = text;
-            });
-          } else {
-            throwError(() => error);
-          }
-        },
-      });
+    let { email, password } = this.form.getRawValue();
+    this.authService.login(email, password).then(() => {
+      this.router.navigateByUrl('');
+    });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

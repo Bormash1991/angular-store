@@ -17,9 +17,10 @@
       line-height: 1.28;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      cursor: pointer;
     }
     &_link {
       text-decoration: none;
@@ -28,7 +29,7 @@
   }
 }
 .swiper {
-  width: 250px;
+  width: 150px;
   height: 200px;
   &-slide {
     display: flex;

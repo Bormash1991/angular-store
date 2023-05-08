@@ -9,7 +9,7 @@
           <div class="swiper swiper-main" #swiper>
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let item of productData.images">
-                <img [src]="path + item" loading="lazy" />
+                <img [src]="item" loading="lazy" />
                 <div class="swiper-lazy-preloader"></div>
               </div>
             </div>
@@ -20,7 +20,7 @@
           <div class="swiper swiper-thumb">
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let item of productData.images">
-                <img [src]="path + item" loading="lazy" />
+                <img [src]="item" loading="lazy" />
                 <div class="swiper-lazy-preloader"></div>
               </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="about__colors_box">
               <a
                 class="about__item"
-                [routerLink]="['/products', productData.id]"
+                [routerLink]="['', productData.category, productData.id]"
                 routerLinkActive="about__item_active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 [style]="'background-color:' + productData.cssColor"
@@ -66,11 +66,11 @@
             <span>Гарантія.</span>{{ productData.guarantee }} Обмін/повернення
             товару впродовж 14 днів
           </div>
+          <div class="about__chars">{{ chars }}</div>
         </div>
       </div>
 
-      <div class="about__descr">{{ productData.description }}</div>
+      <div class="about__descr" [innerHTML]="productData.description"></div>
     </div>
   </div>
 </div>
-<!-- [routerLink]="['/products', productData.id]" -->

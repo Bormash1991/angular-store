@@ -1,9 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ProductsService } from '../../products.service';
+import { ProductsService } from '../../../shared/services/products.service';
 import { ErrorsObject } from 'src/app/models/errorMessages.interface';
 import { Subscription } from 'rxjs';
+import { UsersService } from 'src/app/shared/services/users.service';
+import { Comments } from 'src/app/models/TypeOfProduct.inteface';
 
 @Component({
   selector: 'app-add-comment-modal',
@@ -17,7 +19,8 @@ export class AddCommentModalComponent {
     public dialogRef: MatDialogRef<AddCommentModalComponent>,
     @Inject(MAT_DIALOG_DATA) public id: string,
     private fb: FormBuilder,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private usersService: UsersService
   ) {}
   form: FormGroup = this.fb.group({
     text: '',
@@ -37,19 +40,16 @@ export class AddCommentModalComponent {
     });
   }
   sendData() {
-    const data = this.form.getRawValue();
-    console.log(data);
-    this.productsService.update(this.id, data, 'comment/').subscribe({
-      next: (data) => {
-        window.location.reload();
-      },
-      error: (error) => {
-        error.error.forEach((error: string) => {
-          const name = error.split(' - ')[0],
-            text = error.split(' - ')[1];
-          this.errorMessages[name] = text;
-        });
-      },
+    const { text, stars } = this.form.getRawValue();
+    this.usersService.getUser().subscribe((user) => {
+      if (user) {
+        const comment: Comments = {
+          text,
+          stars,
+          userId: user.uid,
+        };
+        this.productsService.addComment(this.id, comment);
+      }
     });
   }
   ngOnDestroy() {

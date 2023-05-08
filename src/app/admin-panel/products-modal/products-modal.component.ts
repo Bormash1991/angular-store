@@ -1,10 +1,9 @@
-import { API_PATH } from './../../shared/services/base-http.service';
-import { ProductsService } from './../../shop/products.service';
+import { ProductsService } from '../../shared/services/products.service';
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CustomOption, QuillModules } from 'ngx-quill';
 import { Product } from 'src/app/models/TypeOfOrder.interface';
-import { FilesService } from 'src/app/shared/services/files.service';
 
 @Component({
   selector: 'app-products-modal',
@@ -15,26 +14,59 @@ export class ProductsModalComponent {
   public keys: string[] = Object.keys(this.data.data);
   public className: string;
   public titleText: string;
-  private formData = new FormData();
-  path = API_PATH;
   showLabel: boolean = false;
-  deleteImagesPath: string[] = [];
-  images = [...this.data.images];
+  imgForUpd: string[] = [];
+  files: File[] = [];
+  img: (string | ArrayBuffer | null)[] = [];
   constructor(
     public dialogRef: MatDialogRef<ProductsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private productsService: ProductsService
   ) {}
+  modules: QuillModules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+
+      [{ header: 1 }, { header: 2 }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ indent: '-1' }, { indent: '+1' }],
+
+      [{ size: ['small', false, 'large', 'huge'] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ color: [] }, { background: [] }],
+      [{ align: [] }],
+
+      ['clean'],
+
+      ['link'],
+    ],
+  };
+
   form: FormGroup = this.fb.group({
     ...this.data.data,
+    description: this.data.description,
     otherIds: this.fb.array([]),
+    characteristics: this.fb.array([]),
   });
-  get controls() {
+  get controlsIds() {
     return (this.form.get('otherIds') as FormArray).controls;
+  }
+  get controlsChar() {
+    return (this.form.get('characteristics') as FormArray).controls;
+  }
+  getCharacteristics(index: number) {
+    return this.controlsChar[index].get('chars') as FormArray;
   }
   closeDialog() {
     this.dialogRef.close();
+  }
+  deleteIdInput(i: number) {
+    (this.form.get('otherIds') as FormArray).removeAt(i);
+  }
+  deleteCharInput(i: number) {
+    (this.form.get('characteristics') as FormArray).removeAt(i);
   }
   ngOnInit() {
     if (this.data.id) {
@@ -42,75 +74,121 @@ export class ProductsModalComponent {
     } else {
       this.titleText = 'Add Product';
     }
-    this.initProducts();
+    this.initIds();
+    this.data.characteristics.forEach((item: [string, string[]]) => {
+      this.initChars(item);
+    });
+    this.img = [...this.data.images];
+    this.imgForUpd = [...this.data.images];
   }
-  addLabel() {
-    const products = this.form.get('otherIds') as FormArray;
-    products.push(this.initProduct(''));
+  createCharsGroup(): FormGroup {
+    return this.fb.group({
+      title: '',
+      chars: this.fb.array([]),
+    });
   }
-  initProducts() {
+  addCharGroup() {
+    const chars = this.form.get('characteristics') as FormArray;
+    chars.push(this.createCharsGroup());
+  }
+  addIdLabel() {
+    const ids = this.form.get('otherIds') as FormArray;
+    ids.push(this.initId(''));
+  }
+
+  deleteCharLabel(i: number, j: number) {
+    const chars = this.form.get('characteristics') as FormArray;
+    (chars.controls[i].get('chars') as FormArray).removeAt(j);
+  }
+
+  addCharLabel(i: number) {
+    const chars = this.form.get('characteristics') as FormArray;
+    (chars.controls[i].get('chars') as FormArray).push(this.initChar(''));
+  }
+  initChars(data: any) {
+    const newFormGroup = this.createCharsGroup();
+    const title = newFormGroup.get('title') as FormArray;
+    title.patchValue(data.title);
+    const chars = newFormGroup.get('chars') as FormArray;
+    if (data.chars) {
+      data.chars.forEach((item: string[]) => chars.push(this.initChar(item)));
+    }
+    const characteristics = this.form.get('characteristics') as FormArray;
+    characteristics.push(newFormGroup);
+  }
+
+  initChar(item: any) {
+    return this.fb.group({
+      char: item,
+    });
+  }
+  initIds() {
     const products = this.form.get('otherIds') as FormArray;
-    this.data.otherIds.forEach((item: Product) =>
-      products.push(this.initProduct(item))
+    this.data.otherIds.forEach((item: { id: string }) =>
+      products.push(this.initId(item))
     );
   }
-  initProduct(id: any): FormGroup {
-    return this.fb.group({
-      id: [id],
-    });
+  initId(id: any): FormGroup {
+    return this.fb.group({ id: id });
   }
   upload(event: any) {
-    [...event.target.files].forEach((item: File) => {
-      this.formData.append('files', item, item.name);
-    });
-  }
-  addToDeleteImages(id: string) {
-    this.deleteImagesPath.push(id);
-
-    this.images.forEach((item: string, i: number) => {
-      if (item == id) {
-        this.images.splice(i, 1);
+    if (event.target.files) {
+      const files = event.target.files;
+      for (const file of files) {
+        this.files.push(file);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e: any) => {
+          this.img.push(e.target.result);
+        };
       }
+    }
+  }
+  deleteImg(src: string | ArrayBuffer | null) {
+    const imgIndex = this.img.indexOf(src);
+    const imgUpdIndex = this.img.indexOf(src);
+    this.img.splice(imgIndex, 1);
+    this.files.splice(imgIndex - this.imgForUpd.length - 1, 1);
+    if (imgUpdIndex) {
+      this.imgForUpd.splice(imgUpdIndex, 1);
+    }
+  }
+  transformIds(value: { id: string }[]) {
+    const idsArr = [];
+    for (const val of Object.values(value)) {
+      idsArr.push(val.id);
+    }
+    return idsArr;
+  }
+  transformChar(value: any[]) {
+    return value.map((item) => {
+      if (item.chars.length) {
+        const chars = item.chars.map((char: any) => {
+          return char.char;
+        });
+        return { title: item.title, chars };
+      }
+      return { title: item.title };
     });
   }
   showData() {
-    let keys = Object.keys(this.form.getRawValue());
-    let value = this.form.getRawValue();
-
-    for (let item of keys) {
-      if (item == 'otherIds') {
-        const id = value.otherIds.map((item: any) => item.id);
-        if (!value['otherIds'][0].id) {
-          this.formData.append('otherIds', JSON.stringify([]));
-        } else {
-          this.formData.append('otherIds', JSON.stringify(id));
-        }
-        continue;
-      }
-      this.formData.append(`${item}`, value[item]);
-    }
+    let date = {
+      ...this.form.getRawValue(),
+      otherIds: this.transformIds(this.form.getRawValue().otherIds),
+      characteristics: this.transformChar(
+        this.form.getRawValue().characteristics
+      ),
+    };
 
     if (this.titleText == 'Add Product') {
-      this.productsService.create(this.formData).subscribe({
-        next: (response) => {
-          window.location.reload();
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+      this.productsService.setProduct(date, this.files);
     } else {
-      this.formData.append('oldImages', JSON.stringify(this.images));
-      this.formData.append(
-        'deletedImages',
-        JSON.stringify(this.deleteImagesPath)
+      this.productsService.updateProduct(
+        this.data.id,
+        date,
+        this.imgForUpd,
+        this.files
       );
-      this.productsService.update(this.data.id, this.formData).subscribe({
-        next: (response) => {
-          window.location.reload();
-        },
-        error: (error) => {},
-      });
     }
     this.dialogRef.close();
   }

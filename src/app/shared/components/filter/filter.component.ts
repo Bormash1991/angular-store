@@ -52,15 +52,16 @@ export class FilterComponent implements AfterViewInit {
           data: {
             name: '',
             price: '',
-            description: '',
             quantity: '',
             color: '',
             cssColor: '',
             guarantee: '',
           },
+          description: '',
           id: '',
           images: [],
           otherIds: [''],
+          characteristics: [''],
         },
       });
     } else if (this.param == 'users') {

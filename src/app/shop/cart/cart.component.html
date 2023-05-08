@@ -18,8 +18,8 @@
     </div>
 
     <div class="cart__footer" *ngIf="data.length">
-      <div class="cart__total">Total: {{ totalSum }}</div>
-      <app-total-btn [additianalClass]="'btn__cart'"></app-total-btn>
+      <div class="cart__total">{{ totalSum | uah }}</div>
+      <app-total-btn></app-total-btn>
     </div>
   </div>
 </div>

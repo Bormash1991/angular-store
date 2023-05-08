@@ -1,11 +1,30 @@
 .footer {
   display: none;
+  padding: 40px;
+  padding-bottom: 20px;
+  &__socials {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  &__social {
+    display: block;
+    height: 100%;
+  }
+  &__bottom {
+    margin-top: 15px;
+    border-top: 1px solid #d2d2d2;
+    text-align: center;
+    padding-top: 10px;
+  }
 }
 @media (min-width: 768px) {
   .footer {
     display: block;
-    padding-bottom: 50px;
-
+    padding: 50px 0;
+    padding-bottom: 20px;
     &__btn {
       position: relative;
       display: block;

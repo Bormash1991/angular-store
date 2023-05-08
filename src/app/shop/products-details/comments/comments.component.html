@@ -1,9 +1,9 @@
 <div class="comments">
+  <div *ngIf="loading$ | async" class="comments__spinner">
+    <app-spinner></app-spinner>
+  </div>
   <div class="container">
-    <div *ngIf="loading$ | async" class="about__spinner">
-      <app-spinner></app-spinner>
-    </div>
-    <div class="comments__add">
+    <div class="comments__add" *ngIf="!(loading$ | async)">
       <span class="comments__add_text">Залиште свій відгук про товар </span>
       <btn
         [class]="'btn btn_comments'"

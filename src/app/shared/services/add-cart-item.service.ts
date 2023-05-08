@@ -2,6 +2,7 @@ import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './localstorage.service';
 import { BehaviorSubject, Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })

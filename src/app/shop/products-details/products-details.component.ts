@@ -1,5 +1,4 @@
 import { Comments } from './../../models/TypeOfProduct.inteface';
-import { API_PATH } from './../../shared/services/base-http.service';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,6 +8,8 @@ import {
   OnChanges,
   ElementRef,
   ChangeDetectorRef,
+  SimpleChanges,
+  AfterViewInit,
 } from '@angular/core';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import {
@@ -17,8 +18,15 @@ import {
   NavigationEnd,
   EventType,
 } from '@angular/router';
-import { ProductsService } from 'src/app/shop/products.service';
-import { BehaviorSubject, Subscription, filter, switchMap } from 'rxjs';
+import { ProductsService } from 'src/app/shared/services/products.service';
+import {
+  BehaviorSubject,
+  Subscription,
+  filter,
+  map,
+  switchMap,
+  take,
+} from 'rxjs';
 import { UpdateInfService } from './shared/update-inf.service';
 @Component({
   selector: 'app-products-details',
@@ -28,8 +36,8 @@ import { UpdateInfService } from './shared/update-inf.service';
 export class ProductsDetailsComponent implements OnInit, OnDestroy {
   productData: TypeOfProduct;
   subj: Subscription;
-  path = API_PATH;
   previousUrl = '';
+  categoryName: string;
   constructor(
     private UpdateInfService: UpdateInfService,
     private router: Router,
@@ -47,10 +55,13 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
         }
       });
     this.getData();
+    const url = this.router.url;
+    this.categoryName = url.split('/')[1];
+    console.log(this.categoryName);
   }
   getData() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.productsService.getDataById<TypeOfProduct>(id).subscribe((data) => {
+    const id = this.route.snapshot.paramMap.get('id') as string;
+    this.productsService.getProductById(id).subscribe((data) => {
       if (data) {
         this.productData = data;
         this.UpdateInfService.setData(data);

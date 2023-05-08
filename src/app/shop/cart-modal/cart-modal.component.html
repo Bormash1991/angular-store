@@ -1,13 +1,23 @@
-<div [className]="'modal ' + className">
+<h1 class="modal__title" mat-dialog-title>
+  <div class="modal__container_title">
+    Кошик
+    <btn [text]="'×'" [class]="' btn_close'" (click)="closeModal()">×</btn>
+  </div>
+</h1>
+<div class="modal" mat-dialog-content>
   <ng-container *ngIf="!data.length">
-    <div class="modal__empty">Your shopping cart is empty!</div>
+    <div class="modal__empty">Ваш кошик пустий!</div>
   </ng-container>
   <div class="modal__container">
     <ul class="modal__list">
       <li *ngFor="let prod of data" class="modal__item">
-        <a [routerLink]="['products', prod.id]" class="modal__link_box">
+        <a
+          (click)="closeModal()"
+          [routerLink]="['', prod.category, prod.id]"
+          class="modal__link_box"
+        >
           <div class="modal__img_box">
-            <img class="modal__img" [src]="path + prod.images[0]" alt="" />
+            <img class="modal__img" [src]="prod.images[0]" alt="" />
           </div>
           <div class="modal__inf">
             <div class="modal__name">{{ prod.name }}</div>
@@ -28,9 +38,38 @@
         ></btn>
       </li>
     </ul>
-    <div class="modal__footer" *ngIf="data.length">
-      <div class="modal__total">Total: {{ totalSum }}</div>
-      <app-total-btn></app-total-btn>
+
+    <form class="modal__order" *ngIf="openOrder" [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input formControlName="phone" type="tel" matInput />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>message</mat-label>
+        <input formControlName="message" type="text" matInput />
+      </mat-form-field>
+
+      <div class="modal__order_box">
+        <div class="modal__total">{{ totalSum | uah }}</div>
+        <btn text="Підтвердити замовлення" class="btn btn_order"></btn>
+      </div>
+    </form>
+
+    <div class="modal__footer" *ngIf="data.length && !openOrder">
+      <div class="modal__total">{{ totalSum | uah }}</div>
+      <btn
+        text="Оформити замовлення"
+        class="btn btn_order"
+        (click)="openOrderMenu()"
+      ></btn>
     </div>
   </div>
 </div>
+<!-- <div mat-dialog-actions>
+  <button class="modal__btn" mat-button cdkFocusInitial>Cancel</button>
+  <button class="modal__btn" mat-button cdkFocusInitial>OK</button>
+</div> -->

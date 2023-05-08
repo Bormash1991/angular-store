@@ -1,5 +1,11 @@
 .comments {
   padding-bottom: 40px;
+  .container {
+    width: 70%;
+  }
+  &__spinner {
+    // margin-top: 150px;
+  }
   &__list {
     display: flex;
     flex-direction: column;
@@ -10,7 +16,7 @@
     border: 1px solid #e9e9e9;
     border-radius: 5px;
     max-height: 400px;
-    width: 80%;
+
     &_username {
       padding: 15px 25px;
       border-bottom: 1px solid #e9e9e9;
@@ -36,7 +42,7 @@
     justify-content: space-between;
     border: 1px solid #e9e9e9;
     border-radius: 5px;
-    width: 80%;
+
     margin-top: 50px;
     &_text {
       font-size: 18px;

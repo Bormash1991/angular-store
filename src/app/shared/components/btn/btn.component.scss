@@ -28,6 +28,22 @@
       background-color: #509179d1;
     }
   }
+
+  &_order {
+    padding: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: #00a046;
+    border: none;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 5%);
+    transition: 250ms background-color;
+    &:hover {
+      background-color: #04c256;
+    }
+  }
   &_about {
     padding: 15px 35px;
     background-color: #509179;
@@ -71,9 +87,9 @@
     justify-content: center;
     margin-top: 0px;
     padding: 0px;
-    width: 25px;
-    height: 25px;
-    font-size: 20px;
+    width: 28px;
+    height: 28px;
+    font-size: 23px;
     background-color: white;
     color: rgb(63, 62, 62);
     border: 1.5px solid rgba(146, 138, 138, 0.186);
@@ -81,11 +97,11 @@
   }
   &_minus {
     font-size: 22px;
-    line-height: 1;
   }
   &_delete {
     margin: 0 0 0 20px;
-    padding: 2px 0 0 0;
+    padding: 0;
+    padding-top: 2px;
     width: 25px;
     height: 25px;
     display: flex;
@@ -93,10 +109,33 @@
     justify-content: center;
     background-color: rgba(128, 128, 128, 0.464);
     color: white;
-    border-radius: 100%;
+    border-radius: 50%;
     border: none;
     font-size: 25px;
     font-weight: 500;
+  }
+  &_close {
+    margin: 0;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: 500;
+    &:hover {
+      color: red;
+    }
+    &-white {
+      padding: 0 4px 0 4px;
+      color: white;
+      transition: 250ms background-color;
+      border-radius: 5px;
+      &:hover {
+        color: white;
+        background-color: #a1beb387;
+      }
+    }
   }
   &_modal {
     display: block;
@@ -136,6 +175,12 @@
     &_plus,
     &_minus {
       padding: 0px;
+    }
+    &_plus {
+      padding-top: 2px;
+    }
+    &_minus {
+      padding-bottom: 2px;
     }
     &_modal {
       width: 120px;

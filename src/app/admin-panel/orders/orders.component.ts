@@ -26,16 +26,16 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private closeOrOpenBarService: CloseOrOpenBarService
   ) {}
   ngOnInit(): void {
-    this.ordersService.getData<TypeOfOrder[]>().subscribe({
-      next: (data) => {
-        if (data) {
-          this.loading$.next(false);
-          this.orders = this.filterService.setData(data, 5);
-          this.ordersLength = data.length;
-        }
-      },
-      error: (error) => {},
-    });
+    // this.ordersService.getData<TypeOfOrder[]>().subscribe({
+    //   next: (data) => {
+    //     if (data) {
+    //       this.loading$.next(false);
+    //       this.orders = this.filterService.setData(data, 5);
+    //       this.ordersLength = data.length;
+    //     }
+    //   },
+    //   error: (error) => {},
+    // });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
       this.changeData(elem, 'updatedAtOrders');
       if (elem.sortAs) {

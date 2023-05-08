@@ -6,7 +6,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { TypeOfProduct } from '../../models/TypeOfProduct.inteface';
-import { ProductsService } from '../../shop/products.service';
+import { ProductsService } from '../../shared/services/products.service';
 import { BehaviorSubject, Subscription, take } from 'rxjs';
 import { filterCongig } from '../../models/TypeOfFilterConfig.interface';
 import { ConfigService } from '../../shared/services/config.service';
@@ -42,18 +42,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-    this.dataSubj = this.productsService
-      .getData<[TypeOfProduct[], number]>()
-      .subscribe({
-        next: (data) => {
-          if (data) {
-            this.loading$.next(false);
-            this.products = this.filterService.setData(data[0], 5);
-            this.productsLength = data[1];
-          }
-        },
-        error: (error) => {},
-      });
+    this.dataSubj = this.productsService.getProducts().subscribe({
+      next: (data) => {
+        if (data.length) {
+          this.loading$.next(false);
+          this.products = this.filterService.setData(data, 5);
+          this.productsLength = data.length;
+          this.pageIndex = 0;
+        }
+      },
+      error: (error) => {},
+    });
     this.filterSubj = this.filterCongig.configuration$.subscribe((elem) => {
       this.changeData(elem, 'price');
       if (elem.sortAs) {
@@ -84,7 +83,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.filterSubj.unsubscribe();
-    this.dataSubj.unsubscribe();
+    // this.dataSubj.unsubscribe();
     this.filterCongig.setDefault();
   }
 }

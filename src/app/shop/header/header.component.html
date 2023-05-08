@@ -1,59 +1,36 @@
 <header class="header">
   <div class="header__container container">
-    <button class="header__hamburger" (click)="openMenu()">
-      <svg class="header__hamburger_img">
-        <use href="assets/sprite.svg#icon-menu"></use>
+    <div class="header__container_left">
+      <button class="header__hamburger" appCloseCatalogue (click)="openMenu()">
+        <svg class="header__hamburger_img">
+          <use href="assets/sprite.svg#icon-menu"></use>
+        </svg>
+      </button>
+      <a appCloseCatalogue class="header__logo" [routerLink]="['']">
+        <svg class="header__logo_img header__icon">
+          <use href="assets/sprite.svg#icon-shop"></use>
+        </svg>
+        <div class="header__logo_text header__text">Angular Store</div>
+      </a>
+      <div class="header__catalogue_container">
+        <button class="header__catalogue_btn" (click)="changeCatalogueState()">
+          <svg class="header__logo_img header__icon">
+            <use href="assets/sprite.svg#icon-catalogue"></use>
+          </svg>
+          <div class="header__text">Каталог</div>
+        </button>
+        <app-catalogue class="header__catalogue"></app-catalogue>
+      </div>
+    </div>
+    <a class="header__nav_item" (click)="openDialog()" appCloseCatalogue
+      ><svg class="header__nav_img header__icon">
+        <use href="assets/sprite.svg#icon-shopping-cart"></use>
       </svg>
-    </button>
-    <a href="#" class="header__logo" [routerLink]="['']">
-      <svg class="header__logo_img header__icon">
-        <use href="assets/sprite.svg#icon-shop"></use>
-      </svg>
-      <div class="header__logo_text header__text">Store</div>
+      <app-product-quantity
+        *ngIf="productsLenght"
+        class="header__nav_quantity"
+        [quantity]="productsLenght"
+      ></app-product-quantity>
     </a>
-    <nav [className]="'header__nav ' + activeClass">
-      <button class="header__close" (click)="closeMenu()">×</button>
-      <ul class="header__nav_list">
-        <li>
-          <a
-            class="header__nav_item"
-            (click)="closeMenu()"
-            [routerLink]="['products']"
-          >
-            <svg class="header__nav_img header__icon">
-              <use href="assets/sprite.svg#icon-catalogue"></use>
-            </svg>
-            <div class="header__nav_text header__text">Products</div></a
-          >
-        </li>
-        <li (mouseenter)="hover()" (mouseleave)="leave()" (click)="click()">
-          <a
-            class="header__nav_item"
-            (click)="closeMenu()"
-            [routerLink]="['products/cart']"
-            ><svg class="header__nav_img header__icon">
-              <use href="assets/sprite.svg#icon-shopping-cart"></use>
-            </svg>
-            <div class="header__nav_text header__text">Cart</div>
-          </a>
-          <app-cart-modal
-            (mouse)="change($event)"
-            [className]="className"
-          ></app-cart-modal>
-        </li>
-        <li>
-          <a
-            (click)="closeMenu()"
-            class="header__nav_item header__btn"
-            routerLink="login"
-          >
-            <div class="header__btn_text">Admin</div>
-            <svg class="header__btn_img">
-              <use href="assets/sprite.svg#icon-right-arrow"></use>
-            </svg>
-          </a>
-        </li>
-      </ul>
-    </nav>
   </div>
 </header>

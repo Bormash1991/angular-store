@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UahPipe } from './pipes/uah.pipe';
-import { PriceHighlightDirective } from './directives/price-highlight.directive';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { BtnComponent } from './components/btn/btn.component';
 import { RouterModule } from '@angular/router';
@@ -13,10 +12,10 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
 import { StarRatingModule } from 'angular-star-rating';
 import { RatingComponent } from './components/rating/rating.component';
 import { MaterialModule } from '../material/material.module';
+import { CloseCatalogueDirective } from './directives/close-catalogue.directive';
 @NgModule({
   declarations: [
     UahPipe,
-    PriceHighlightDirective,
     ProductItemComponent,
     BtnComponent,
     TablesComponent,
@@ -25,6 +24,7 @@ import { MaterialModule } from '../material/material.module';
     UsersTablesComponent,
     OrderTableComponent,
     RatingComponent,
+    CloseCatalogueDirective,
   ],
   imports: [
     CommonModule,
@@ -34,7 +34,6 @@ import { MaterialModule } from '../material/material.module';
   ],
   exports: [
     UahPipe,
-    PriceHighlightDirective,
     ProductItemComponent,
     BtnComponent,
     TablesComponent,
@@ -43,6 +42,7 @@ import { MaterialModule } from '../material/material.module';
     UsersTablesComponent,
     OrderTableComponent,
     RatingComponent,
+    CloseCatalogueDirective,
   ],
 })
 export class SharedModule {}

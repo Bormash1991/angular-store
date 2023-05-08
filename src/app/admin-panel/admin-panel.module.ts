@@ -10,7 +10,7 @@ import { UsersModalComponent } from './users-modal/users-modal.component';
 import { ProductsModalComponent } from './products-modal/products-modal.component';
 import { OrdersModalComponent } from './orders-modal/orders-modal.component';
 import { MaterialModule } from '../material/material.module';
-
+import { QuillModule } from 'ngx-quill';
 @NgModule({
   declarations: [
     AdminPanelComponent,
@@ -27,6 +27,7 @@ import { MaterialModule } from '../material/material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    QuillModule.forRoot(),
   ],
 })
 export class AdminPanelModule {}
