@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TypeOfProduct } from '../../../models/TypeOfProduct.inteface';
+import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 @Component({
   selector: 'app-counter',
   templateUrl: './counter.component.html',

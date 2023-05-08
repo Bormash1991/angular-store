@@ -15,19 +15,14 @@ const routes: Routes = [
       {
         path: '',
         component: WelcomePageComponent,
+        pathMatch: 'full',
       },
       {
-        path: 'products',
-
+        path: ':id',
         component: ProductListComponent,
       },
       {
-        path: 'products/cart',
-
-        component: CartComponent,
-      },
-      {
-        path: 'products/:id',
+        path: ':id/:id',
         loadChildren: () =>
           import('./products-details/products-details.module').then(
             (m) => m.ProductsDetailsModule

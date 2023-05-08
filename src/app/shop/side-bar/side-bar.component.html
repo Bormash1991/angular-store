@@ -1,0 +1,78 @@
+<div [className]="'overlay ' + overlayClass" (click)="checkClose($event)">
+  <div [className]="'side-bar ' + sidebarClass">
+    <div class="side-bar__top">
+      <div class="side-bar__header">
+        <a class="side-bar__logo" [routerLink]="['']" (click)="closeMenu()">
+          <svg class="side-bar__logo_img">
+            <use href="assets/sprite.svg#icon-shop"></use>
+          </svg>
+          <div class="side-bar__logo_text">Angular Store</div>
+        </a>
+        <btn
+          text="×"
+          class="btn_close btn_close-white"
+          (click)="closeMenu()"
+        ></btn>
+      </div>
+      <div class="side-bar__user">
+        <div *ngIf="isUserLogIn; else notLogIn">
+          <!-- <p>Welcome, {{ userName }}!</p> -->
+        </div>
+
+        <ng-template #notLogIn>
+          <div class="side-bar__user-unlog">
+            <div class="side-bar__circule">
+              <svg class="side-bar__user-icon side-bar__icon">
+                <use href="assets/sprite.svg#icon-user"></use>
+              </svg>
+            </div>
+            <div class="side-bar__user-auth">
+              <a routerLink="/login" class="side-bar__user-link">Вхід</a>
+              |
+              <a routerLink="/registration" class="side-bar__user-link"
+                >Реєстрація</a
+              >
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <ul class="side-bar__main">
+      <li class="side-bar__item side-bar__item-border-bottom">
+        <a class="side-bar__link" (click)="openCalatogue()">
+          <div class="side-bar__circule side-bar__circule_light">
+            <svg class="side-bar__icon side-bar__icon_black">
+              <use href="assets/sprite.svg#icon-catalogue"></use>
+            </svg>
+          </div>
+          <div class="side-bar__link-text">Каталог товарів</div>
+        </a>
+      </li>
+      <li class="side-bar__item">
+        <a class="side-bar__link">
+          <div class="side-bar__circule side-bar__circule_light">
+            <svg class="side-bar__icon side-bar__icon_black">
+              <use href="assets/sprite.svg#icon-orders"></use>
+            </svg>
+          </div>
+          <div class="side-bar__link-text">Мої замовлення</div>
+        </a>
+      </li>
+      <li class="side-bar__item">
+        <a class="side-bar__link">
+          <div class="side-bar__circule side-bar__circule_light">
+            <svg class="side-bar__icon side-bar__icon_black">
+              <use href="assets/sprite.svg#icon-shopping-cart"></use>
+            </svg>
+          </div>
+          <div class="side-bar__link-text">Кошик</div>
+        </a>
+      </li>
+      <li class="side-bar__item side-bar__item-border-top">
+        <button class="side-bar__link side-bar__link-btn">
+          <div class="side-bar__link-text">Вийти з аккаунту</div>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

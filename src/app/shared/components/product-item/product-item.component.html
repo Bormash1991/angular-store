@@ -8,8 +8,11 @@
     </div>
     <div class="swiper-pagination"></div>
   </div>
-  <h4 class="products__item_title">
-    <a class="products__item_link" [routerLink]="['/products', productDate.id]">
+  <h4 class="products__item_title" (click)="redirect(productDate.id)">
+    <a
+      class="products__item_link"
+      [routerLink]="['', productDate.category, productDate.id]"
+    >
       {{ productDate.name }}</a
     >
   </h4>

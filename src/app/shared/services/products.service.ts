@@ -7,8 +7,7 @@ import {
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import * as uniqid from 'uniqid';
-import { map, switchMap } from 'rxjs';
-import { UsersService } from './users.service';
+import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,6 +19,32 @@ export class ProductsService {
   getProducts() {
     return this.db
       .list<TypeOfProductDb>(`products`)
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => {
+            return {
+              ...(c.payload.val() as TypeOfProductDb),
+              id: c.payload.key as string,
+              comments: this.transformData<Comments>(
+                (c.payload.val() as TypeOfProductDb).comments
+              ),
+              // otherIds: this.transformDataToArr<string>(
+              //   (c.payload.val() as TypeOfProductDb).otherIds
+              // ),
+              images: this.transformDataToArr<string>(
+                (c.payload.val() as TypeOfProductDb).images
+              ),
+            } as TypeOfProduct;
+          })
+        )
+      );
+  }
+  getProductsByCategory(category: string) {
+    return this.db
+      .list<TypeOfProductDb>(`products`, (ref) =>
+        ref.orderByChild('category').equalTo(category)
+      )
       .snapshotChanges()
       .pipe(
         map((changes) =>
@@ -133,23 +158,17 @@ export class ProductsService {
       })
       .then(() => {
         img.forEach((image, i) => {
-          this.db
-            .list(`products/${productId}/images`)
-            .push(image)
-            .then(() => {
-              if (i == img.length - 1) {
-                files.forEach((file) => {
-                  const id = uniqid();
-                  const filePath = `products/${product.name}/${id}`;
-                  const fileRef = this.storage.ref(filePath);
-                  this.storage.upload(filePath, file).then(() => {
-                    fileRef.getDownloadURL().subscribe((url) => {
-                      this.db.list(`products/${productId}/images`).push(url);
-                    });
-                  });
-                });
-              }
+          this.db.list(`products/${productId}/images`).push(image);
+        });
+        files.forEach((file) => {
+          const id = uniqid();
+          const filePath = `products/${product.name}/${id}`;
+          const fileRef = this.storage.ref(filePath);
+          this.storage.upload(filePath, file).then(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              this.db.list(`products/${productId}/images`).push(url);
             });
+          });
         });
       });
   }

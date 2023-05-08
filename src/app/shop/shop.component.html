@@ -1,7 +1,9 @@
 <div class="wrapper">
   <app-header class="wrapper__header"></app-header>
+  <app-side-bar></app-side-bar>
   <div class="wrapper__main">
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
+  <div [class]="'overlay ' + overlayClass" appCloseCatalogue></div>
 </div>

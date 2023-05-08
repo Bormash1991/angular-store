@@ -1,18 +1,17 @@
 * {
   box-sizing: border-box;
 }
-
+.mat-mdc-dialog-actions {
+  justify-content: space-around !important;
+}
 a:focus {
   outline: none;
 }
 .scroll-block {
-  position: fixed;
   width: 100%;
   overflow-y: hidden;
 }
-.mat-mdc-dialog-actions {
-  justify-content: space-around !important;
-}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -20,6 +19,7 @@ a:focus {
 
 ::-webkit-scrollbar-track {
   background: #ffffff;
+  opacity: 1;
 }
 
 ::-webkit-scrollbar-thumb {

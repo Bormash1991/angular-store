@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription, filter, first, map } from 'rxjs';
-import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
+import { Char, TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
 import Swiper, { Navigation, Pagination, Thumbs } from 'swiper';
 import { ProductsService } from '../../../shared/services/products.service';
@@ -27,6 +27,7 @@ export class AboutComponent implements OnInit {
   availabilityClass: string = '';
   availabilityText: string = '';
   otherColors: any[] = [];
+  chars: string = '';
   @ViewChild('swiper') set swiper(element: { nativeElement: HTMLElement }) {
     if (element) {
       const thumbSlider = new Swiper('.swiper-thumb', {
@@ -90,13 +91,25 @@ export class AboutComponent implements OnInit {
           this.availabilityText = 'Немає в наявності';
           this.availabilityClass = 'not';
         }
+        this.setChars(data.characteristics);
         this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
           this.check(n)
         );
       }
     });
   }
-
+  setChars(data: Char[]) {
+    data.forEach((item, i) => {
+      if (item.chars) {
+        item.chars.forEach((value, j) => {
+          this.chars += value.split('-')[1];
+          if (i !== data.length - 1 && j !== item.chars.length) {
+            this.chars += ' /';
+          }
+        });
+      }
+    });
+  }
   updateData(item: any) {
     this.router.navigate(['/products', item.id]);
     this.productData = false as any;
@@ -122,11 +135,11 @@ export class AboutComponent implements OnInit {
     for (let i = 0; i < elems.length; i++) {
       if (elems[i].id == this.productData.id) {
         this.productData = elems[i];
-        this.buttonText = 'In Cart';
+        this.buttonText = 'У кошику';
         return;
       }
     }
-    this.buttonText = 'Add to Cart';
+    this.buttonText = 'Купити';
   }
   ngOnDestroy() {
     this.subj.unsubscribe();

@@ -39,21 +39,43 @@
       <div formArrayName="characteristics">
         <div class="modal__box_title">
           Характеристики, приклад заповнення(екран - 12 дюймів)
-          <button>+</button>
+          <button (click)="addCharGroup()">+</button>
         </div>
         <div
           class="modal__box_ids"
           *ngFor="let item of controlsChar; let i = index"
+          [formGroupName]="i"
         >
-          <div [formGroupName]="i">
-            <div class="modal__array_box">
-              <mat-form-field class="modal__array_input">
-                <mat-label>characteristics</mat-label>
-                <input formControlName="char" matInput />
-              </mat-form-field>
-              <button class="modal__array_delete" (click)="deleteCharInput(i)">
-                <mat-icon>delete</mat-icon>
-              </button>
+          <div class="modal__array_box">
+            <mat-form-field class="modal__array_input">
+              <mat-label>Title</mat-label>
+              <input formControlName="title" matInput />
+            </mat-form-field>
+            <button (click)="addCharLabel(i)">+</button>
+            <button class="modal__array_delete" (click)="deleteCharInput(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div formArrayName="chars">
+            <div
+              *ngFor="
+                let characteristic of getCharacteristics(i).controls;
+                let j = index
+              "
+              [formGroupName]="j"
+            >
+              <div class="modal__array_box">
+                <mat-form-field class="modal__array_input">
+                  <mat-label>characteristic</mat-label>
+                  <input formControlName="char" matInput />
+                </mat-form-field>
+                <button
+                  class="modal__array_delete"
+                  (click)="deleteCharLabel(i, j)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </div>
           </div>
         </div>

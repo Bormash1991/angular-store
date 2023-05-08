@@ -1,0 +1,37 @@
+.catalogue {
+  background-color: white;
+  min-width: 300px;
+  border-radius: 5px;
+  z-index: 100;
+  position: absolute;
+  bottom: -100%;
+  display: none;
+  &__list {
+    padding: 10px 0;
+  }
+  &__link {
+    display: block;
+    padding: 4px 10px;
+    color: #3e77aa;
+    &:hover {
+      color: #f84147;
+      text-decoration: underline;
+      background-color: #fcfcee;
+    }
+  }
+}
+.showCatalogue {
+  display: block;
+  animation: showCatalogueA 0.5s forwards;
+}
+@keyframes showCatalogueA {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

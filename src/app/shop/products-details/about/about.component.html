@@ -34,7 +34,7 @@
             <div class="about__colors_box">
               <a
                 class="about__item"
-                [routerLink]="['/products', productData.id]"
+                [routerLink]="['', productData.category, productData.id]"
                 routerLinkActive="about__item_active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 [style]="'background-color:' + productData.cssColor"
@@ -66,6 +66,7 @@
             <span>Гарантія.</span>{{ productData.guarantee }} Обмін/повернення
             товару впродовж 14 днів
           </div>
+          <div class="about__chars">{{ chars }}</div>
         </div>
       </div>
 
@@ -73,4 +74,3 @@
     </div>
   </div>
 </div>
-<!-- [routerLink]="['/products', productData.id]" -->

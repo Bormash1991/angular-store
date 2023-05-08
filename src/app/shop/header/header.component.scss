@@ -1,10 +1,17 @@
 .header {
-  background-color: #509179;
+  background-color: #221f1f;
   padding: 15px 0;
+  position: relative;
+
   &__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    &_left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
   }
   &__close {
     display: flex;
@@ -43,6 +50,26 @@
       background-color: #a1beb387;
     }
   }
+  &__catalogue {
+    &_btn {
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      border: none;
+
+      background-color: #fff3;
+      color: #fff;
+      font-size: 16px;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.319);
+      }
+    }
+    &__container {
+      margin-left: 10px;
+    }
+  }
   &__icon {
     fill: white;
     width: 25px;
@@ -75,13 +102,18 @@
     top: 0px;
     height: 100vh;
     width: 100vw;
-    background-color: #509179;
+
     transform: translateX(-100%);
     left: 0px;
     transition: 250ms transform;
     display: flex;
     flex-direction: column;
     z-index: 15;
+    &_quantity {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
     &_active {
       transform: translateX(0%);
     }
@@ -137,13 +169,6 @@
 }
 @media (min-width: 768px) {
   .header {
-    &__hamburger {
-      display: none;
-    }
-    &__close {
-      display: none;
-    }
-
     &__nav {
       padding: 0;
       position: relative;

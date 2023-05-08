@@ -8,6 +8,8 @@ import {
   OnChanges,
   ElementRef,
   ChangeDetectorRef,
+  SimpleChanges,
+  AfterViewInit,
 } from '@angular/core';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import {
@@ -17,7 +19,14 @@ import {
   EventType,
 } from '@angular/router';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { BehaviorSubject, Subscription, filter, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Subscription,
+  filter,
+  map,
+  switchMap,
+  take,
+} from 'rxjs';
 import { UpdateInfService } from './shared/update-inf.service';
 @Component({
   selector: 'app-products-details',
@@ -27,8 +36,8 @@ import { UpdateInfService } from './shared/update-inf.service';
 export class ProductsDetailsComponent implements OnInit, OnDestroy {
   productData: TypeOfProduct;
   subj: Subscription;
-
   previousUrl = '';
+  categoryName: string;
   constructor(
     private UpdateInfService: UpdateInfService,
     private router: Router,
@@ -46,6 +55,9 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
         }
       });
     this.getData();
+    const url = this.router.url;
+    this.categoryName = url.split('/')[1];
+    console.log(this.categoryName);
   }
   getData() {
     const id = this.route.snapshot.paramMap.get('id') as string;

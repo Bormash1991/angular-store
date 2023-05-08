@@ -15,8 +15,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AddCartItemService } from '../../services/add-cart-item.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swiper, { Navigation, Pagination } from 'swiper';
+import { map, take } from 'rxjs';
 
 @Component({
   selector: 'app-product-item',
@@ -32,13 +33,14 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() buttonClass: string = 'btn_products';
   @ViewChild('swiper') sliderRef: ElementRef<HTMLElement>;
   swiper: Swiper;
-
+  url: string = '';
   rewiesQuantity: string = '';
   ratingNumber: number = 0;
   constructor(
     private addCartItemService: AddCartItemService,
     private changeDetector: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +51,17 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges {
     this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
       this.check(n)
     );
+    this.route.url
+      .pipe(
+        take(1),
+        map((segments) => segments.map((segment) => segment.path).join('/'))
+      )
+      .subscribe((url) => {
+        this.url = url;
+      });
+  }
+  redirect(id: string) {
+    this.router.navigateByUrl(`${this.url}/${id}`);
   }
   ngOnChanges() {
     // if (this.productDate.comments) {

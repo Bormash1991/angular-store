@@ -5,8 +5,11 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
 } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
 
 @Component({
@@ -14,16 +17,25 @@ import { AddCartItemService } from 'src/app/shared/services/add-cart-item.servic
   templateUrl: './cart-modal.component.html',
   styleUrls: ['./cart-modal.component.scss'],
 })
-export class CartModalComponent implements OnChanges {
+export class CartModalComponent implements OnInit {
   data: TypeOfProduct[] = [];
   totalSum: number;
-  @Input() className: string;
-  @Output() mouse = new EventEmitter();
-  constructor(private addCartItemService: AddCartItemService) {}
-  ngOnChanges(): void {
+  openOrder: boolean = false;
+
+  constructor(
+    private addCartItemService: AddCartItemService,
+    public dialogRef: MatDialogRef<CartModalComponent>,
+    private fb: FormBuilder
+  ) {}
+  ngOnInit(): void {
     this.data = this.addCartItemService.getData();
     this.totalSum = this.addCartItemService.getTotal();
   }
+  form: FormGroup = this.fb.group({
+    name: ['', Validators.pattern(/^[a-zA-Z ]{1,20}$/)],
+    phone: ['', Validators.pattern(/^\+\d{3}\d{3}\d{3}\d{3}$/)],
+    message: ['', Validators.pattern(/^[a-zA-Z ]{0,50}$/)],
+  });
   changeCounter(elem: ['increment' | 'decrement', TypeOfProduct]) {
     this.addCartItemService.changeCounter(elem[0], elem[1]);
     this.changeData();
@@ -31,12 +43,15 @@ export class CartModalComponent implements OnChanges {
   changeData() {
     this.data = this.addCartItemService.getData();
     this.totalSum = this.addCartItemService.getTotal();
-    if (this.data.length == 0) {
-      this.mouse.emit('hide');
-    }
   }
   delete(elem: TypeOfProduct) {
     this.addCartItemService.removeSetOfProduct(elem);
     this.changeData();
+  }
+  closeModal() {
+    this.dialogRef.close();
+  }
+  openOrderMenu() {
+    this.openOrder = true;
   }
 }

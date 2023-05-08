@@ -12,14 +12,18 @@ export class FilterService<T> {
   public pageIndex: number = 0;
   private num: number;
   constructor() {}
-  setData(data: T[], num: number) {
+  setData(data: T[], num: number, index: number = 0) {
     this.products = data;
     this.productsSecond = [...data];
     this.allProductsAfterFilter = [...data];
     this.productsLength = data.length;
     this.num = num;
-    this.firstPage();
-    this.pageIndex = 0;
+    if (!index) {
+      this.firstPage();
+    } else {
+      this.changePage({ previousPageIndex: index - 1, pageIndex: index });
+    }
+    this.pageIndex = index;
     return this.products;
   }
   changeData(

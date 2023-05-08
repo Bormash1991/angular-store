@@ -56,6 +56,9 @@ export class ProductsModalComponent {
   get controlsChar() {
     return (this.form.get('characteristics') as FormArray).controls;
   }
+  getCharacteristics(index: number) {
+    return this.controlsChar[index].get('chars') as FormArray;
+  }
   closeDialog() {
     this.dialogRef.close();
   }
@@ -72,30 +75,51 @@ export class ProductsModalComponent {
       this.titleText = 'Add Product';
     }
     this.initIds();
-    this.initChars();
+    this.data.characteristics.forEach((item: [string, string[]]) => {
+      this.initChars(item);
+    });
     this.img = [...this.data.images];
     this.imgForUpd = [...this.data.images];
   }
+  createCharsGroup(): FormGroup {
+    return this.fb.group({
+      title: '',
+      chars: this.fb.array([]),
+    });
+  }
+  addCharGroup() {
+    const chars = this.form.get('characteristics') as FormArray;
+    chars.push(this.createCharsGroup());
+  }
   addIdLabel() {
-    const products = this.form.get('otherIds') as FormArray;
-    products.push(this.initId(''));
+    const ids = this.form.get('otherIds') as FormArray;
+    ids.push(this.initId(''));
   }
-  // addCharLabel() {
-  //   const products = this.form.get('characteristics') as FormArray;
-  //   products.push(this.initChar(''));
-  // }
-  initChars() {
-    const products = this.form.get('characteristics') as FormArray;
-    this.data.characteristics.forEach((item: [string, string[]]) =>
-      products.push(this.initCharsGroup(item))
-    );
+
+  deleteCharLabel(i: number, j: number) {
+    const chars = this.form.get('characteristics') as FormArray;
+    (chars.controls[i].get('chars') as FormArray).removeAt(j);
   }
-  initCharsGroup(char: [string, string[]]): FormGroup {
-    return this.fb.group({ title: char[0], chars: this.fb.array(char[1]) });
+
+  addCharLabel(i: number) {
+    const chars = this.form.get('characteristics') as FormArray;
+    (chars.controls[i].get('chars') as FormArray).push(this.initChar(''));
   }
+  initChars(data: any) {
+    const newFormGroup = this.createCharsGroup();
+    const title = newFormGroup.get('title') as FormArray;
+    title.patchValue(data.title);
+    const chars = newFormGroup.get('chars') as FormArray;
+    if (data.chars) {
+      data.chars.forEach((item: string[]) => chars.push(this.initChar(item)));
+    }
+    const characteristics = this.form.get('characteristics') as FormArray;
+    characteristics.push(newFormGroup);
+  }
+
   initChar(item: any) {
     return this.fb.group({
-      char: '',
+      char: item,
     });
   }
   initIds() {
@@ -136,12 +160,16 @@ export class ProductsModalComponent {
     }
     return idsArr;
   }
-  transformChar(value: { char: string }[]) {
-    const idsArr = [];
-    for (const val of Object.values(value)) {
-      idsArr.push(val.char);
-    }
-    return idsArr;
+  transformChar(value: any[]) {
+    return value.map((item) => {
+      if (item.chars.length) {
+        const chars = item.chars.map((char: any) => {
+          return char.char;
+        });
+        return { title: item.title, chars };
+      }
+      return { title: item.title };
+    });
   }
   showData() {
     let date = {
@@ -151,17 +179,17 @@ export class ProductsModalComponent {
         this.form.getRawValue().characteristics
       ),
     };
-    console.log(this.form.getRawValue());
-    // if (this.titleText == 'Add Product') {
-    //   this.productsService.setProduct(date, this.files);
-    // } else {
-    //   this.productsService.updateProduct(
-    //     this.data.id,
-    //     date,
-    //     this.imgForUpd,
-    //     this.files
-    //   );
-    // }
+
+    if (this.titleText == 'Add Product') {
+      this.productsService.setProduct(date, this.files);
+    } else {
+      this.productsService.updateProduct(
+        this.data.id,
+        date,
+        this.imgForUpd,
+        this.files
+      );
+    }
     this.dialogRef.close();
   }
 }

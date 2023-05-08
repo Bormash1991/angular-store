@@ -1,6 +1,18 @@
-<div class="characteristics">
+<div class="chars">
   <div *ngIf="loading$ | async" class="comments__spinner">
     <app-spinner></app-spinner>
   </div>
-  <div class="container">11</div>
+  <div class="container">
+    <div class="chars__box" *ngFor="let char of chars">
+      <div class="chars__title">{{ char.title }}</div>
+      <div class="chars__box_items">
+        <div class="chars__box_item" *ngFor="let charValue of char.chars">
+          <div class="chars__name">
+            <span>{{ charValue.split("-")[0] }}</span>
+          </div>
+          <div class="chars__value">{{ charValue.split("-")[1] }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

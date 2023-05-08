@@ -1,0 +1,9 @@
+<div [className]="'catalogue ' + catalogueClass">
+  <ul class="catalogue__list">
+    <li class="catalogue__item" *ngFor="let item of categories">
+      <a [routerLink]="item.link" class="catalogue__link" appCloseCatalogue>{{
+        item.name
+      }}</a>
+    </li>
+  </ul>
+</div>

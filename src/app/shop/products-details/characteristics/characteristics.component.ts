@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { UpdateInfService } from '../shared/update-inf.service';
-import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
+import { Char, TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 
 @Component({
   selector: 'app-characteristics',
@@ -10,13 +10,14 @@ import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 })
 export class CharacteristicsComponent implements OnInit {
   protected loading$ = new BehaviorSubject<boolean>(true);
+  chars: Char[] = [];
   constructor(private updateInfService: UpdateInfService) {}
   ngOnInit(): void {
     this.updateInfService.getData().subscribe((data: TypeOfProduct) => {
       if (data) {
         this.loading$.next(false);
 
-        console.log(data.characteristics);
+        this.chars = data.characteristics;
       }
     });
   }

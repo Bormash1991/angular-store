@@ -1,7 +1,7 @@
 .counter {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  gap: 15px;
   justify-content: center;
   align-items: center;
-  gap: 3px;
 }

@@ -8,10 +8,5 @@ import { OrderModalComponent } from '../order-modal/order-modal.component';
   styleUrls: ['./total-btn.component.scss'],
 })
 export class TotalBtnComponent {
-  @Input() additianalClass: string = '';
-  constructor(public dialog: MatDialog) {}
-
-  openDialog() {
-    this.dialog.open(OrderModalComponent, {});
-  }
+  constructor() {}
 }

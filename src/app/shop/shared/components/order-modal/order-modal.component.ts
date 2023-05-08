@@ -1,5 +1,3 @@
-import { TypeOfOrder } from './../../../models/TypeOfOrder.interface';
-import { TypeOfProduct } from './../../../models/TypeOfProduct.inteface';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -14,6 +12,7 @@ import { LocalStorageService } from 'src/app/shared/services/localstorage.servic
 import { OrdersService } from 'src/app/shared/services/orders.service';
 import { ThanksModalComponent } from '../thanks-modal/thanks-modal.component';
 import { Subscription } from 'rxjs';
+import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 @Component({
   selector: 'app-order-modal',
   templateUrl: './order-modal.component.html',
@@ -85,23 +84,23 @@ export class OrderModalComponent implements OnInit {
       this.form.get('message')?.invalid
     ) {
     } else {
-      this.ordersService
-        // .create<TypeOfOrder>({
-        //   ...this.form.getRawValue(),
-        //   products: this.products,
-        // })
-        // .subscribe({
-        //   next: () => {
-        //     let { name, phone } = this.form.getRawValue();
-        //     if (this.checked) {
-        //       this.localStorageService.setData('name', name);
-        //       this.localStorageService.setData('phone', phone);
-        //     }
-        //     this.dialog.open(ThanksModalComponent, {});
-        //     this.addCartItemService.deleteAllData();
-        //   },
-        //   error: () => {},
-        // });
+      this.ordersService;
+      // .create<TypeOfOrder>({
+      //   ...this.form.getRawValue(),
+      //   products: this.products,
+      // })
+      // .subscribe({
+      //   next: () => {
+      //     let { name, phone } = this.form.getRawValue();
+      //     if (this.checked) {
+      //       this.localStorageService.setData('name', name);
+      //       this.localStorageService.setData('phone', phone);
+      //     }
+      //     this.dialog.open(ThanksModalComponent, {});
+      //     this.addCartItemService.deleteAllData();
+      //   },
+      //   error: () => {},
+      // });
       this.dialogRef.close();
     }
   }

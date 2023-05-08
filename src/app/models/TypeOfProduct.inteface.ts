@@ -12,7 +12,8 @@ export interface TypeOfProduct {
   color: string;
   cssColor: string;
   otherIds: string[];
-  characteristics: string[];
+  characteristics: Char[];
+  category: string;
 }
 export interface TypeOfProductDb {
   id: string;
@@ -28,7 +29,8 @@ export interface TypeOfProductDb {
   color: string;
   cssColor: string;
   otherIds: string[];
-  characteristics: string[];
+  characteristics: Char[];
+  category: string;
 }
 
 export interface Comments {
@@ -37,4 +39,8 @@ export interface Comments {
   userId: string;
   stars: number;
   id?: string;
+}
+export interface Char {
+  title: string;
+  chars: string[];
 }
