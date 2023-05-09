@@ -8,12 +8,14 @@
   &:hover {
     background-color: #a3a4a48d;
   }
+
   &_products {
     padding: 7px 7px;
     font-size: 14px;
     background-color: #509179;
     border: none;
     color: white;
+    letter-spacing: 0.5px;
     &:hover {
       background-color: #509179d1;
     }

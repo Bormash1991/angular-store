@@ -48,6 +48,6 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
     ProductsDetailsModule,
     MaterialModule,
   ],
-  exports: [CounterComponent]
+  exports: [CounterComponent],
 })
 export class ShopModule {}

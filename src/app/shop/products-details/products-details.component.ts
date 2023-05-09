@@ -28,6 +28,7 @@ import {
   take,
 } from 'rxjs';
 import { UpdateInfService } from './shared/update-inf.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-products-details',
   templateUrl: './products-details.component.html',
@@ -42,7 +43,8 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
     private UpdateInfService: UpdateInfService,
     private router: Router,
     private productsService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
@@ -57,12 +59,12 @@ export class ProductsDetailsComponent implements OnInit, OnDestroy {
     this.getData();
     const url = this.router.url;
     this.categoryName = url.split('/')[1];
-    console.log(this.categoryName);
   }
   getData() {
     const id = this.route.snapshot.paramMap.get('id') as string;
     this.productsService.getProductById(id).subscribe((data) => {
       if (data) {
+        this.titleService.setTitle(data.name);
         this.productData = data;
         this.UpdateInfService.setData(data);
       }

@@ -9,7 +9,12 @@ import {
 import { SideBarService } from '../shared/services/side-bar.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { ChangeCatalogueStateService } from 'src/app/shop/shared/services/change-catalogue-state.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { CartModalComponent } from '../cart-modal/cart-modal.component';
+import firebase from 'firebase/compat/app';
+import { of, switchMap } from 'rxjs';
+import { User } from 'src/app/models/decodedUser.interface';
+import { AuthService } from 'src/app/shared/services/auth.service';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -18,13 +23,17 @@ import { ChangeCatalogueStateService } from 'src/app/shop/shared/services/change
 export class SideBarComponent implements OnInit {
   overlayClass: string = '';
   sidebarClass: string = '';
-  isUserLogIn: boolean = false;
+
+  userInf: User | null;
+  checkAdmin: boolean = false;
   @Input() value: boolean;
   constructor(
     private renderer: Renderer2,
     private sideBarService: SideBarService,
     private usersService: UsersService,
-    private changeCatalogueStateService: ChangeCatalogueStateService
+    private changeCatalogueStateService: ChangeCatalogueStateService,
+    public dialog: MatDialog,
+    private authService: AuthService
   ) {}
   ngOnInit(): void {
     this.sideBarService.getSidebarStatus().subscribe((data) => {
@@ -32,11 +41,31 @@ export class SideBarComponent implements OnInit {
         this.showMenu();
       }
     });
-    this.usersService.getUser().subscribe((user) => {});
+    this.usersService
+      .getUser()
+      .pipe(
+        switchMap((user) => {
+          if (user) {
+            return this.usersService.getUserInf(user?.uid!);
+          }
+          return of(null);
+        })
+      )
+      .subscribe((data) => {
+        if (data) {
+          this.userInf = data;
+        } else {
+          this.userInf = data;
+        }
+      });
   }
   openCalatogue() {
     this.closeMenu();
     this.changeCatalogueStateService.setCatalogueState(true);
+  }
+  openCartModal() {
+    this.closeMenu();
+    this.dialog.open(CartModalComponent);
   }
   showMenu() {
     this.renderer.addClass(document.documentElement, 'scroll-block');
@@ -50,6 +79,10 @@ export class SideBarComponent implements OnInit {
     if (clickedElement.classList.contains('overlay')) {
       this.closeMenu();
     }
+  }
+  logOut() {
+    this.closeMenu();
+    this.authService.logOut();
   }
   closeMenu() {
     this.sideBarService.setSidebarStatus(false);

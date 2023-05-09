@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { User } from 'src/app/models/decodedUser.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +17,14 @@ export class UsersService {
   getUser() {
     return this.fireAuth.authState;
   }
-  updateUsers(value: any) {}
+  setUserInf(uid: string, number: string, name: string, email: string) {
+    return this.db.object(`users/${uid}`).set({
+      name: name,
+      number: number,
+      email: email
+    });
+  }
+  getUserInf(uid: string) {
+    return this.db.object<User>(`users/${uid}`).valueChanges();
+  }
 }

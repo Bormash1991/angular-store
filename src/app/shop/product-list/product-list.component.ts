@@ -3,8 +3,10 @@ import { BehaviorSubject, map, of, switchMap } from 'rxjs';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from 'src/app/shared/services/filter.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-list',
@@ -22,11 +24,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
     private productsService: ProductsService,
     private db: AngularFireDatabase,
     private route: ActivatedRoute,
-    private filterService: FilterService<TypeOfProduct>
+    private filterService: FilterService<TypeOfProduct>,
+    private router: Router,
+    private categoryService: CategoryService,
+    private titleService: Title
   ) {}
   limit: number = 8;
   categoryUrl: string = sessionStorage.getItem('category')! || '';
   pageIndex: number = JSON.parse(sessionStorage.getItem('pageIndex')!) || 0;
+  pageName: string = '';
   ngOnInit(): void {
     this.route.url
       .pipe(
@@ -34,11 +40,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
           return segments.map((segment) => segment.path).join('/');
         }),
         switchMap((url) => {
-          console.log(url);
           if (this.categoryUrl != url) {
             sessionStorage.setItem('pageIndex', '0');
             this.pageIndex = 0;
           }
+          this.categoryUrl = url;
           sessionStorage.setItem('category', url);
           this.dataForView = [];
           this.dataLength = 0;
@@ -47,7 +53,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((products) => {
-        if (products) {
+        if (products.length) {
+          this.categoryService
+            .getCategoryName(this.categoryUrl)
+            .subscribe((val) => {
+              this.pageName = val[0].name;
+              this.titleService.setTitle(this.pageName);
+            });
           this.dataLength = products.length;
           this.dataForView = this.filterService.setData(
             products.reverse(),
@@ -55,6 +67,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
             this.pageIndex
           );
           this.loading$.next(false);
+        } else {
+          this.router.navigateByUrl('404');
         }
       });
   }

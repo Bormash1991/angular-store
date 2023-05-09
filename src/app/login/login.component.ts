@@ -31,12 +31,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub = this.form.valueChanges.subscribe((value) => {
-      if (value.password || value.email) {
-        this.textError = '';
-        this.errorMessages = {};
-      }
-    });
+    // this.sub = this.form.valueChanges.subscribe((value) => {
+    //   if (value.password || value.email) {
+    //     this.textError = '';
+    //     this.errorMessages = {};
+    //   }
+    // });
   }
   redirect() {
     let { email, password } = this.form.getRawValue();
@@ -45,6 +45,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
-    this.sub.unsubscribe();
+
   }
 }

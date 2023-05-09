@@ -1,9 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from './localstorage.service';
-import jwt_decode from 'jwt-decode';
-import { decodedUser } from 'src/app/models/decodedUser.interface';
-import { unauthorizedUser } from 'src/app/models/unauthorizedUser.interface';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 @Injectable({
@@ -20,7 +15,7 @@ export class AuthService {
   }
   logOut() {
     this.fireAuth.signOut().then(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['']);
     });
   }
   resetPassword(email: string) {

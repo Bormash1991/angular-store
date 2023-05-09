@@ -1,10 +1,9 @@
 .welcome {
   padding: 40px 0 0px 0;
   &__title {
-    font-weight: 500;
-    font-size: 25px;
+    font-weight: 400;
+    font-size: 28px;
     color: #1f242a;
-    text-align: center;
     line-height: 1.28;
   }
   &__subtitle {
@@ -30,12 +29,22 @@
 }
 @media (min-width: 768px) {
   .welcome {
-    padding: 90px 0 20px 0;
+    padding: 24px 0 20px 0;
     &__title {
-      font-weight: 500;
-      font-size: 45px;
-      color: #1f242a;
-      text-align: center;
+    }
+    &__container {
+      display: flex;
+      gap: 15px;
+      &_left {
+        border-right: 1px solid #e9e9e9;
+      }
+      &_right {
+      }
+      &_products {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+      }
     }
     &__subtitle {
       margin-top: 50px;
@@ -61,7 +70,7 @@
 }
 @media (min-width: 1024px) {
   .welcome {
-    padding: 90px 0 50px 0;
+    // padding: 90px 0 50px 0;
     &__box {
       width: 80%;
     }

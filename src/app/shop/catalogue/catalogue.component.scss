@@ -20,6 +20,15 @@
     }
   }
 }
+.static {
+  display: block;
+  position: static;
+  .catalogue__link {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
 .showCatalogue {
   display: block;
   animation: showCatalogueA 0.5s forwards;

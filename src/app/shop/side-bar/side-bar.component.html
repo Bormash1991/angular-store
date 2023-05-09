@@ -15,12 +15,18 @@
         ></btn>
       </div>
       <div class="side-bar__user">
-        <div *ngIf="isUserLogIn; else notLogIn">
-          <!-- <p>Welcome, {{ userName }}!</p> -->
+        <div class="side-bar__user-box hover" *ngIf="userInf; else notLogIn">
+          <div class="side-bar__circule">
+            <span class="side-bar__circule-text">{{ userInf.name[0] }}</span>
+          </div>
+          <div class="side-bar__user-inf">
+            <span class="name"> {{ userInf.name }} </span>
+            <span class="email">{{ userInf.email }}</span>
+          </div>
         </div>
 
         <ng-template #notLogIn>
-          <div class="side-bar__user-unlog">
+          <div class="side-bar__user-box">
             <div class="side-bar__circule">
               <svg class="side-bar__user-icon side-bar__icon">
                 <use href="assets/sprite.svg#icon-user"></use>
@@ -58,7 +64,7 @@
           <div class="side-bar__link-text">Мої замовлення</div>
         </a>
       </li>
-      <li class="side-bar__item">
+      <li class="side-bar__item" (click)="openCartModal()">
         <a class="side-bar__link">
           <div class="side-bar__circule side-bar__circule_light">
             <svg class="side-bar__icon side-bar__icon_black">
@@ -68,9 +74,15 @@
           <div class="side-bar__link-text">Кошик</div>
         </a>
       </li>
-      <li class="side-bar__item side-bar__item-border-top">
-        <button class="side-bar__link side-bar__link-btn">
+
+      <li *ngIf="userInf" class="side-bar__item side-bar__item-border-top">
+        <button (click)="logOut()" class="side-bar__link side-bar__link-btn">
           <div class="side-bar__link-text">Вийти з аккаунту</div>
+        </button>
+      </li>
+      <li *ngIf="checkAdmin" class="side-bar__item">
+        <button class="side-bar__link side-bar__link-btn">
+          <div class="side-bar__link-text">Admin panel</div>
         </button>
       </li>
     </ul>

@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ProductsDetailsComponent } from './products-details/products-details.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { PageNotFoundComponent } from '../errors/page-not-found/page-not-found.component';
 import { ShopComponent } from './shop.component';
-import { CartComponent } from './cart/cart.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 const routes: Routes = [
   {
@@ -15,7 +12,11 @@ const routes: Routes = [
       {
         path: '',
         component: WelcomePageComponent,
-        pathMatch: 'full',
+      },
+      {
+        path: '404',
+        loadChildren: () =>
+          import('../not-fount/not-fount.module').then((m) => m.NotFountModule),
       },
       {
         path: ':id',

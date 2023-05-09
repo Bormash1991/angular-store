@@ -1,35 +1,32 @@
 <div class="login">
   <div class="container">
     <div class="login__container">
-      <h1 class="login__title" mat-dialog-title>Registration</h1>
+      <h1 class="login__title">Реєстрація</h1>
       <form class="login__box" [formGroup]="form">
         <mat-form-field>
-          <mat-label> Name </mat-label>
+          <mat-label>Ім'я та Прізвище</mat-label>
           <input formControlName="username" matInput type="email" />
         </mat-form-field>
-        <div class="login__error-text">
-          {{ errorMessages["username"] }}
-        </div>
         <mat-form-field>
-          <mat-label> Email </mat-label>
+          <mat-label>Номер телефону</mat-label>
+          <input formControlName="phoneNumber" matInput type="email" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
           <input formControlName="email" matInput type="email" />
         </mat-form-field>
-        <div class="login__error-text">
-          {{ errorMessages["email"] }}
-        </div>
         <mat-form-field>
-          <mat-label>Password</mat-label>
+          <mat-label>Пароль</mat-label>
           <input formControlName="password" matInput type="password" />
         </mat-form-field>
-        <div class="login__error-text">
-          {{ errorMessages["password"] }}
-        </div>
       </form>
       <div class="login__box-btn">
-        <btn [text]="'Cancel'" class="btn btn_modal" (click)="cancel()"
-          >Cancel</btn
-        >
-        <btn [text]="'OK'" class="btn btn_modal" (click)="redirect()"></btn>
+        <btn
+          [text]="'На головну'"
+          class="btn btn_modal"
+          (click)="cancel()"
+        ></btn>
+        <btn [text]="'Готово'" class="btn btn_modal" (click)="redirect()"></btn>
       </div>
     </div>
   </div>

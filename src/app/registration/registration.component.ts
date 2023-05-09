@@ -4,6 +4,7 @@ import { ErrorsObject } from '../models/errorMessages.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { UsersService } from '../shared/services/users.service';
 
 @Component({
   selector: 'app-registration',
@@ -18,55 +19,40 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private usersService: UsersService
   ) {}
 
   form: FormGroup = this.fb.group({
     username: '',
+    phoneNumber: '',
     email: '',
     password: '',
   });
   cancel() {
     this.router.navigateByUrl('');
-    this.errorMessages = {};
   }
 
   ngOnInit(): void {
-    this.sub = this.form.valueChanges.subscribe((value) => {
-      if (value.password || value.username || value.email) {
-        for (let i in value) {
-          if (value[i].length) {
-            this.errorMessages[i] = '';
-          }
-        }
-      }
-    });
+    // this.sub = this.form.valueChanges.subscribe((value) => {
+    //   if (value.password || value.username || value.email) {
+    //     for (let i in value) {
+    //       if (value[i].length) {
+    //         this.errorMessages[i] = '';
+    //       }
+    //     }
+    //   }
+    // });
   }
   redirect() {
-    // this.authService
-    //   .registration<{ token: string }>(this.form.getRawValue())
-    //   .subscribe({
-    //     next: (response) => {
-    //       this.authService.setAuthToken(response.token);
-    //       this.router.navigateByUrl('');
-    //       this.errorMessages = {};
-    //     },
-    //     error: (error) => {
-    //       if (error.status === 401) {
-    //         this.form.patchValue({ email: '', password: '' });
-    //       } else if (error.status === 400) {
-    //         error.error.forEach((error: string) => {
-    //           const name = error.split(' - ')[0],
-    //             text = error.split(' - ')[1];
-    //           this.errorMessages[name] = text;
-    //         });
-    //       } else {
-    //         throwError(() => error);
-    //       }
-    //     },
-    //   });
+    const { username, phoneNumber, email, password } = this.form.getRawValue();
+    this.authService.registration(email, password).then((req) => {
+      this.usersService
+        .setUserInf(req.user?.uid!, phoneNumber, username, email)
+        .then(() => {
+          this.router.navigateByUrl('');
+        });
+    });
   }
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
+  ngOnDestroy() {}
 }

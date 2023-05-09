@@ -7,8 +7,7 @@ import { ErrorsComponent } from './errors.component';
 import { RouterModule } from '@angular/router';
 import { ForbiddenPageComponent } from './forbidden-page/forbidden-page.component';
 import { SharedModule } from '../shared/shared.module';
-import { StartLinkComponent } from './shared/start-link/start-link.component';
-import { PageComponent } from './shared/page/page.component';
+import { PageComponent } from '../shared/components/page/page.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,6 @@ import { PageComponent } from './shared/page/page.component';
     UnautorizedPageComponent,
     ErrorsComponent,
     ForbiddenPageComponent,
-    StartLinkComponent,
-    PageComponent,
   ],
   imports: [CommonModule, ErrorsRoutingModule, RouterModule, SharedModule],
   exports: [PageNotFoundComponent],

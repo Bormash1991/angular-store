@@ -8,8 +8,9 @@ a:focus {
   outline: none;
 }
 .scroll-block {
+  position: fixed;
   width: 100%;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {

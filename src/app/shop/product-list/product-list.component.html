@@ -1,6 +1,6 @@
 <main class="products">
   <div class="container products__container">
-    <h2 class="products__title">Products</h2>
+    <h2 class="products__title">{{ pageName }}</h2>
     <div *ngIf="loading$ | async" class="products__spinner">
       <app-spinner></app-spinner>
     </div>

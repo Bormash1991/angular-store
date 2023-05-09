@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeCatalogueStateService } from './shared/services/change-catalogue-state.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +10,7 @@ import { ChangeCatalogueStateService } from './shared/services/change-catalogue-
 export class ShopComponent implements OnInit {
   overlayClass: string = '';
   constructor(
-    private changeCatalogueStateService: ChangeCatalogueStateService
+    private changeCatalogueStateService: ChangeCatalogueStateService,
   ) {}
   ngOnInit(): void {
     this.changeCatalogueStateService.getCatalogueState().subscribe((value) => {
@@ -19,5 +20,6 @@ export class ShopComponent implements OnInit {
         this.overlayClass = 'hideOverlay';
       }
     });
+
   }
 }

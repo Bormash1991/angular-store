@@ -1,20 +1,16 @@
 <div class="welcome">
-  <div class="container">
-    <h1 class="welcome__title">Welcome to the shop!</h1>
-    <h2 class="welcome__subtitle">Some of our products...</h2>
-    <div *ngIf="loading$ | async" class="welcome__spinner">
-      <app-spinner></app-spinner>
+  <div class="container welcome__container">
+    <aside class="welcome__container_left">
+      <app-catalogue [static]="true"></app-catalogue>
+    </aside>
+    <div class="welcome__container_right">
+      <h1 class="welcome__title">Вас може зацікавити</h1>
+      <div class="welcome__container_products">
+        <app-product-item
+          [productDate]="product"
+          *ngFor="let product of data"
+        ></app-product-item>
+      </div>
     </div>
-    <div class="welcome__box">
-      <app-product-item
-        *ngFor="let product of data"
-        [productDate]="product"
-      ></app-product-item>
-    </div>
-    <btn
-      [routerLink]="['products']"
-      [class]="'btn btn_more'"
-      [text]="'Show all list'"
-    ></btn>
   </div>
 </div>

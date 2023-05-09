@@ -23,22 +23,12 @@ const routes: Routes = [
         (m) => m.RegistrationModule
       ),
   },
+
   {
     path: '',
     loadChildren: () => import('./shop/shop.module').then((m) => m.ShopModule),
   },
-  {
-    path: '',
-    loadChildren: () =>
-      import('./errors/errors.module').then((m) => m.ErrorsModule),
-  },
-  {
-    path: 'products-details',
-    loadChildren: () =>
-      import('./shop/products-details/products-details.module').then(
-        (m) => m.ProductsDetailsModule
-      ),
-  },
+  { path: 'not-fount', loadChildren: () => import('./not-fount/not-fount.module').then(m => m.NotFountModule) },
 ];
 
 @NgModule({
