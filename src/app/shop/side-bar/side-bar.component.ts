@@ -51,6 +51,9 @@ export class SideBarComponent implements OnInit {
       .subscribe((data) => {
         this.userInf = data;
       });
+    this.usersService.checkAdmin().subscribe((val) => {
+      this.checkAdmin = val;
+    });
   }
   openCalatogue() {
     this.closeMenu();

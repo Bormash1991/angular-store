@@ -9,7 +9,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, catchError, map, of } from 'rxjs';
-import { ProductsService } from '../../shared/services/products.service';
+import { ProductsService } from '../../../../shared/services/products.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,9 @@
 <div class="orders">
   <h1 class="orders__title">Мої замовлення</h1>
-  <div class="orders__empty" *ngIf="!orders">Ви ще нічого не замовили</div>
-  <mat-accordion *ngIf="orders">
+  <div class="orders__empty" *ngIf="!orders.length">
+    Ви ще нічого не замовили
+  </div>
+  <mat-accordion *ngIf="orders.length">
     <mat-expansion-panel class="orders__item" *ngFor="let order of orders">
       <mat-expansion-panel-header class="orders__item-header">
         <mat-panel-title>

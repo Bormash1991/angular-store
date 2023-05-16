@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ShopComponent } from './shop.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { CabinetGuard } from './shared/guards/cabinet.guard';
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'cabinet',
+        canActivate: [CabinetGuard],
         loadChildren: () =>
           import('./cabinet/cabinet.module').then((m) => m.CabinetModule),
       },

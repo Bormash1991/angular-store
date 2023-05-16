@@ -1,4 +1,4 @@
-import { TypeOfOrder } from './../../../models/TypeOfOrder.interface';
+import { TypeOfOrder } from '../../../../models/TypeOfOrder.interface';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';

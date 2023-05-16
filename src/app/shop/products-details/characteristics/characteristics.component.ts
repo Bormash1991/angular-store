@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { UpdateInfService } from '../shared/update-inf.service';
+import { UpdateInfService } from '../shared/services/update-inf.service';
 import { Char, TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 
 @Component({

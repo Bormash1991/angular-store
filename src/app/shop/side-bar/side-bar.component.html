@@ -68,7 +68,12 @@
         </a>
       </li>
       <li class="side-bar__item">
-        <a class="side-bar__link">
+        <a
+          *ngIf="userInf"
+          routerLink="cabinet/orders"
+          (click)="closeMenu()"
+          class="side-bar__link"
+        >
           <div class="side-bar__circule side-bar__circule_light">
             <svg class="side-bar__icon side-bar__icon_black">
               <use href="assets/sprite.svg#icon-orders"></use>
@@ -94,9 +99,9 @@
         </button>
       </li>
       <li *ngIf="checkAdmin" class="side-bar__item">
-        <button class="side-bar__link side-bar__link-btn">
+        <a routerLink="admin-panel" class="side-bar__link side-bar__link-btn">
           <div class="side-bar__link-text">Admin panel</div>
-        </button>
+        </a>
       </li>
     </ul>
   </div>

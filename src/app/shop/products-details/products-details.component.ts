@@ -27,7 +27,7 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { UpdateInfService } from './shared/update-inf.service';
+import { UpdateInfService } from './shared/services/update-inf.service';
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-products-details',

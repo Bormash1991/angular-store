@@ -1,6 +1,6 @@
 import { BehaviorSubject, switchMap } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UpdateInfService } from '../shared/update-inf.service';
+import { UpdateInfService } from '../shared/services/update-inf.service';
 import { Comments, TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -33,6 +33,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.updateInfService.getData().subscribe((data: TypeOfProduct) => {
       if (data) {
+        this.comments = [];
         this.filterService.resetData();
         this.productId = data.id;
         this.loading$.next(false);

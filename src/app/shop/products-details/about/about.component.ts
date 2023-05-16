@@ -11,7 +11,7 @@ import { Char, TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
 import Swiper, { Navigation, Pagination, Thumbs } from 'swiper';
 import { ProductsService } from '../../../shared/services/products.service';
-import { UpdateInfService } from '../shared/update-inf.service';
+import { UpdateInfService } from '../shared/services/update-inf.service';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
