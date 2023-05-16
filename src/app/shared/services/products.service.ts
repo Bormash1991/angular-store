@@ -123,7 +123,10 @@ export class ProductsService {
       );
   }
   addComment(productId: string, comment: Comments) {
-    this.db.list(`products/${productId}/comments`).push(comment);
+    return this.db.list(`products/${productId}/comments`).push(comment);
+  }
+  deleteComment(productId: string, id: string) {
+    this.db.list(`products/${productId}/comments/${id}`).remove();
   }
   transformData<T>(data: { [key: string]: T }): T[] {
     if (data) {

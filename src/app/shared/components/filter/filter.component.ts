@@ -9,7 +9,6 @@ import { param } from 'src/app/models/TypeOfFilterParam';
 import { ConfigService } from '../../services/config.service';
 import { debounceTime, fromEvent, map } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { UsersModalComponent } from 'src/app/admin-panel/users-modal/users-modal.component';
 import { ProductsModalComponent } from 'src/app/admin-panel/products-modal/products-modal.component';
 @Component({
   selector: 'app-filter',
@@ -46,32 +45,23 @@ export class FilterComponent implements AfterViewInit {
     }
   }
   openDialog() {
-    if (this.param == 'products') {
-      this.dialog.open(ProductsModalComponent, {
+    this.dialog.open(ProductsModalComponent, {
+      data: {
         data: {
-          data: {
-            name: '',
-            price: '',
-            quantity: '',
-            color: '',
-            cssColor: '',
-            guarantee: '',
-          },
-          description: '',
-          id: '',
-          images: [],
-          otherIds: [''],
-          characteristics: [''],
+          name: '',
+          price: '',
+          quantity: '',
+          color: '',
+          cssColor: '',
+          guarantee: '',
         },
-      });
-    } else if (this.param == 'users') {
-      this.dialog.open(UsersModalComponent, {
-        data: {
-          data: { username: '', password: '' },
-          id: '',
-        },
-      });
-    }
+        description: '',
+        id: '',
+        images: [],
+        otherIds: [''],
+        characteristics: [''],
+      },
+    });
   }
   ngAfterViewInit() {
     fromEvent(this.searchInput.nativeElement, 'input')

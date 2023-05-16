@@ -34,16 +34,38 @@
   &_order {
     padding: 10px;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 17px;
     border-radius: 5px;
     background-color: #00a046;
     border: none;
     color: white;
-    font-size: 20px;
     box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 5%);
     transition: 250ms background-color;
     &:hover {
       background-color: #04c256;
+    }
+  }
+  &_inf {
+    &-disabled {
+      background-color: #eee;
+      color: #a6a5a5;
+      cursor: default;
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+  &_cancel {
+    display: block;
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: none;
+    background-color: transparent;
+    color: #3e77aa;
+    &:hover {
+      color: red;
+      background-color: transparent;
     }
   }
   &_about {

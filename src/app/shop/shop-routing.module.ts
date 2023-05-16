@@ -19,9 +19,15 @@ const routes: Routes = [
           import('../not-fount/not-fount.module').then((m) => m.NotFountModule),
       },
       {
+        path: 'cabinet',
+        loadChildren: () =>
+          import('./cabinet/cabinet.module').then((m) => m.CabinetModule),
+      },
+      {
         path: ':id',
         component: ProductListComponent,
       },
+
       {
         path: ':id/:id',
         loadChildren: () =>

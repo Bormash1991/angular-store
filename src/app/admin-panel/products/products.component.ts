@@ -46,7 +46,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       next: (data) => {
         if (data.length) {
           this.loading$.next(false);
-          this.products = this.filterService.setData(data, 5);
+          this.products = this.filterService.setData(data.reverse(), 5);
           this.productsLength = data.length;
           this.pageIndex = 0;
         }

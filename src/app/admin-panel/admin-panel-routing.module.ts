@@ -7,14 +7,8 @@ const routes: Routes = [
     path: '',
     component: AdminPanelComponent,
     children: [
-      { path: '', redirectTo: 'users', pathMatch: 'full' },
-      {
-        path: 'users',
-        loadChildren: () =>
-          import('src/app/admin-panel/users/users.module').then(
-            (m) => m.UsersModule
-          ),
-      },
+      { path: '', redirectTo: 'products', pathMatch: 'full' },
+
       {
         path: 'products',
         loadChildren: () =>

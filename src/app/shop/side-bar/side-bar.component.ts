@@ -45,18 +45,11 @@ export class SideBarComponent implements OnInit {
       .getUser()
       .pipe(
         switchMap((user) => {
-          if (user) {
-            return this.usersService.getUserInf(user?.uid!);
-          }
-          return of(null);
+          return this.usersService.getUserInf(user?.uid!);
         })
       )
       .subscribe((data) => {
-        if (data) {
-          this.userInf = data;
-        } else {
-          this.userInf = data;
-        }
+        this.userInf = data;
       });
   }
   openCalatogue() {

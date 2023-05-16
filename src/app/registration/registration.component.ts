@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, throwError } from 'rxjs';
-import { ErrorsObject } from '../models/errorMessages.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
@@ -14,7 +13,6 @@ import { UsersService } from '../shared/services/users.service';
 export class RegistrationComponent implements OnInit, OnDestroy {
   sub: Subscription;
 
-  errorMessages: ErrorsObject = {};
 
   constructor(
     private fb: FormBuilder,

@@ -17,9 +17,11 @@ export class WelcomePageComponent implements OnInit {
     private titleService: Title
   ) {}
   ngOnInit(): void {
-    this.productsService
-      .getProducts()
-      .subscribe((products) => this.setRondomProducts(products));
+    this.productsService.getProducts().subscribe((products) => {
+      this.data = [];
+      this.loading$.next(false);
+      this.setRondomProducts(products);
+    });
 
     this.titleService.setTitle('Angular-store');
   }

@@ -3,7 +3,7 @@
     <app-spinner></app-spinner>
   </div>
   <div class="container">
-    <div class="comments__add" *ngIf="!(loading$ | async)">
+    <div class="comments__add" *ngIf="!(loading$ | async) && userId">
       <span class="comments__add_text">Залиште свій відгук про товар </span>
       <btn
         [class]="'btn btn_comments'"
@@ -11,9 +11,29 @@
         (click)="openModal()"
       ></btn>
     </div>
-    <ul class="comments__list">
+    <div *ngIf="!userId" class="comments__unlog">
+      Авторизуйтеся щоб написати відгук
+    </div>
+    <ul *ngIf="comments.length" class="comments__list">
       <li class="comments__item" *ngFor="let item of comments">
-        <div class="comments__item_username">{{ item.username }}</div>
+        <div class="comments__item_top">
+          {{ item.username }}
+          <div class="comments__item_right">
+            <span class="comments__item_date">{{ item.date }}</span>
+            <button
+              (click)="deleteComment(item.id!)"
+              *ngIf="userId == item.userId"
+              class="comments__item_delete"
+            >
+              <svg class="comments__item_delete-img">
+                <use
+                  class="comments__item_delete-img"
+                  href="assets/sprite.svg#icon-delete"
+                ></use>
+              </svg>
+            </button>
+          </div>
+        </div>
         <div class="comments__item_box">
           <app-rating
             [starsRating]="item.stars"
@@ -25,6 +45,7 @@
         </div>
       </li>
     </ul>
+    <div class="comments__empty" *ngIf="!comments.length">Відгуків немає</div>
     <mat-paginator
       class="comments__paginator"
       *ngIf="commentsLength > 5"

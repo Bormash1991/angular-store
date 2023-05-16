@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { TablesComponent } from './components/tables/tables.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { UsersTablesComponent } from './components/users-tables/users-tables.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { RatingComponent } from './components/rating/rating.component';
@@ -23,7 +22,6 @@ import { PageComponent } from './components/page/page.component';
     TablesComponent,
     FilterComponent,
     SpinnerComponent,
-    UsersTablesComponent,
     OrderTableComponent,
     RatingComponent,
     CloseCatalogueDirective,
@@ -43,7 +41,6 @@ import { PageComponent } from './components/page/page.component';
     TablesComponent,
     FilterComponent,
     SpinnerComponent,
-    UsersTablesComponent,
     OrderTableComponent,
     RatingComponent,
     CloseCatalogueDirective,

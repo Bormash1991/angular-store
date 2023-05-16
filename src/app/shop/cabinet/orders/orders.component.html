@@ -1,0 +1,38 @@
+<div class="orders">
+  <h1 class="orders__title">Мої замовлення</h1>
+  <div class="orders__empty" *ngIf="!orders">Ви ще нічого не замовили</div>
+  <mat-accordion *ngIf="orders">
+    <mat-expansion-panel class="orders__item" *ngFor="let order of orders">
+      <mat-expansion-panel-header class="orders__item-header">
+        <mat-panel-title>
+          <div class="orders__item-top">
+            <div class="orders__item-sum">Сума замовлення:</div>
+            <div class="orders__item-price">{{ order.totalSum | uah }}</div>
+          </div>
+        </mat-panel-title>
+        <mat-panel-description> {{ order.status }}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="orders__item-bottom">
+        <div
+          class="orders__item-product"
+          *ngFor="let product of order.products"
+        >
+          <img [src]="product.img" class="orders__item-img" />
+          <div class="orders__item-quantity">
+            {{ product.quantity }}
+            шт.
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-paginator
+    *ngIf="orders.length"
+    [pageIndex]="pageIndex"
+    [hidePageSize]="true"
+    [length]="ordersLength"
+    (page)="changePage($event)"
+    [pageSize]="5"
+  >
+  </mat-paginator>
+</div>

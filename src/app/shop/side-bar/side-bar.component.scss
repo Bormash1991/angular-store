@@ -45,6 +45,7 @@
   &__user {
     display: block;
     margin-top: 15px;
+
     &-box {
       display: grid;
       align-items: center;
@@ -54,6 +55,7 @@
       padding: 5px;
       border-radius: 5px;
       grid-template-columns: 45px auto;
+      text-decoration: none;
     }
     &-inf {
       .name {

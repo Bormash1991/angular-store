@@ -15,7 +15,12 @@
         ></btn>
       </div>
       <div class="side-bar__user">
-        <div class="side-bar__user-box hover" *ngIf="userInf; else notLogIn">
+        <a
+          routerLink="cabinet"
+          class="side-bar__user-box hover"
+          *ngIf="userInf; else notLogIn"
+          (click)="closeMenu()"
+        >
           <div class="side-bar__circule">
             <span class="side-bar__circule-text">{{ userInf.name[0] }}</span>
           </div>
@@ -23,7 +28,7 @@
             <span class="name"> {{ userInf.name }} </span>
             <span class="email">{{ userInf.email }}</span>
           </div>
-        </div>
+        </a>
 
         <ng-template #notLogIn>
           <div class="side-bar__user-box">
@@ -33,9 +38,17 @@
               </svg>
             </div>
             <div class="side-bar__user-auth">
-              <a routerLink="/login" class="side-bar__user-link">Вхід</a>
+              <a
+                routerLink="/login"
+                class="side-bar__user-link"
+                (click)="closeMenu()"
+                >Вхід</a
+              >
               |
-              <a routerLink="/registration" class="side-bar__user-link"
+              <a
+                routerLink="/registration"
+                (click)="closeMenu()"
+                class="side-bar__user-link"
                 >Реєстрація</a
               >
             </div>

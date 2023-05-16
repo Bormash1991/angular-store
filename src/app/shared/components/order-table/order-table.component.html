@@ -2,7 +2,7 @@
   <div class="item" *ngFor="let item of items">
     <div class="item__name">{{ item.name }}</div>
     <div class="item__phone">{{ item.phone }}</div>
-    <div class="item__phone">{{ item.updatedAt }}</div>
+    <div class="item__phone">{{ item.createdAt }}</div>
     <button class="item__btn" (click)="openEditDialog(item)">
       <svg class="item__img">
         <use href="assets/sprite.svg#icon-edit" class="item__img"></use>

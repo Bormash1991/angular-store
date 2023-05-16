@@ -2,8 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { Subscription, throwError } from 'rxjs';
-import { ErrorsObject } from '../models/errorMessages.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +12,6 @@ import { ErrorsObject } from '../models/errorMessages.interface';
 export class LoginComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   protected textError: string = '';
-  protected errorMessages: ErrorsObject = {};
 
   constructor(
     private fb: FormBuilder,

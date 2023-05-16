@@ -12,7 +12,7 @@ export class UsersService {
     private fireAuth: AngularFireAuth
   ) {}
   getUsersFromDb() {
-    return this.db.list(`users`).valueChanges();
+    return this.db.list<User>(`users`).valueChanges();
   }
   getUser() {
     return this.fireAuth.authState;
@@ -21,8 +21,13 @@ export class UsersService {
     return this.db.object(`users/${uid}`).set({
       name: name,
       number: number,
-      email: email
+      email: email,
+      date: '---',
+      gender: '---',
     });
+  }
+  updateUser(data: User, uid: string) {
+    return this.db.object(`users/${uid}`).update(data);
   }
   getUserInf(uid: string) {
     return this.db.object<User>(`users/${uid}`).valueChanges();

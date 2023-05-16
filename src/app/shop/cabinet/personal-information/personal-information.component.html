@@ -1,0 +1,73 @@
+<div class="inf" *ngIf="userData">
+  <h1 class="inf__title">Особисті данні</h1>
+  <form class="inf__form" [formGroup]="form">
+    <div class="inf__text" *ngIf="!editStatus">
+      <div class="inf__name">Ім'я</div>
+      <div class="inf__value">{{ userData.name.split(" ")[0] }}</div>
+    </div>
+    <mat-form-field *ngIf="editStatus">
+      <mat-label>Ім'я</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <div class="inf__text" *ngIf="!editStatus">
+      <div class="inf__name">Прізвище</div>
+      <div class="inf__value">{{ userData.name.split(" ")[1] }}</div>
+    </div>
+    <mat-form-field *ngIf="editStatus">
+      <mat-label>Прізвище</mat-label>
+      <input matInput formControlName="surname" />
+    </mat-form-field>
+    <div class="inf__text" *ngIf="!editStatus">
+      <div class="inf__name">Дата народження</div>
+      <div class="inf__value">{{ userData.date }}</div>
+    </div>
+    <mat-form-field *ngIf="editStatus">
+      <mat-label>Дата народження</mat-label>
+      <input formControlName="date" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="inf__text" *ngIf="!editStatus">
+      <div class="inf__name">Стать</div>
+      <div class="inf__value">{{ userData.gender }}</div>
+    </div>
+    <mat-form-field *ngIf="editStatus">
+      <mat-label>Стать:</mat-label>
+      <mat-select  formControlName="gender">
+        <mat-option value="чоловіча">чоловіча</mat-option>
+        <mat-option value="жіноча">жіноча</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="inf__text" *ngIf="!editStatus">
+      <div class="inf__name">Номер тел.</div>
+      <div class="inf__value">{{ userData.number }}</div>
+    </div>
+    <mat-form-field *ngIf="editStatus">
+      <mat-label>Номер телефону</mat-label>
+      <input matInput formControlName="number" />
+    </mat-form-field>
+  </form>
+  <div class="inf__btns">
+    <btn
+      *ngIf="!editStatus"
+      class="btn btn_order btn_inf"
+      text="Редагувати"
+      (click)="changeEditStatus()"
+    ></btn>
+    <div *ngIf="editStatus" class="inf__btns-edit">
+      <btn
+        (click)="updateData()"
+        [class]="'btn btn_order ' + changingClass"
+        text="Зберегти"
+      ></btn>
+      <btn
+        (click)="changeEditStatus()"
+        class="btn btn_cancel"
+        text="Скасувати"
+      ></btn>
+    </div>
+  </div>
+</div>

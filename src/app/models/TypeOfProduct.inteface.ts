@@ -35,10 +35,11 @@ export interface TypeOfProductDb {
 
 export interface Comments {
   text: string;
-  username?: string;
+  username: string;
   userId: string;
   stars: number;
   id?: string;
+  date: string;
 }
 export interface Char {
   title: string;

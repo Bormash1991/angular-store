@@ -55,7 +55,7 @@
 
       <div class="modal__order_box">
         <div class="modal__total">{{ totalSum | uah }}</div>
-        <btn text="Підтвердити замовлення" class="btn btn_order"></btn>
+        <btn text="Підтвердити замовлення" (click)="makeOrder()" class="btn btn_order"></btn>
       </div>
     </form>
 
@@ -69,7 +69,4 @@
     </div>
   </div>
 </div>
-<!-- <div mat-dialog-actions>
-  <button class="modal__btn" mat-button cdkFocusInitial>Cancel</button>
-  <button class="modal__btn" mat-button cdkFocusInitial>OK</button>
-</div> -->
+

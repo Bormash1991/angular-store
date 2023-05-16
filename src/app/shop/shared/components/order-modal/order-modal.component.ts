@@ -50,15 +50,7 @@ export class OrderModalComponent implements OnInit {
       phone: [this.phone, Validators.pattern(/^\+\d{3}\d{3}\d{3}\d{3}$/)],
       message: ['', Validators.pattern(/^[a-zA-Z ]{0,50}$/)],
     });
-    this.localStorageService
-      .getData<TypeOfProduct[]>('CartDataCount')
-      .forEach((elem: TypeOfProduct) =>
-        this.products.push({
-          quantity: elem.counter,
-          id: elem.id,
-          name: elem.name,
-        })
-      );
+
     this.sub = this.form.valueChanges.subscribe((value) => {
       if (value.name || value.phone) {
         this.checkInputs = false;
