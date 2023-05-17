@@ -64,6 +64,8 @@
     }
     &_text {
       margin-top: 20px;
+      max-width: 100%;
+      overflow: hidden;
     }
   }
   &__paginator {

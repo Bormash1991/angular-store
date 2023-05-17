@@ -35,6 +35,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
       if (data) {
         this.comments = [];
         this.filterService.resetData();
+        this.filterService.resetData();
         this.productId = data.id;
         this.loading$.next(false);
         this.comments = this.filterService.setData(

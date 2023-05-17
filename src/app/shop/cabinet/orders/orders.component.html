@@ -6,13 +6,14 @@
   <mat-accordion *ngIf="orders.length">
     <mat-expansion-panel class="orders__item" *ngFor="let order of orders">
       <mat-expansion-panel-header class="orders__item-header">
-        <mat-panel-title>
+        <mat-panel-title class="orders__item-title">
           <div class="orders__item-top">
             <div class="orders__item-sum">Сума:</div>
             <div class="orders__item-price">{{ order.totalSum | uah }}</div>
           </div>
+          <div class="orders__item-date">{{ order.createdAt }}</div>
         </mat-panel-title>
-        <mat-panel-description> {{ order.status }}</mat-panel-description>
+        <mat-panel-description> {{ order.status }} </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="orders__item-bottom">
         <div
