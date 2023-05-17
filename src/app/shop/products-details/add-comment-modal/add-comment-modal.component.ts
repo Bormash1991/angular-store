@@ -44,7 +44,7 @@ export class AddCommentModalComponent {
   }
   sendData() {
     const { text, stars } = this.form.getRawValue();
-    if (!stars && !text) {
+    if (!stars || !text) {
       this.snackBar.open('Форма заповнена неправильно', 'Закрити', {
         duration: 10000,
       });
