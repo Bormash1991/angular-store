@@ -1,5 +1,6 @@
 .login {
   height: 100%;
+
   .container {
     display: flex;
     align-items: center;
@@ -19,7 +20,7 @@
   }
   &__container {
     margin: 0 auto;
-
+    width: 100%;
     padding: 20px;
     border: 2px solid rgba(79, 77, 77, 0.078);
     border-radius: 5px;

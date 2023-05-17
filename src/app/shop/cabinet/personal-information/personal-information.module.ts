@@ -15,7 +15,7 @@ import { MaterialModule } from 'src/app/material/material.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
 })
 export class PersonalInformationModule {}
