@@ -10,24 +10,24 @@
     ></star-rating-control>
 
     <mat-form-field class="modal__text">
+      <mat-label>Коментар</mat-label>
       <textarea formControlName="text" matInput></textarea>
     </mat-form-field>
-
+    <div mat-dialog-actions class="modal__box_btn">
+      <btn
+        [text]="'Cancel'"
+        [class]="'btn btn_modal btn_modal-left'"
+        (click)="closeDialog()"
+        mat-button
+      >
+      </btn>
+      <btn
+        [text]="'OK'"
+        [class]="'btn btn_modal btn_modal-right'"
+        (click)="sendData()"
+        mat-button
+      >
+      </btn>
+    </div>
   </form>
-</div>
-<div mat-dialog-actions class="modal__box_btn">
-  <btn
-    [text]="'Cancel'"
-    [class]="'btn btn_modal btn_modal-left'"
-    (click)="closeDialog()"
-    mat-button
-  >
-  </btn>
-  <btn
-    [text]="'OK'"
-    [class]="'btn btn_modal btn_modal-right'"
-    (click)="sendData()"
-    mat-button
-  >
-  </btn>
 </div>

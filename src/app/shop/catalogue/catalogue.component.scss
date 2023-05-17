@@ -67,6 +67,39 @@
     min-width: 200px;
   }
 }
+@media (min-width: 1024px) {
+  .catalogue {
+    background-color: white;
+    min-width: 300px;
+    border-radius: 5px;
+    z-index: 100;
+    position: absolute;
+    bottom: -100%;
+    display: none;
+    left: auto;
+    right: auto;
+    top: auto;
+    &__list {
+      padding: 10px 0;
+    }
+    &__link {
+      display: block;
+      padding: 4px 10px;
+      color: #3e77aa;
+      text-decoration: none;
+      &:hover {
+        color: #f84147;
+        text-decoration: underline;
+        background-color: #fcfcee;
+      }
+    }
+  }
+  .static {
+    position: static;
+    display: block;
+    min-width: 300px;
+  }
+}
 .showCatalogue {
   display: block;
   animation: showCatalogueA 0.5s forwards;

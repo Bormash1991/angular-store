@@ -7,7 +7,7 @@ import {
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import * as uniqid from 'uniqid';
-import { map } from 'rxjs';
+import { map, take } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })

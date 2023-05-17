@@ -1,14 +1,6 @@
 import { switchMap } from 'rxjs';
 import { TypeOfProduct } from './../../models/TypeOfProduct.inteface';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AddCartItemService } from 'src/app/shared/services/add-cart-item.service';
@@ -20,6 +12,7 @@ import { OrdersService } from 'src/app/shared/services/orders.service';
   selector: 'app-cart-modal',
   templateUrl: './cart-modal.component.html',
   styleUrls: ['./cart-modal.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class CartModalComponent implements OnInit {
   data: TypeOfProduct[] = [];
@@ -55,8 +48,17 @@ export class CartModalComponent implements OnInit {
           this.phone = data.number;
         }
         this.form = this.fb.group({
-          name: [this.username, Validators.pattern(/^[a-zA-Z ]{1,20}$/)],
-          phone: [this.phone, Validators.pattern(/^\+\d{3}\d{3}\d{3}\d{3}$/)],
+          name: [
+            this.username,
+            [Validators.required, Validators.maxLength(50)],
+          ],
+          phone: [
+            this.phone,
+            [
+              Validators.required,
+              Validators.pattern(/^\+\d{3}\d{3}\d{3}\d{3}$/),
+            ],
+          ],
           message: ['', Validators.pattern(/^[a-zA-Z ]{0,50}$/)],
         });
       });
@@ -88,28 +90,30 @@ export class CartModalComponent implements OnInit {
       name: item.name,
       img: item.images[0],
     }));
-    this.ordersService
-      .setOrder({
-        createdAt: `${
-          new Date().getDate() < 10
-            ? '0' + new Date().getDate()
-            : new Date().getDate()
-        }-${
-          new Date().getMonth() + 1 < 10
-            ? '0' + (new Date().getMonth() + 1)
-            : new Date().getMonth() + 1
-        }-${new Date().getFullYear()}`,
-        phone,
-        name,
-        message,
-        products: orderProducts,
-        userId: this.userId,
-        totalSum: this.totalSum,
-        status: 'На обробці',
-      })
-      .then(() => {
-        this.dialogRef.close();
-        this.addCartItemService.deleteAllData();
-      });
+    if (this.form.valid) {
+      this.ordersService
+        .setOrder({
+          createdAt: `${
+            new Date().getDate() < 10
+              ? '0' + new Date().getDate()
+              : new Date().getDate()
+          }-${
+            new Date().getMonth() + 1 < 10
+              ? '0' + (new Date().getMonth() + 1)
+              : new Date().getMonth() + 1
+          }-${new Date().getFullYear()}`,
+          phone,
+          name,
+          message,
+          products: orderProducts,
+          userId: this.userId,
+          totalSum: this.totalSum,
+          status: 'На обробці',
+        })
+        .then(() => {
+          this.dialogRef.close();
+          this.addCartItemService.deleteAllData();
+        });
+    }
   }
 }

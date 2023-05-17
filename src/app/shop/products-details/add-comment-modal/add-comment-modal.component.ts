@@ -48,7 +48,7 @@ export class AddCommentModalComponent {
       this.snackBar.open('Форма заповнена неправильно', 'Закрити', {
         duration: 10000,
       });
-      this.dialogRef.close();
+      // this.dialogRef.close();
       return;
     }
     const comment: Comments = {

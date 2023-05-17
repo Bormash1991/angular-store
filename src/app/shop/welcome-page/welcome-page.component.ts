@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription, take } from 'rxjs';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 
@@ -9,35 +9,51 @@ import { ProductsService } from 'src/app/shared/services/products.service';
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss'],
 })
-export class WelcomePageComponent implements OnInit {
+export class WelcomePageComponent implements OnInit, OnDestroy {
   protected data: TypeOfProduct[] = [];
   loading$ = new BehaviorSubject<boolean>(true);
+  protected sub: Subscription;
   constructor(
     private productsService: ProductsService,
     private titleService: Title
   ) {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
   ngOnInit(): void {
-    this.productsService.getProducts().subscribe((products) => {
-      this.data = [];
-      this.loading$.next(false);
-      this.setRondomProducts(products);
-    });
+    this.sub = this.productsService
+      .getProducts()
+      .pipe(take(1))
+      .subscribe((products) => {
+        if (products) {
+          this.data = this.setRandomProducts(products);
+          this.loading$.next(false);
+        }
+      });
 
     this.titleService.setTitle('Angular-store');
   }
-  setRondomProducts(products: TypeOfProduct[]) {
+  setRandomProducts(products: TypeOfProduct[]) {
     const maxNumber = products.length;
-    for (let i = 0; i < 15; i++) {
+    const productsArr = [];
+    let n = 8;
+    for (let i = 0; i < n; i++) {
       const rNumber = Math.floor(Math.random() * maxNumber);
-      if (!this.data.length) {
-        this.data.push(products[rNumber]);
+      if (!productsArr.length) {
+        productsArr.push(products[rNumber]);
       } else {
-        this.data.forEach((product, i) => {
-          if (i == this.data.length - 1 && product.id != products[rNumber].id) {
-            this.data.push(products[rNumber]);
+        productsArr.forEach((product, i) => {
+          if (
+            i == productsArr.length - 1 &&
+            product.id != products[rNumber].id
+          ) {
+            productsArr.push(products[rNumber]);
+          } else if (i == productsArr.length - 1) {
+            n += 1;
           }
         });
       }
     }
+    return productsArr;
   }
 }
