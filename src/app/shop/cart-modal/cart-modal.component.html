@@ -22,7 +22,7 @@
           <div class="modal__inf">
             <div class="modal__name">{{ prod.name }}</div>
             <div class="modal__price">
-              Price: {{ prod.price }} × {{ prod.counter }} =
+              Ціна: {{ prod.price }} × {{ prod.counter }} =
               {{ prod.price * prod.counter | uah }}
             </div>
           </div>
@@ -39,7 +39,11 @@
       </li>
     </ul>
 
-    <form class="modal__order" *ngIf="openOrder" [formGroup]="form">
+    <form
+      class="modal__order"
+      *ngIf="openOrder && data.length"
+      [formGroup]="form"
+    >
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input formControlName="name" matInput />
@@ -55,7 +59,11 @@
 
       <div class="modal__order_box">
         <div class="modal__total">{{ totalSum | uah }}</div>
-        <btn text="Підтвердити замовлення" class="btn btn_order"></btn>
+        <btn
+          text="Підтвердити замовлення"
+          (click)="makeOrder()"
+          class="btn btn_order"
+        ></btn>
       </div>
     </form>
 
@@ -69,7 +77,3 @@
     </div>
   </div>
 </div>
-<!-- <div mat-dialog-actions>
-  <button class="modal__btn" mat-button cdkFocusInitial>Cancel</button>
-  <button class="modal__btn" mat-button cdkFocusInitial>OK</button>
-</div> -->

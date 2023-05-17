@@ -42,21 +42,28 @@ export class OrdersModalComponent implements OnInit {
       id: [product.id],
       name: [product.name],
     });
-  }  
+  }
 
   closeDialog() {
     this.dialogRef.close();
   }
 
   showData() {
-    // this.ordersService
-    //   .update(this.data.id, { ...this.form.getRawValue() })
-    //   .subscribe({
-    //     next: (response) => {
-    //       window.location.reload();
-    //     },
-    //     error: (error) => {},
-    //   });
+    this.ordersService.updateOrder(
+      {
+        ...this.form.getRawValue(),
+        createdAt: `${
+          new Date().getDate() < 10
+            ? '0' + new Date().getDate()
+            : new Date().getDate()
+        }-${
+          new Date().getMonth() + 1 < 10
+            ? '0' + (new Date().getMonth() + 1)
+            : new Date().getMonth() + 1
+        }-${new Date().getFullYear()}`,
+      },
+      this.data.id
+    );
     this.dialogRef.close();
   }
 }

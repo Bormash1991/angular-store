@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  Input,
   OnChanges,
   OnInit,
   SimpleChanges,
@@ -16,6 +17,7 @@ import { ChangeCatalogueStateService } from 'src/app/shop/shared/services/change
 export class CatalogueComponent implements OnInit {
   categories: any[];
   catalogueClass: string = '';
+  @Input() static: boolean = false;
   constructor(
     private categoryService: CategoryService,
     private changeCatalogueStateService: ChangeCatalogueStateService
@@ -25,12 +27,18 @@ export class CatalogueComponent implements OnInit {
     this.categoryService
       .getCategories()
       .subscribe((data) => (this.categories = data));
-    this.changeCatalogueStateService.getCatalogueState().subscribe((value) => {
-      if (value) {
-        this.catalogueClass = 'showCatalogue';
-      } else {
-        this.catalogueClass = '';
-      }
-    });
+    if (!this.static) {
+      this.changeCatalogueStateService
+        .getCatalogueState()
+        .subscribe((value) => {
+          if (value) {
+            this.catalogueClass = 'showCatalogue';
+          } else {
+            this.catalogueClass = '';
+          }
+        });
+    } else {
+      this.catalogueClass = 'static';
+    }
   }
 }

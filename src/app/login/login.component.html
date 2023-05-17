@@ -1,26 +1,20 @@
 <div class="login">
   <div class="container">
     <div class="login__container">
-      <h1 class="login__title" mat-dialog-title>Log In</h1>
+      <h1 class="login__title" mat-dialog-title>Увійти</h1>
       <form class="login__box" [formGroup]="form">
         <mat-form-field>
           <mat-label> Email </mat-label>
           <input formControlName="email" matInput type="email" />
         </mat-form-field>
-        <div class="login__error-text">
-          {{ errorMessages["email"] }}
-        </div>
+
         <mat-form-field>
-          <mat-label>Password</mat-label>
+          <mat-label>Пароль</mat-label>
           <input formControlName="password" matInput type="password" />
         </mat-form-field>
-        <div class="login__error-text">
-          {{ errorMessages["password"] }}
-        </div>
+        <div class="login__error-text"></div>
       </form>
-      <div class="login__error-text">
-        {{ textError }}
-      </div>
+
       <div class="login__box-btn">
         <btn [text]="'Cancel'" class="btn btn_modal" (click)="cancel()"
           >Cancel</btn

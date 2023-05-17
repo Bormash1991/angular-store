@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrdersModalComponent } from 'src/app/admin-panel/orders-modal/orders-modal.component';
-import { UsersModalComponent } from 'src/app/admin-panel/users-modal/users-modal.component';
 import { WarningModalComponent } from 'src/app/admin-panel/warning-modal/modal.component';
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 
@@ -28,6 +27,7 @@ export class OrderTableComponent {
         data: {
           name: item.name,
           phone: item.phone,
+          status: item.status,
         },
         products: item.products,
         id: item.id,

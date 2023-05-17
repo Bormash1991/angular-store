@@ -7,26 +7,16 @@ import { ForbiddenPageComponent } from './forbidden-page/forbidden-page.componen
 
 const routes: Routes = [
   {
-    path: '',
-    component: ErrorsComponent,
-    children: [
-      {
-        path: '404',
-        component: PageNotFoundComponent,
-      },
-      {
-        path: '401',
-        component: UnautorizedPageComponent,
-      },
-      {
-        path: '403',
-        component: ForbiddenPageComponent,
-      },
-      {
-        path: '**',
-        redirectTo: '404',
-      },
-    ],
+    path: '404',
+    component: PageNotFoundComponent,
+  },
+  {
+    path: '401',
+    component: UnautorizedPageComponent,
+  },
+  {
+    path: '403',
+    component: ForbiddenPageComponent,
   },
 ];
 

@@ -27,6 +27,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    &-text {
+      line-height: 1;
+    }
     &_light {
       width: 45px;
       height: 45px;
@@ -42,18 +45,32 @@
   &__user {
     display: block;
     margin-top: 15px;
-    &-unlog {
-      display: flex;
+
+    &-box {
+      display: grid;
       align-items: center;
       color: white;
       gap: 15px;
+      font-size: 25px;
+      padding: 5px;
+      border-radius: 5px;
+      grid-template-columns: 45px auto;
+      text-decoration: none;
+    }
+    &-inf {
+      .name {
+        font-size: 16px;
+      }
+      .email {
+        color: rgb(169, 159, 159);
+        font-size: 12px;
+      }
     }
     &-auth {
       font-size: 16px;
       gap: 10px;
       display: flex;
       align-items: center;
-      justify-content: center;
     }
     &-link {
       text-decoration: none;
@@ -78,6 +95,8 @@
     gap: 15px;
     border-radius: 5px;
     padding: 5px;
+    text-decoration: none;
+    color: black;
     &-text {
       font-size: 15px;
     }
@@ -124,6 +143,11 @@
       height: 25px;
       fill: black;
     }
+  }
+}
+.hover {
+  &:hover {
+    background-color: #a1beb316;
   }
 }
 .showSidebar {

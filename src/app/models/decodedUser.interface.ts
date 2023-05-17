@@ -1,6 +1,7 @@
-export interface decodedUser {
-  username: string;
+export interface User {
+  name: string;
   email: string;
-  id: string;
-  role: 'USER' | 'ADMIN';
+  number: string;
+  date: string;
+  gender: string;
 }

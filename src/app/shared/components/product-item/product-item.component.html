@@ -1,4 +1,4 @@
-<div class="products__item">
+<div class="product">
   <div class="swiper" #swiper>
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let item of productDate.images">
@@ -8,22 +8,22 @@
     </div>
     <div class="swiper-pagination"></div>
   </div>
-  <h4 class="products__item_title" (click)="redirect(productDate.id)">
+  <h4 class="product__title">
     <a
-      class="products__item_link"
+      class="product__link"
       [routerLink]="['', productDate.category, productDate.id]"
     >
       {{ productDate.name }}</a
     >
   </h4>
   <app-rating [data]="productDate.comments"></app-rating>
-  <div class="products__item_box">
-    <div class="products__item_price">
+  <div class="product__box">
+    <div class="product__price">
       {{ productDate.price | uah }}
     </div>
     <btn
-      (click)="addOrDeleteItem(productDate)"
-      [class]="'btn ' + buttonClass"
+      (click)="addItem(productDate)"
+      class="btn btn_products"
       [text]="buttonText"
     ></btn>
   </div>

@@ -71,9 +71,9 @@ export class ProductsService {
       .object<TypeOfProductDb>(`products/${id}`)
       .snapshotChanges()
       .pipe(
-        map(
-          (changes) =>
-            ({
+        map((changes) => {
+          if (changes.key) {
+            return {
               ...(changes.payload.val() as TypeOfProductDb),
               id: changes.payload.key as string,
               comments: this.transformData<Comments>(
@@ -85,8 +85,11 @@ export class ProductsService {
               images: this.transformDataToArr<string>(
                 (changes.payload.val() as TypeOfProductDb).images
               ),
-            } as TypeOfProduct)
-        )
+            } as TypeOfProduct;
+          } else {
+            return null;
+          }
+        })
       );
   }
   setProduct(product: TypeOfProduct, files: File[]) {
@@ -120,7 +123,10 @@ export class ProductsService {
       );
   }
   addComment(productId: string, comment: Comments) {
-    this.db.list(`products/${productId}/comments`).push(comment);
+    return this.db.list(`products/${productId}/comments`).push(comment);
+  }
+  deleteComment(productId: string, id: string) {
+    this.db.list(`products/${productId}/comments/${id}`).remove();
   }
   transformData<T>(data: { [key: string]: T }): T[] {
     if (data) {

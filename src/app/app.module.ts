@@ -8,7 +8,6 @@ import { ShopRoutingModule } from './shop/shop-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ShopModule } from './shop/shop.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersModule } from './admin-panel/users/users.module';
 import { ProductsModule } from './admin-panel/products/products.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './login/login.module';
@@ -28,17 +27,14 @@ import { AngularFireModule } from '@angular/fire/compat';
     ShopModule,
     AdminPanelModule,
     BrowserAnimationsModule,
-    UsersModule,
     ProductsModule,
     HttpClientModule,
     LoginModule,
     ErrorsModule,
     OrdersModule,
     AngularFireModule.initializeApp(environment.firebase),
-    
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

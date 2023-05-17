@@ -1,16 +1,13 @@
 .products {
   padding-top: 35px;
 
-  &__container {
-    padding-bottom: 30px;
-  }
   &__title {
     font-weight: 400;
     font-size: 28px;
     color: #1f242a;
   }
   &__spinner {
-
+    padding-top: 100px;
   }
   &__box {
     margin-top: 50px;
@@ -43,25 +40,3 @@
     }
   }
 }
-// @media (max-width: 1024px) {
-//   .products {
-//     &__box {
-//       grid-template-columns: 1fr 1fr 1fr;
-//     }
-//   }
-// }
-// @media (max-width: 768px) {
-//   .products {
-//     &__box {
-//       grid-template-columns: 1fr 1fr;
-//     }
-//   }
-// }
-// @media (max-width: 576px) {
-//   .products {
-//     &__box {
-//       grid-template-columns: 80%;
-//       justify-content: center;
-//     }
-//   }
-// }

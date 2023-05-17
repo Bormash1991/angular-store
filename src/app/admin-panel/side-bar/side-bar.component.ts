@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { CloseOrOpenBarService } from '../shared/services/close-or-open-bar.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -10,12 +11,13 @@ export class SideBarComponent implements OnInit {
   constructor(
     private localStorageService: LocalStorageService,
     private closeOrOpenBarService: CloseOrOpenBarService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private authService: AuthService
   ) {}
   activePopup = false;
   activeBarclass = '';
   logout() {
-    this.localStorageService.deleteData('token');
+    this.authService.logOut();
   }
   ngOnInit() {
     this.closeOrOpenBarService.changingState$.subscribe((value) => {

@@ -1,11 +1,16 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProductsService } from '../../../shared/services/products.service';
-import { ErrorsObject } from 'src/app/models/errorMessages.interface';
 import { Subscription } from 'rxjs';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { Comments } from 'src/app/models/TypeOfProduct.inteface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-comment-modal',
@@ -14,17 +19,16 @@ import { Comments } from 'src/app/models/TypeOfProduct.inteface';
 })
 export class AddCommentModalComponent {
   private sub: Subscription;
-  protected errorMessages: ErrorsObject = {};
   constructor(
     public dialogRef: MatDialogRef<AddCommentModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public id: string,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private productsService: ProductsService,
-    private usersService: UsersService
+    private snackBar: MatSnackBar
   ) {}
   form: FormGroup = this.fb.group({
-    text: '',
-    stars: 0,
+    text: ['', [Validators.required, Validators.maxLength(1000)]],
+    stars: [0, Validators.required],
   });
   closeDialog() {
     this.dialogRef.close();
@@ -35,22 +39,34 @@ export class AddCommentModalComponent {
   ngOnInit(): void {
     this.sub = this.form.valueChanges.subscribe((value) => {
       if (value.stars || value.text) {
-        this.errorMessages = {};
       }
     });
   }
   sendData() {
     const { text, stars } = this.form.getRawValue();
-    this.usersService.getUser().subscribe((user) => {
-      if (user) {
-        const comment: Comments = {
-          text,
-          stars,
-          userId: user.uid,
-        };
-        this.productsService.addComment(this.id, comment);
-      }
-    });
+    if (!stars && !text) {
+      this.snackBar.open('Форма заповнена неправильно', 'Закрити', {
+        duration: 10000,
+      });
+      this.dialogRef.close();
+      return;
+    }
+    const comment: Comments = {
+      text,
+      stars,
+      userId: this.data.userId,
+      username: this.data.userInf.name,
+      date: new Date()
+        .toLocaleDateString('ua-Ua', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+        })
+        .replace('р.', ''),
+    };
+    this.productsService
+      .addComment(this.data.id, comment)
+      .then(() => this.dialogRef.close());
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

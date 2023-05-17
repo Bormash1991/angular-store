@@ -8,15 +8,11 @@
       formControlName="stars"
       class="modal__rating"
     ></star-rating-control>
-    <div class="modal__label">
-      {{ errorMessages["stars"] }}
-    </div>
+
     <mat-form-field class="modal__text">
       <textarea formControlName="text" matInput></textarea>
     </mat-form-field>
-    <div class="modal__label">
-      {{ errorMessages["text"] }}
-    </div>
+
   </form>
 </div>
 <div mat-dialog-actions class="modal__box_btn">

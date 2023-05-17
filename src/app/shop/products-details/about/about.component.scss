@@ -1,6 +1,5 @@
 .about {
   padding-bottom: 40px;
-
   &__title,
   &__name,
   &__descr {
@@ -10,7 +9,7 @@
   }
   &__container {
     display: grid;
-    grid-template-columns: 45% 55%;
+    grid-template-columns: 100%;
     margin-top: 30px;
   }
   &__chars {
@@ -22,8 +21,6 @@
     height: 100%;
   }
   &__inf {
-    padding-left: 160px;
-    padding-right: 120px;
     &_buy {
       display: flex;
       align-items: center;
@@ -45,7 +42,7 @@
     }
   }
   &__colors {
-    margin-top: 180px;
+    margin-top: 20px;
     &_text {
       font-size: 15px;
       span {
@@ -76,7 +73,6 @@
       font-size: 16px;
     }
   }
-
   &__name,
   &__descr {
     font-size: 22px;
@@ -88,6 +84,35 @@
   }
   &__price {
     font-size: 30px;
+  }
+  &__spinner {
+    padding-top: 150px;
+  }
+}
+@media (min-width: 768px) {
+  .about {
+    &__title,
+    &__name,
+    &__descr {
+      font-size: 28px;
+    }
+    &__container {
+      display: grid;
+      grid-template-columns: 45% 55%;
+      margin-top: 30px;
+    }
+    &__inf {
+      padding-left: 60px;
+    }
+  }
+}
+@media (min-width: 1440px) {
+  .about {
+    &__inf {
+      padding-left: 180px;
+      padding-right: 120px;
+      padding-top: 140px;
+    }
   }
 }
 .is {

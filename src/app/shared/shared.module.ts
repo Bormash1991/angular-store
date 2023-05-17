@@ -7,12 +7,13 @@ import { RouterModule } from '@angular/router';
 import { TablesComponent } from './components/tables/tables.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { UsersTablesComponent } from './components/users-tables/users-tables.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { RatingComponent } from './components/rating/rating.component';
 import { MaterialModule } from '../material/material.module';
 import { CloseCatalogueDirective } from './directives/close-catalogue.directive';
+import { StartLinkComponent } from './components/start-link/start-link.component';
+import { PageComponent } from './components/page/page.component';
 @NgModule({
   declarations: [
     UahPipe,
@@ -21,10 +22,11 @@ import { CloseCatalogueDirective } from './directives/close-catalogue.directive'
     TablesComponent,
     FilterComponent,
     SpinnerComponent,
-    UsersTablesComponent,
     OrderTableComponent,
     RatingComponent,
     CloseCatalogueDirective,
+    StartLinkComponent,
+    PageComponent,
   ],
   imports: [
     CommonModule,
@@ -39,10 +41,11 @@ import { CloseCatalogueDirective } from './directives/close-catalogue.directive'
     TablesComponent,
     FilterComponent,
     SpinnerComponent,
-    UsersTablesComponent,
     OrderTableComponent,
     RatingComponent,
     CloseCatalogueDirective,
+    StartLinkComponent,
+    PageComponent,
   ],
 })
 export class SharedModule {}

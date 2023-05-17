@@ -30,21 +30,16 @@ export class WarningModalComponent implements OnInit {
     if (this.data.type == 'product') {
       this.productsService.deleteProduct(this.data.data.id);
     }
-    // else if (this.data.type == 'user') {
-    //   this.usersService.delete(this.data.data.id).subscribe({
-    //     next: (response) => {
-    //       window.location.reload();
-    //     },
-    //     error: (error) => {},
-    //   });
-    // } else {
-    //   this.ordersService.delete(this.data.data.id).subscribe({
-    //     next: (response) => {
-    //       window.location.reload();
-    //     },
-    //     error: (error) => {},
-    //   });
-    // }
+    else if (this.data.type == 'user') {
+      // this.usersService.delete(this.data.data.id).subscribe({
+      //   next: (response) => {
+      //     window.location.reload();
+      //   },
+      //   error: (error) => {},
+      // });
+    } else {
+      this.ordersService.deleteOrder(this.data.data.id);
+    }
     this.dialogRef.close();
   }
 }

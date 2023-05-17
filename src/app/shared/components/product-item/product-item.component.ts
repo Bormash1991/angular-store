@@ -25,7 +25,7 @@ import { map, take } from 'rxjs';
   styleUrls: ['./product-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges {
+export class ProductItemComponent implements OnInit, AfterViewInit {
   @Input() productDate: TypeOfProduct;
   buttonText: string = 'Add to Cart';
   subj: any;
@@ -44,10 +44,6 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    if (this.router.url == '/products/cart') {
-      this.buttonText = 'Remove ';
-      return;
-    }
     this.subj = this.addCartItemService.productsSubj$.subscribe((n) =>
       this.check(n)
     );
@@ -60,24 +56,8 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges {
         this.url = url;
       });
   }
-  redirect(id: string) {
-    this.router.navigateByUrl(`${this.url}/${id}`);
-  }
-  ngOnChanges() {
-    // if (this.productDate.comments) {
-    //   this.ratingNumber =
-    //     this.productDate.comments.reduce((acc, next) => {
-    //       return (acc += +next.stars);
-    //     }, 0) / this.productDate.comments.length;
-    //   this.rewiesQuantity =
-    //     this.productDate.comments.length == 1
-    //       ? this.productDate.comments.length + ' відгук'
-    //       : this.productDate.comments.length > 1 &&
-    //         this.productDate.comments.length < 5
-    //       ? this.productDate.comments.length + ' відгуки'
-    //       : this.productDate.comments.length + ' відгуків';
-    // }
-  }
+
+
   ngAfterViewInit() {
     this.swiper = new Swiper(this.sliderRef.nativeElement, {
       modules: [Navigation, Pagination],
@@ -99,27 +79,22 @@ export class ProductItemComponent implements OnInit, AfterViewInit, OnChanges {
       },
     });
   }
-  addOrDeleteItem(elem: TypeOfProduct) {
-    if (this.router.url == '/products/cart') {
-      this.addCartItemService.removeSetOfProduct(elem);
-      return;
-    }
+  addItem(elem: TypeOfProduct) {
     this.addCartItemService.setData(elem);
-    this.buttonText = 'In Cart';
+    this.buttonText = 'У кошику';
   }
   check(elems: TypeOfProduct[]) {
     if (!elems.length) {
-      this.buttonText = 'Add to Cart';
+      this.buttonText = 'Додати';
       this.changeDetector.detectChanges();
     }
     for (let i = 0; i < elems.length; i++) {
       if (elems[i].id == this.productDate.id && elems[i].counter) {
-        this.buttonText = 'In Cart';
+        this.buttonText = 'У кошику';
         this.changeDetector.detectChanges();
-
         return;
       } else {
-        this.buttonText = 'Add to Cart';
+        this.buttonText = 'Додати';
         this.changeDetector.detectChanges();
       }
     }

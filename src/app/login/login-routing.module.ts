@@ -1,4 +1,3 @@
-import { LoginGuard } from '../shared/guards/login.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,7 +7,6 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: LoginComponent,
-    canActivate: [LoginGuard],
   },
 ];
 

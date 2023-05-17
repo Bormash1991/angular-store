@@ -22,4 +22,11 @@ export class CategoryService {
         )
       );
   }
+  getCategoryName(link: string) {
+    return this.db
+      .list<{ name: string; eng: string }>('categories', (ref) =>
+        ref.orderByChild('link').equalTo(link)
+      )
+      .valueChanges();
+  }
 }
