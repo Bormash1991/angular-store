@@ -1,48 +1,53 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  private sub: Subscription;
-  protected textError: string = '';
-
+export class LoginComponent implements OnDestroy {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   form: FormGroup = this.fb.group({
-    email: '',
-    password: '',
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
   cancel() {
     this.router.navigateByUrl('');
-    this.textError = '';
   }
 
-  ngOnInit(): void {
-    // this.sub = this.form.valueChanges.subscribe((value) => {
-    //   if (value.password || value.email) {
-    //     this.textError = '';
-    //     this.errorMessages = {};
-    //   }
-    // });
-  }
   redirect() {
     let { email, password } = this.form.getRawValue();
-    this.authService.login(email, password).then(() => {
-      this.router.navigateByUrl('');
-    });
+    if (this.form.valid) {
+      this.authService
+        .login(email, password)
+        .then(() => {
+          this.router.navigateByUrl('');
+        })
+        .catch((err) => {
+          const error = err.message.match(/\(auth\/[a-z-]+\)/)[0];
+          if (error == '(auth/wrong-password)') {
+            this.snackBar.open('Невірний пароль', 'Закрити', {
+              duration: 10000,
+            });
+          } else if (error == '(auth/user-not-found)') {
+            this.snackBar.open('Юзера не існує', 'Закрити', {
+              duration: 10000,
+            });
+          }
+          this.form.reset();
+        });
+    }
   }
-  ngOnDestroy() {
-
-  }
+  ngOnDestroy() {}
 }

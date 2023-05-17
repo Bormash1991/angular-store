@@ -2,7 +2,6 @@
   background-color: #221f1f;
   padding: 15px 0;
   position: relative;
-
   &__container {
     display: flex;
     justify-content: space-between;
@@ -52,13 +51,12 @@
   }
   &__catalogue {
     &_btn {
+      display: none;
       padding: 8px 16px;
-      display: flex;
       align-items: center;
       gap: 10px;
       border-radius: 8px;
       border: none;
-
       background-color: #fff3;
       color: #fff;
       font-size: 16px;
@@ -76,6 +74,7 @@
     height: 25px;
   }
   &__text {
+    display: none;
     color: white;
     font-weight: 300;
     transform: translateY(1px);
@@ -88,7 +87,10 @@
     text-decoration: none;
     border-radius: 5px;
     transition: 250ms background-color;
-
+    &_img {
+      height: 30px;
+      width: 30px;
+    }
     &:hover {
       background-color: #a1beb387;
     }
@@ -102,7 +104,6 @@
     top: 0px;
     height: 100vh;
     width: 100vw;
-
     transform: translateX(-100%);
     left: 0px;
     transition: 250ms transform;
@@ -169,21 +170,21 @@
 }
 @media (min-width: 768px) {
   .header {
-    &__nav {
-      padding: 0;
-      position: relative;
-      height: auto;
-      width: auto;
-      transform: translateX(0);
-      &_list {
-        margin-top: 0;
-        align-items: center;
-        flex-direction: row;
-        gap: 20px;
+    &__text {
+      display: block;
+    }
+    &__catalogue {
+      &-container {
+      }
+      &_btn {
+        display: flex;
       }
     }
-    &__btn {
-      display: none;
+    &__logo {
+      &_img {
+        height: 25px;
+        width: 25px;
+      }
     }
   }
 }

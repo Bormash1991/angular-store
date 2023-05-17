@@ -44,3 +44,6 @@
     }
   }
 }
+::ng-deep .mdc-floating-label--required::after {
+  display: none;
+}

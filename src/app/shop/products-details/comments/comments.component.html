@@ -6,6 +6,7 @@
     <div class="comments__add" *ngIf="!(loading$ | async) && userId">
       <span class="comments__add_text">Залиште свій відгук про товар </span>
       <btn
+      class="comments__write"
         [class]="'btn btn_comments'"
         [text]="'Написати відгук'"
         (click)="openModal()"

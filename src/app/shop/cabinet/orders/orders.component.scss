@@ -1,6 +1,6 @@
 .orders {
   padding-top: 24px;
-  padding-left: 40px;
+
   &__title {
     font-size: 30px;
   }
@@ -22,7 +22,7 @@
     &-top {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
     }
     &-sum {
       color: #797878;
@@ -47,6 +47,24 @@
     &-quantity {
       font-size: 17px;
     }
+  }
+}
+@media (min-width: 768px) {
+  .orders {
+    padding-left: 40px;
+  }
+}
+@media (max-width: 768px) {
+  ::ng-deep .mat-expansion-panel-header-title,
+  .mat-expansion-panel-header-description {
+    margin-right: 0px;
+  }
+  ::ng-deep .mat-content {
+    display: grid !important;
+    flex-direction: row !important;
+    overflow: hidden !important;
+    grid-template-columns: 114px 2fr 1fr !important;
+    gap: 9px !important;
   }
 }
 ::ng-deep .mat-accordion .mat-expansion-panel:not(.mat-expanded),

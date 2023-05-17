@@ -1,6 +1,21 @@
 .cabinet {
   &__container {
     display: grid;
-    grid-template-columns: 20% 0% 80%;
+    grid-template-columns: 0% 0% 100%;
   }
 }
+
+@media (min-width: 768px) {
+  .cabinet {
+    &__container {
+      display: grid;
+      grid-template-columns: 30% 0% 70%;
+    }
+  }
+}
+// .cabinet {
+//   &__container {
+//     display: grid;
+//     grid-template-columns: 20% 0% 80%;
+//   }
+// }

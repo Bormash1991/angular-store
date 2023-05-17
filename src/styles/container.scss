@@ -5,18 +5,18 @@
   margin-right: auto;
   margin-left: auto;
   max-width: 1600px;
-  padding: 0 40px;
+  padding: 0 10px;
 }
 // @media (min-width: 576px) {
 //   .container {
 //     width: 540px;
 //   }
 // }
-// @media (min-width: 768px) {
-//   .container {
-//     width: 720px;
-//   }
-// }
+@media (min-width: 768px) {
+  .container {
+    padding: 0 40px;
+  }
+}
 // @media (min-width: 992px) {
 //   .container {
 //     width: 960px;

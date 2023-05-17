@@ -6,34 +6,34 @@
       [addClass]="'rating_details'"
     ></app-rating>
   </div>
-  <div class="details__tabs">
-    <div class="container">
-      <div class="details__tabs_container">
-        <a
-          class="details__link"
-          [routerLink]="['', productData.category, productData.id]"
-          routerLinkActive="details__link_active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          Про товар
-        </a>
-        <a
-          class="details__link"
-          [routerLink]="['characteristics']"
-          routerLinkActive="details__link_active"
-          [routerLinkActiveOptions]="{ exact: false }"
-        >
-          Характеристики
-        </a>
-        <a
-          class="details__link"
-          [routerLink]="['comments']"
-          routerLinkActive="details__link_active"
-          [routerLinkActiveOptions]="{ exact: false }"
-        >
-          Відгуки {{ "  " + productData.comments.length }}
-        </a>
-      </div>
+</div>
+<div class="details__tabs" *ngIf="productData">
+  <div class="container">
+    <div class="details__tabs_container">
+      <a
+        class="details__link"
+        [routerLink]="['', productData.category, productData.id]"
+        routerLinkActive="details__link_active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Про товар
+      </a>
+      <a
+        class="details__link"
+        [routerLink]="['characteristics']"
+        routerLinkActive="details__link_active"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
+        Характеристики
+      </a>
+      <a
+        class="details__link"
+        [routerLink]="['comments']"
+        routerLinkActive="details__link_active"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
+        Відгуки {{ "  " + productData.comments.length }}
+      </a>
     </div>
   </div>
 </div>
