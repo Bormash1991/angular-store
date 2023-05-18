@@ -6,6 +6,16 @@
         <mat-label>{{ field }}</mat-label>
         <input [formControlName]="field" matInput />
       </mat-form-field>
+      <mat-form-field>
+        <mat-label>Категорія</mat-label>
+        <mat-select formControlName="category">
+          <mat-option
+            *ngFor="let category of categories"
+            [value]="category.link"
+            >{{ category.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <quill-editor
@@ -81,6 +91,7 @@
         </div>
       </div>
     </div>
+
     <input type="file" class="modal__file" multiple (change)="upload($event)" />
 
     <div class="modal__label" *ngIf="showLabel">Incorect price</div>

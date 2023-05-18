@@ -25,6 +25,7 @@ export class TablesComponent {
           guarantee: item.guarantee,
           quantity: item.quantity,
         },
+        category: item.category,
         description: item.description,
         id: item.id,
         images: item.images,

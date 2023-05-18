@@ -13,9 +13,11 @@
     }
   }
 }
-// .cabinet {
-//   &__container {
-//     display: grid;
-//     grid-template-columns: 20% 0% 80%;
-//   }
-// }
+@media (min-width: 992px) {
+  .cabinet {
+    &__container {
+      display: grid;
+      grid-template-columns: 20% 0% 80%;
+    }
+  }
+}
