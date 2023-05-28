@@ -1,20 +1,13 @@
 import { TypeOfProduct } from 'src/app/models/TypeOfProduct.inteface';
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRoute,
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, catchError, map, of } from 'rxjs';
 import { ProductsService } from '../../../../shared/services/products.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DetailsGuard implements CanActivate {
+export class DetailsGuard  {
   constructor(
     private router: Router,
     private productsService: ProductsService,
