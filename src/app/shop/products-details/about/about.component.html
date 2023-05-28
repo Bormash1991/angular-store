@@ -70,7 +70,11 @@
         </div>
       </div>
 
-      <div class="about__descr" [innerHTML]="productData.description"></div>
+      <quill-view-html
+        [content]="productData.description"
+        format="text"
+        theme="snow"
+      ></quill-view-html>
     </div>
   </div>
 </div>

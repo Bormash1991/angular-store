@@ -18,6 +18,7 @@ export class SideBarComponent implements OnInit {
   activeBarclass = '';
   logout() {
     this.authService.logOut();
+    this.closeBar();
   }
   ngOnInit() {
     this.closeOrOpenBarService.changingState$.subscribe((value) => {
