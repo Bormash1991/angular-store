@@ -25,7 +25,7 @@ export class WelcomePageComponent implements OnInit, OnDestroy {
       .getProducts()
       .pipe(take(1))
       .subscribe((products) => {
-        if (products) {
+        if (products.length) {
           this.data = this.setRandomProducts(products);
           this.loading$.next(false);
         }
@@ -37,6 +37,9 @@ export class WelcomePageComponent implements OnInit, OnDestroy {
     const maxNumber = products.length;
     const productsArr = [];
     let n = 8;
+    if (maxNumber < n) {
+      n = maxNumber;
+    }
     for (let i = 0; i < n; i++) {
       const rNumber = Math.floor(Math.random() * maxNumber);
       if (!productsArr.length) {

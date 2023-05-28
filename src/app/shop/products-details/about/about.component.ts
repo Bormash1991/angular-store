@@ -116,17 +116,17 @@ export class AboutComponent implements OnInit {
     this.loading$.next(true);
   }
   setOtherColors(data: TypeOfProduct) {
-    // data.otherIds.forEach((item) => {
-    //   this.productsService
-    //     .getDataById<TypeOfProduct>(item)
-    //     .subscribe((response) => {
-    //       this.otherColors.push({
-    //         color: response.color,
-    //         cssColor: response.cssColor,
-    //         id: response.id,
-    //       });
-    //     });
-    // });
+    data.otherIds.forEach((item) => {
+      this.productsService.getProductById(item).subscribe((response) => {
+        if (response) {
+          this.otherColors.push({
+            color: response.color,
+            cssColor: response.cssColor,
+            id: response.id,
+          });
+        }
+      });
+    });
   }
   setData(elem: TypeOfProduct) {
     this.addCartItemService.setData(elem);

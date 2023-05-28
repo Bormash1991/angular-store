@@ -29,9 +29,13 @@ export class ProductsService {
               comments: this.transformData<Comments>(
                 (c.payload.val() as TypeOfProductDb).comments
               ),
-              // otherIds: this.transformDataToArr<string>(
-              //   (c.payload.val() as TypeOfProductDb).otherIds
-              // ),
+              characteristics: (c.payload.val() as TypeOfProductDb)
+                .characteristics
+                ? (c.payload.val() as TypeOfProductDb).characteristics
+                : [],
+              otherIds: (c.payload.val() as TypeOfProductDb).otherIds
+                ? (c.payload.val() as TypeOfProductDb).otherIds
+                : [],
               images: this.transformDataToArr<string>(
                 (c.payload.val() as TypeOfProductDb).images
               ),
@@ -55,9 +59,13 @@ export class ProductsService {
               comments: this.transformData<Comments>(
                 (c.payload.val() as TypeOfProductDb).comments
               ),
-              // otherIds: this.transformDataToArr<string>(
-              //   (c.payload.val() as TypeOfProductDb).otherIds
-              // ),
+              characteristics: (c.payload.val() as TypeOfProductDb)
+                .characteristics
+                ? (c.payload.val() as TypeOfProductDb).characteristics
+                : [],
+              otherIds: (c.payload.val() as TypeOfProductDb).otherIds
+                ? (c.payload.val() as TypeOfProductDb).otherIds
+                : [],
               images: this.transformDataToArr<string>(
                 (c.payload.val() as TypeOfProductDb).images
               ),
@@ -79,9 +87,13 @@ export class ProductsService {
               comments: this.transformData<Comments>(
                 (changes.payload.val() as TypeOfProductDb).comments
               ),
-              // otherIds: this.transformDataToArr<string>(
-              //   (changes.payload.val() as TypeOfProductDb).otherIds
-              // ),
+              characteristics: (changes.payload.val() as TypeOfProductDb)
+                .characteristics
+                ? (changes.payload.val() as TypeOfProductDb).characteristics
+                : [],
+              otherIds: (changes.payload.val() as TypeOfProductDb).otherIds
+                ? (changes.payload.val() as TypeOfProductDb).otherIds
+                : [],
               images: this.transformDataToArr<string>(
                 (changes.payload.val() as TypeOfProductDb).images
               ),
@@ -142,7 +154,6 @@ export class ProductsService {
   transformDataToArr<T>(data: { [key: string]: T }): T[] {
     if (data) {
       const valuesArr = [];
-
       for (const value of Object.values(data)) {
         valuesArr.push(value);
       }

@@ -14,8 +14,11 @@
       </a>
       <div class="header__catalogue-container">
         <button class="header__catalogue_btn" (click)="changeCatalogueState()">
-          <svg class="header__logo_img header__icon">
+          <svg *ngIf="!showCatalogue" class="header__icon">
             <use href="assets/sprite.svg#icon-catalogue"></use>
+          </svg>
+          <svg *ngIf="showCatalogue" class="header__icon">
+            <use href="assets/sprite.svg#icon-close"></use>
           </svg>
           <div class="header__text">Каталог</div>
         </button>
