@@ -7,11 +7,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UpdateInfService {
-  productData$ = new Subject();
+  productData$ = new Subject<TypeOfProduct>();
 
   constructor() {}
 
-  getData(): Observable<any> {
+  getData(): Observable<TypeOfProduct> {
     return this.productData$.asObservable();
   }
   setData(data: TypeOfProduct) {

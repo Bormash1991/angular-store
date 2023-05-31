@@ -153,12 +153,9 @@ export class ProductsModalComponent {
   }
   deleteImg(src: string | ArrayBuffer | null) {
     const imgIndex = this.img.indexOf(src);
-    const imgUpdIndex = this.img.indexOf(src);
     this.img.splice(imgIndex, 1);
     this.files.splice(imgIndex - this.imgForUpd.length - 1, 1);
-    if (imgUpdIndex) {
-      this.imgForUpd.splice(imgUpdIndex, 1);
-    }
+    this.imgForUpd.splice(imgIndex, 1);
   }
   transformIds(value: { id: string }[]) {
     const idsArr = [];

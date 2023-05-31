@@ -54,16 +54,30 @@
           <div [class]="'about__availability ' + availabilityClass">
             {{ availabilityText }}
           </div>
-          <div class="about__inf_buy border">
+          <div class="about__buy border">
             <div class="about__price">{{ productData.price | uah }}</div>
             <btn
               [class]="'btn btn_about'"
               [text]="buttonText"
               (click)="setData(productData)"
             ></btn>
+            <button
+              (click)="changeWishStatus()"
+              [class]="'about__wish ' + wishBtnClass"
+            >
+              <svg
+                [ngClass]="{
+                  'about__wish-img': !wishStatus || wishStatus,
+                  'about__wish-img_active': wishStatus,
+                 
+                }"
+              >
+                <use href="assets/sprite.svg#icon-heart"></use>
+              </svg>
+            </button>
           </div>
           <div class="about__guarantee border">
-            <span>Гарантія.</span>{{ productData.guarantee }} Обмін/повернення
+            <span>Гарантія.</span>{{ productData.guarantee }}. Обмін/повернення
             товару впродовж 14 днів
           </div>
           <div class="about__chars">{{ chars }}</div>

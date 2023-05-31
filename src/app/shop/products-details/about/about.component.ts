@@ -26,6 +26,8 @@ export class AboutComponent implements OnInit {
   loading$ = new BehaviorSubject<boolean>(true);
   availabilityClass: string = '';
   availabilityText: string = '';
+  wishBtnClass = '';
+  wishStatus = false;
   otherColors: any[] = [];
   chars: string = '';
   @ViewChild('swiper') set swiper(element: { nativeElement: HTMLElement }) {
@@ -81,6 +83,15 @@ export class AboutComponent implements OnInit {
       });
     this.dataSubj = this.UpdateInfService.getData().subscribe((data) => {
       if (data) {
+        this.productsService
+          .checkProductInWishlist(data.id)
+          .subscribe((res) => {
+            if (res == 'unAuth') {
+              this.wishBtnClass = 'about__wish_hide';
+            } else {
+              this.wishStatus = res;
+            }
+          });
         this.productData = data;
         this.loading$.next(false);
         this.setOtherColors(data);
@@ -110,6 +121,13 @@ export class AboutComponent implements OnInit {
       }
     });
   }
+  changeWishStatus() {
+    if (this.wishStatus == true) {
+      this.productsService.deleteFromWishList(this.productData.id);
+    } else {
+      this.productsService.addToWishList(this.productData.id);
+    }
+  }
   updateData(item: any) {
     this.router.navigate(['/products', item.id]);
     this.productData = false as any;
@@ -117,15 +135,17 @@ export class AboutComponent implements OnInit {
   }
   setOtherColors(data: TypeOfProduct) {
     data.otherIds.forEach((item) => {
-      this.productsService.getProductById(item).subscribe((response) => {
-        if (response) {
-          this.otherColors.push({
-            color: response.color,
-            cssColor: response.cssColor,
-            id: response.id,
-          });
-        }
-      });
+      if (item) {
+        this.productsService.getProductById(item).subscribe((response) => {
+          if (response) {
+            this.otherColors.push({
+              color: response.color,
+              cssColor: response.cssColor,
+              id: response.id,
+            });
+          }
+        });
+      }
     });
   }
   setData(elem: TypeOfProduct) {

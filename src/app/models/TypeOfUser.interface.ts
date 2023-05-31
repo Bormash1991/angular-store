@@ -4,4 +4,5 @@ export interface TypeOfUser {
   createdAt: string;
   updatedAt: string;
   id: string;
+
 }
