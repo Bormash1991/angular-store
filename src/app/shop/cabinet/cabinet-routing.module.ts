@@ -24,6 +24,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./orders/orders.module').then((m) => m.OrdersModule),
       },
+      {
+        path: 'wishlist',
+        loadChildren: () =>
+          import('./wishlist/wishlist.module').then((m) => m.WishlistModule),
+      },
     ],
   },
 ];

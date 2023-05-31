@@ -44,6 +44,10 @@
     fill: black;
     width: 25px;
     height: 25px;
+    &_heart {
+      stroke: black;
+      fill: transparent;
+    }
   }
 }
 @media (min-width: 768px) {
