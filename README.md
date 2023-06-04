@@ -1,6 +1,6 @@
 # Angular-store
 
-Deploy link https://bormash1991.github.io/angular-store/
+Deploy link https://angular-store-daaa7.web.app/
 
 ## Installation
 1. Clone the repo
@@ -27,18 +27,18 @@ Currently, in the deployed version, you will see a simplified version of the pro
 
 - ![RxJS](https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white)
 
-- ![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white)
+- ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
 
 ## Usage
 
 ### Welcome page
 You see this page as soon as you enter the website.
 
-[![welcome-page](https://github.com/Bormash1991/angular-store/blob/main/demo-img/welcome-page.png?raw=true "welcome-page")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/welcome-page.png?raw=true "welcome-page")
+[![welcome](https://github.com/Bormash1991/angular-store/blob/main/demo-img/welcome%20page.png?raw=true "welcome")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/welcome%20page.png?raw=true "welcome")
 
-### Events page 
+### Products page 
 
-This page currently contains all the products that are available in the store, in the future there should be a catalog of products where you can choose the type of product you need.
+This page currently contains all the products that are available in the store, also you can choose products category and see products of chose category.
 
 [![products](https://github.com/Bormash1991/angular-store/blob/main/demo-img/products-page.png?raw=true "products")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/products-page.png?raw=true "products")
 
@@ -46,17 +46,45 @@ This page currently contains all the products that are available in the store, i
 
 This is a page with product photos and a short description at the bottom.
 
-[![products-about](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product-about-page.png?raw=true "products-about")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product-about-page.png?raw=true "products-about")
+[![about](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20about.png?raw=true "about")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20about.png?raw=true "about")
+
+### Characteristics comments
+
+In this section you can see product characteristics.
+
+[![characteristics](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20char.png?raw=true "characteristics")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20char.png?raw=true "characteristics")
 
 ### Products comments
 
 This is the page with product reviews.
 
-[![products-comments](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product-comments-page.png?raw=true "products-comments")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product-comments-page.png?raw=true "products-comments")
+[![comments](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20comments.png?raw=true "comments")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20comments.png?raw=true "comments")
+
+### User page
+
+In this section you can change user info.
+
+[![user info](https://github.com/Bormash1991/angular-store/blob/main/demo-img/change%20user.png?raw=true "user info")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/change%20user.png?raw=true "user info")
+
+### Orders page
+
+In this section you can see your orders.
+
+[![orders](https://github.com/Bormash1991/angular-store/blob/main/demo-img/orders.png?raw=true "orders")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/orders.png?raw=true "orders")
+
+### Wish list page
+
+In this section you can see products added to wish list.
+
+[![wish list](https://github.com/Bormash1991/angular-store/blob/main/demo-img/wish%20list.png?raw=true "wish list")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/wish%20list.png?raw=true "wish list")
+
+### Side bar
+
+[![side bar](https://github.com/Bormash1991/angular-store/blob/main/demo-img/side%20bar.png?raw=true "side bar")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/side%20bar.png?raw=true "side bar")
 
 ### Admin panel
 
 This is the admin panel where you can manage the content of the store.
 
-[![admin-panel](https://github.com/Bormash1991/angular-store/blob/main/demo-img/admin-panel.png?raw=true "admin-panel")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/admin-panel.png?raw=true "admin-panel")
+[![admin panel](https://github.com/Bormash1991/angular-store/blob/main/demo-img/admin%20panel.png?raw=true "admin panel")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/admin%20panel.png?raw=true "admin panel")
 
