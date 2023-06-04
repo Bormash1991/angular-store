@@ -16,7 +16,6 @@ export class CharacteristicsComponent implements OnInit {
     this.updateInfService.getData().subscribe((data: TypeOfProduct) => {
       if (data) {
         this.loading$.next(false);
-
         this.chars = data.characteristics;
       }
     });

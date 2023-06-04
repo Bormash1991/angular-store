@@ -30,7 +30,7 @@
     </mat-expansion-panel>
   </mat-accordion>
   <mat-paginator
-    *ngIf="orders.length"
+    *ngIf="orders.length > 5"
     [pageIndex]="pageIndex"
     [hidePageSize]="true"
     [length]="ordersLength"

@@ -1,0 +1,23 @@
+.wish-list {
+  padding-top: 24px;
+  &__title {
+    font-size: 30px;
+  }
+  &__empty {
+    padding-top: 150px;
+    text-align: center;
+    color: #797878;
+    font-size: 18px;
+  }
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+  }
+}
+@media (min-width: 768px) {
+  .wish-list {
+    padding-left: 40px;
+  }
+}

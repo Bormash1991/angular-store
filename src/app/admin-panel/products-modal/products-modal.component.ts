@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CustomOption, QuillModules } from 'ngx-quill';
 import { Product } from 'src/app/models/TypeOfOrder.interface';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'app-products-modal',
@@ -14,6 +15,7 @@ export class ProductsModalComponent {
   public keys: string[] = Object.keys(this.data.data);
   public className: string;
   public titleText: string;
+  categories: { id?: string; name: string; link: string }[] = [];
   showLabel: boolean = false;
   imgForUpd: string[] = [];
   files: File[] = [];
@@ -22,7 +24,8 @@ export class ProductsModalComponent {
     public dialogRef: MatDialogRef<ProductsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private categoryService: CategoryService
   ) {}
   modules: QuillModules = {
     toolbar: [
@@ -49,6 +52,7 @@ export class ProductsModalComponent {
     description: this.data.description,
     otherIds: this.fb.array([]),
     characteristics: this.fb.array([]),
+    category: this.data.category,
   });
   get controlsIds() {
     return (this.form.get('otherIds') as FormArray).controls;
@@ -80,6 +84,9 @@ export class ProductsModalComponent {
     });
     this.img = [...this.data.images];
     this.imgForUpd = [...this.data.images];
+    this.categoryService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
   }
   createCharsGroup(): FormGroup {
     return this.fb.group({
@@ -146,12 +153,9 @@ export class ProductsModalComponent {
   }
   deleteImg(src: string | ArrayBuffer | null) {
     const imgIndex = this.img.indexOf(src);
-    const imgUpdIndex = this.img.indexOf(src);
     this.img.splice(imgIndex, 1);
     this.files.splice(imgIndex - this.imgForUpd.length - 1, 1);
-    if (imgUpdIndex) {
-      this.imgForUpd.splice(imgUpdIndex, 1);
-    }
+    this.imgForUpd.splice(imgIndex, 1);
   }
   transformIds(value: { id: string }[]) {
     const idsArr = [];
@@ -168,7 +172,7 @@ export class ProductsModalComponent {
         });
         return { title: item.title, chars };
       }
-      return { title: item.title };
+      return '';
     });
   }
   showData() {

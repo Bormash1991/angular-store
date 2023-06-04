@@ -1,3 +1,4 @@
+import { UsersService } from './users.service';
 import { Injectable } from '@angular/core';
 import {
   Comments,
@@ -7,14 +8,15 @@ import {
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import * as uniqid from 'uniqid';
-import { map, take } from 'rxjs';
+import { map, switchMap, take } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
   constructor(
     private db: AngularFireDatabase,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private UsersService: UsersService
   ) {}
   getProducts() {
     return this.db
@@ -29,9 +31,13 @@ export class ProductsService {
               comments: this.transformData<Comments>(
                 (c.payload.val() as TypeOfProductDb).comments
               ),
-              // otherIds: this.transformDataToArr<string>(
-              //   (c.payload.val() as TypeOfProductDb).otherIds
-              // ),
+              characteristics: (c.payload.val() as TypeOfProductDb)
+                .characteristics
+                ? (c.payload.val() as TypeOfProductDb).characteristics
+                : [],
+              otherIds: (c.payload.val() as TypeOfProductDb).otherIds
+                ? (c.payload.val() as TypeOfProductDb).otherIds
+                : [],
               images: this.transformDataToArr<string>(
                 (c.payload.val() as TypeOfProductDb).images
               ),
@@ -39,6 +45,38 @@ export class ProductsService {
           })
         )
       );
+  }
+  checkProductInWishlist(id: string) {
+    return this.UsersService.getUser().pipe(
+      switchMap((user) => this.UsersService.getUserInf(user?.uid!)),
+      map((userInf) => {
+        if (!userInf) {
+          return 'unAuth';
+        }
+        if (!userInf.wishList) {
+          return false;
+        }
+        return id in userInf?.wishList;
+      })
+    );
+  }
+  addToWishList(id: string) {
+    this.UsersService.getUser()
+      .pipe(
+        switchMap((user) =>
+          this.db.object(`users/${user?.uid}/wishList/${id}`).set(true)
+        )
+      )
+      .subscribe();
+  }
+  deleteFromWishList(id: string) {
+    this.UsersService.getUser()
+      .pipe(
+        switchMap((user) =>
+          this.db.object(`users/${user?.uid}/wishList/${id}`).remove()
+        )
+      )
+      .subscribe();
   }
   getProductsByCategory(category: string) {
     return this.db
@@ -55,9 +93,13 @@ export class ProductsService {
               comments: this.transformData<Comments>(
                 (c.payload.val() as TypeOfProductDb).comments
               ),
-              // otherIds: this.transformDataToArr<string>(
-              //   (c.payload.val() as TypeOfProductDb).otherIds
-              // ),
+              characteristics: (c.payload.val() as TypeOfProductDb)
+                .characteristics
+                ? (c.payload.val() as TypeOfProductDb).characteristics
+                : [],
+              otherIds: (c.payload.val() as TypeOfProductDb).otherIds
+                ? (c.payload.val() as TypeOfProductDb).otherIds
+                : [],
               images: this.transformDataToArr<string>(
                 (c.payload.val() as TypeOfProductDb).images
               ),
@@ -79,9 +121,13 @@ export class ProductsService {
               comments: this.transformData<Comments>(
                 (changes.payload.val() as TypeOfProductDb).comments
               ),
-              // otherIds: this.transformDataToArr<string>(
-              //   (changes.payload.val() as TypeOfProductDb).otherIds
-              // ),
+              characteristics: (changes.payload.val() as TypeOfProductDb)
+                .characteristics
+                ? (changes.payload.val() as TypeOfProductDb).characteristics
+                : [],
+              otherIds: (changes.payload.val() as TypeOfProductDb).otherIds
+                ? (changes.payload.val() as TypeOfProductDb).otherIds
+                : [],
               images: this.transformDataToArr<string>(
                 (changes.payload.val() as TypeOfProductDb).images
               ),
@@ -142,7 +188,6 @@ export class ProductsService {
   transformDataToArr<T>(data: { [key: string]: T }): T[] {
     if (data) {
       const valuesArr = [];
-
       for (const value of Object.values(data)) {
         valuesArr.push(value);
       }

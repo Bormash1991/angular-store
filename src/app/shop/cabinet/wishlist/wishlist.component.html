@@ -1,0 +1,21 @@
+<div class="wish-list">
+  <h1 class="wish-list__title">Список бажань</h1>
+  <div class="wish-list__empty" *ngIf="!wishList.length">
+    Ви ще нічого не додали до списку
+  </div>
+  <div class="wish-list__items">
+    <app-product-item
+      [productDate]="item"
+      *ngFor="let item of wishList"
+    ></app-product-item>
+  </div>
+  <mat-paginator
+    *ngIf="wishList.length > 8"
+    [pageIndex]="pageIndex"
+    [hidePageSize]="true"
+    [length]="wishListLength"
+    (page)="changePage($event)"
+    [pageSize]="8"
+  >
+  </mat-paginator>
+</div>

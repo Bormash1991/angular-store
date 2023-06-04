@@ -4,4 +4,5 @@ export interface User {
   number: string;
   date: string;
   gender: string;
+  wishList?: [boolean];
 }

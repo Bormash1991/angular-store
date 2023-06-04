@@ -11,6 +11,7 @@ import { AddCommentModalComponent } from './add-comment-modal/add-comment-modal.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
 import { ShopModule } from '../shop.module';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { ShopModule } from '../shop.module';
     FormsModule,
     ReactiveFormsModule,
     StarRatingModule.forRoot(),
-    
+    QuillModule.forRoot(),
   ],
 })
 export class ProductsDetailsModule {}

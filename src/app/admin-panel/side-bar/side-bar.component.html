@@ -3,7 +3,6 @@
   <div class="side-bar__circle"></div>
   <nav class="side-bar__nav">
     <ul class="side-bar__list">
-
       <li class="side-bar__item">
         <a
           (click)="closeBar()"
@@ -37,7 +36,7 @@
       <a class="side-bar__popup_link" (click)="logout()" [routerLink]="['/']">
         With logout</a
       >
-      <a class="side-bar__popup_link" [routerLink]="['/']"> Without logout</a>
+      <a class="side-bar__popup_link" (click)="closeBar()" [routerLink]="['/']"> Without logout</a>
     </div>
   </a>
 </div>
