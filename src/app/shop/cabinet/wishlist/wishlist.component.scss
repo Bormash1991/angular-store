@@ -34,7 +34,6 @@
 
 @media (min-width: 1440px) {
   .wish-list {
-    padding-left: 40px;
     &__items {
       grid-template-columns: repeat(4, 1fr);
     }
