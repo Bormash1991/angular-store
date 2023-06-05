@@ -11,7 +11,7 @@
   }
   &__items {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 15px;
     margin-top: 25px;
   }
@@ -19,5 +19,24 @@
 @media (min-width: 768px) {
   .wish-list {
     padding-left: 40px;
+    &__items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+@media (min-width: 992px) {
+  .wish-list {
+    &__items {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .wish-list {
+    padding-left: 40px;
+    &__items {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
