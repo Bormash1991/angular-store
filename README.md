@@ -16,11 +16,9 @@ Deploy link https://angular-store-daaa7.web.app/
 	`ng serve`
 
 ## About project 
-This is my pet project, and I've spent a lot of time on it, but it seems like I'll spend a lot more. This is an online store where you can view products, add them to your cart, and leave a review.
+This is my pet project. This is an online store where you can view products, add them to your cart, and leave a review.
 
 If you have administrator rights, you can access the admin panel, where you can perform all CRUD operations on products, manage users and orders.
-
-Currently, in the deployed version, you will see a simplified version of the project, because the new design and most of the features are still under development.
 
 ### Built With
 - ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
@@ -36,25 +34,25 @@ You see this page as soon as you enter the website.
 
 [![welcome](https://github.com/Bormash1991/angular-store/blob/main/demo-img/welcome%20page.png?raw=true "welcome")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/welcome%20page.png?raw=true "welcome")
 
-### Products page 
+### Products list
 
 This page currently contains all the products that are available in the store, also you can choose products category and see products of chose category.
 
-[![products](https://github.com/Bormash1991/angular-store/blob/main/demo-img/products-page.png?raw=true "products")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/products-page.png?raw=true "products")
+[![products list](https://github.com/Bormash1991/angular-store/blob/main/demo-img/products%20list.png?raw=true "products list")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/products%20list.png?raw=true "products list")
 
-### Products about
+### Product about
 
 This is a page with product photos and a short description at the bottom.
 
 [![about](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20about.png?raw=true "about")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20about.png?raw=true "about")
 
-### Characteristics comments
+### Product characteristics 
 
 In this section you can see product characteristics.
 
 [![characteristics](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20char.png?raw=true "characteristics")](https://github.com/Bormash1991/angular-store/blob/main/demo-img/product%20page%20char.png?raw=true "characteristics")
 
-### Products comments
+### Product comments
 
 This is the page with product reviews.
 
