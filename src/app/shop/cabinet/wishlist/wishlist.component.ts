@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import {
   Observable,
   combineLatest,
@@ -25,9 +26,13 @@ export class WishlistComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private usersService: UsersService,
-    private filterService: FilterService<TypeOfProduct>
+    private filterService: FilterService<TypeOfProduct>,
+    private titleService: Title
+
   ) {}
   ngOnInit(): void {
+    this.titleService.setTitle('Список бажань');
+
     this.usersService
       .getUser()
       .pipe(switchMap((user) => this.usersService.getUserInf(user?.uid!)))
